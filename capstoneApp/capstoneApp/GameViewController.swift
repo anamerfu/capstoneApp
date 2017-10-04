@@ -71,18 +71,7 @@ class GameViewController: UIViewController, ARSCNViewDelegate {
         
     }
     
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
+
     
     //Tests
     
