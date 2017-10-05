@@ -10,7 +10,9 @@ import UIKit
 import SceneKit
 import ARKit
 
-//commit change comment
+//if a navigation back to HomeScreenViewController is needed, add:
+// self.navigationController?.isNavigationBarHidden = false
+//to viewWillDisappear??
 
 class GameViewController: UIViewController, ARSCNViewDelegate {
 

@@ -12,6 +12,7 @@ let playGameController = GameViewController()
 class HomeScreenViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.navigationController?.isNavigationBarHidden = true
         
         print("hello i am home screen")
         
