@@ -11,11 +11,11 @@ import ARKit
 class Bunny: SCNNode {
     
     func loadModel() {
-        guard let virtualOjectScene = SCNScene(named: "art.scnassets/Bunny.scn") else {return}
+        guard let virtualObjectScene = SCNScene(named: "art.scnassets/Bunny.scn") else {return}
         
         let wrapperNode = SCNNode()
         
-        for child in virtualOjectScene.rootNode.childNodes {
+        for child in virtualObjectScene.rootNode.childNodes {
             wrapperNode.addChildNode(child)
         }
         

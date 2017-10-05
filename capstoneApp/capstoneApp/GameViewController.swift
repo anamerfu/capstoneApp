@@ -12,7 +12,9 @@ import ARKit
 
 class GameViewController: UIViewController, ARSCNViewDelegate {
 
- var sceneView: ARSCNView = ARSCNView()
+    let sceneView: ARSCNView = ARSCNView()
+    
+    let numberOfObjects = 4
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -45,6 +47,12 @@ class GameViewController: UIViewController, ARSCNViewDelegate {
         sceneView.session.run(configuration)
         
         addBunny()
+        
+        for _ in 0..<numberOfObjects {
+            addObject()
+            print ("for loop working")
+        }
+        
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -63,12 +71,27 @@ class GameViewController: UIViewController, ARSCNViewDelegate {
         bunny.position = SCNVector3(0, 0, -1)
         
         sceneView.scene.rootNode.addChildNode(bunny)
+        print ("add bunny worked")
         
         
     }
     
-    func addObjects(){
+    func addObject(){
+        let object = Object()
+        object.loadModel()
         
+        let xPos = randomPosition(lowerBound: -1.5, upperBound: 1.5)
+        let yPos = randomPosition(lowerBound: -1.5, upperBound: 1.5)
+        let zPos = randomPosition(lowerBound: -5, upperBound: -1.5)
+        
+        object.position = SCNVector3(xPos, yPos, xPos)
+        
+        sceneView.scene.rootNode.addChildNode(object)
+        print ("add object working")
+    }
+    
+    func randomPosition(lowerBound lower:Float, upperBound upper:Float) -> Float {
+       return Float(arc4random()) / Float(UInt32.max) * (lower - upper) + upper
     }
     
 
