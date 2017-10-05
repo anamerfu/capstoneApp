@@ -30,8 +30,10 @@ class GameViewController: UIViewController, ARSCNViewDelegate {
         
         // Create a new scene
        let scene = SCNScene()
+      
         
         // Set the scene to the view
+        
         sceneView.scene = scene
         
         
@@ -80,11 +82,11 @@ class GameViewController: UIViewController, ARSCNViewDelegate {
         let object = Object()
         object.loadModel()
         
-        let xPos = randomPosition(lowerBound: -1.5, upperBound: 1.5)
-        let yPos = randomPosition(lowerBound: -1.5, upperBound: 1.5)
+        let xPos = randomPosition(lowerBound: -3, upperBound: 3)
+        let yPos = randomPosition(lowerBound: -1.5, upperBound: 0.75)
         let zPos = randomPosition(lowerBound: -5, upperBound: -1.5)
         
-        object.position = SCNVector3(xPos, yPos, xPos)
+        object.position = SCNVector3(xPos, yPos, zPos)
         
         sceneView.scene.rootNode.addChildNode(object)
         print ("add object working")
@@ -92,6 +94,22 @@ class GameViewController: UIViewController, ARSCNViewDelegate {
     
     func randomPosition(lowerBound lower:Float, upperBound upper:Float) -> Float {
        return Float(arc4random()) / Float(UInt32.max) * (lower - upper) + upper
+    }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        
+        if let touch = touches.first {
+            let location = touch.location(in: sceneView)
+            let hitList = sceneView.hitTest(location, options:nil)
+            if let hitObject = hitList.first {
+                let node = hitObject.node
+                
+                if node.name == "sphere"{
+                    node.removeFromParentNode()
+                }
+            }
+        }
+        
     }
     
 
