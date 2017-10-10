@@ -16,6 +16,8 @@ class Object: SCNNode {
         
         let wrapperNode = SCNNode()
         
+        wrapperNode.name = "food"
+        
         for child in virtualObjectScene.rootNode.childNodes {
             wrapperNode.addChildNode(child)
         }

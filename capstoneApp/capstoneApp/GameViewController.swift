@@ -108,7 +108,7 @@ class GameViewController: UIViewController, ARSCNViewDelegate {
             if let hitObject = hitList.first {
                 let node = hitObject.node
                 
-                if node.name == "sphere"{
+                if node.name == "food"{
                     node.removeFromParentNode()
                 }
             }
