@@ -101,15 +101,17 @@ class GameViewController: UIViewController, ARSCNViewDelegate {
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        
+        print("touchesBegan running")
         if let touch = touches.first {
+            print("if let one")
             let location = touch.location(in: sceneView)
             let hitList = sceneView.hitTest(location, options:nil)
             if let hitObject = hitList.first {
                 let node = hitObject.node
-                
-                if node.name == "food"{
+                print(node.name)
+                if node.name == "apple"{
                     node.removeFromParentNode()
+                    print(node.name)
                 }
             }
         }
