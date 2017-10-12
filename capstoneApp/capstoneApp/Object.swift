@@ -11,18 +11,17 @@ import ARKit
 class Object: SCNNode {
 
     func loadModel() {
-        let object = SCNSphere(radius:0.2)
         
-        object.firstMaterial?.diffuse.contents = UIColor.red
+        guard let virtualObjectScene = SCNScene(named: "art.scnassets/apple.dae") else {return}
         
-        let wrapperNode = SCNNode(geometry: object)
-        wrapperNode.name = "sphere"
+        let wrapperNode = SCNNode()
         
-        //sphere's do not have root nodes, so it doesn't work rn
-//        for child in object.rootNode.childNodes {
-//            wrapperNode.addChildNode(child)
-//        }
-//
+        wrapperNode.name = "food"
+        
+        for child in virtualObjectScene.rootNode.childNodes {
+            wrapperNode.addChildNode(child)
+        }
+
         self.addChildNode(wrapperNode)
         
     }

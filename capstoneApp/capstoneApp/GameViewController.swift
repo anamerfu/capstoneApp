@@ -10,7 +10,9 @@ import UIKit
 import SceneKit
 import ARKit
 
-//commit change comment
+//if a navigation back to HomeScreenViewController is needed, add:
+// self.navigationController?.isNavigationBarHidden = false
+//to viewWillDisappear??
 
 class GameViewController: UIViewController, ARSCNViewDelegate {
 
@@ -46,11 +48,12 @@ class GameViewController: UIViewController, ARSCNViewDelegate {
         
         // Create a session configuration
         let configuration = ARWorldTrackingConfiguration()
+        configuration.planeDetection = .horizontal
 
         // Run the view's session
         sceneView.session.run(configuration)
         
-        addBunny()
+//        addBunny()
         
         for _ in 0..<numberOfObjects {
             addObject()
@@ -66,19 +69,38 @@ class GameViewController: UIViewController, ARSCNViewDelegate {
         sceneView.session.pause()
     }
     
-    func addBunny(){
+    func renderer(_ renderer: SCNSceneRenderer, didAdd node: SCNNode, for anchor: ARAnchor) {
         
+        guard let planeAnchor = anchor as? ARPlaneAnchor else { return }
+        
+        let planeNode = addBunny(anchor: planeAnchor)
+        
+        // ARKit owns the node corresponding to the anchor, so make the plane a child node.
+        node.addChildNode(planeNode)
+        print("renderer func works")
+    }
+    
+    func addBunny(anchor: ARPlaneAnchor) -> SCNNode {
+        
+        let plane = SCNPlane(width: CGFloat(anchor.extent.x), height: CGFloat(anchor.extent.z))
         let bunny = Bunny()
         bunny.loadModel()
         
+        bunny.position = SCNVector3Make(anchor.center.x, 0, anchor.center.z)
         
-        bunny.position = SCNVector3(0, 0, -1)
         
-        sceneView.scene.rootNode.addChildNode(bunny)
-        print ("add bunny worked")
+        bunny.transform = SCNMatrix4MakeRotation(-Float.pi / 2, 1, 0, 0)
+        print("addBunny called")
+        return bunny
+        
+        //        bunny.position = SCNVector3(0, 0, -1)
+        //
+        //        sceneView.scene.rootNode.addChildNode(bunny)
+        //        print ("add bunny worked")
         
         
     }
+    
     
     func addObject(){
         let object = Object()
@@ -99,14 +121,14 @@ class GameViewController: UIViewController, ARSCNViewDelegate {
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        
+        print("touchesBegan running")
         if let touch = touches.first {
+            print("if let one")
             let location = touch.location(in: sceneView)
             let hitList = sceneView.hitTest(location, options:nil)
             if let hitObject = hitList.first {
                 let node = hitObject.node
-                
-                if node.name == "sphere"{
+                if node.name == "apple"{
                     node.removeFromParentNode()
                 }
             }
