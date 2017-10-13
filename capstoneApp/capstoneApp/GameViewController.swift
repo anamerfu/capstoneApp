@@ -17,8 +17,8 @@ import ARKit
 class GameViewController: UIViewController, ARSCNViewDelegate {
 
     let sceneView: ARSCNView = ARSCNView()
-    
     let numberOfObjects = 4
+    var bunnyDidAppear = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -70,26 +70,26 @@ class GameViewController: UIViewController, ARSCNViewDelegate {
     }
     
     func renderer(_ renderer: SCNSceneRenderer, didAdd node: SCNNode, for anchor: ARAnchor) {
-        
-        guard let planeAnchor = anchor as? ARPlaneAnchor else { return }
-        
-        let planeNode = addBunny(anchor: planeAnchor)
-        
-        // ARKit owns the node corresponding to the anchor, so make the plane a child node.
-        node.addChildNode(planeNode)
-        print("renderer func works")
+        if (bunnyDidAppear == false){
+            guard let planeAnchor = anchor as? ARPlaneAnchor else { return }
+            
+            let planeNode = addBunny(anchor: planeAnchor)
+            
+            // ARKit owns the node corresponding to the anchor, so make the plane a child node.
+            node.addChildNode(planeNode)
+            print("renderer func works")
+            bunnyDidAppear = true
+        }
     }
     
     func addBunny(anchor: ARPlaneAnchor) -> SCNNode {
         
-        let plane = SCNPlane(width: CGFloat(anchor.extent.x), height: CGFloat(anchor.extent.z))
         let bunny = Bunny()
-        bunny.loadModel()
         
         bunny.position = SCNVector3Make(anchor.center.x, 0, anchor.center.z)
         
-        
-        bunny.transform = SCNMatrix4MakeRotation(-Float.pi / 2, 1, 0, 0)
+        bunny.loadModel()
+
         print("addBunny called")
         return bunny
         
