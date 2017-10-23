@@ -20,13 +20,17 @@ class FoodRequestView: UIView {
     override init(frame: CGRect){
         super.init(frame: frame)
         
-        let randomFoodNumber = Int (arc4random_uniform (UInt32 (foods.count + 1) ) )
+        let randomFoodNumber = Int (arc4random_uniform ( UInt32(foods.count) ) )
         let randomFoodName = foods[randomFoodNumber]
         let foodImage = UIImage(named: randomFoodName)
-        let numberOfFoods = arc4random_uniform(6)
+        let numberOfFoods = arc4random_uniform(6) + 1
         
+        print(randomFoodNumber)
+        print(randomFoodName)
+        print (numberOfFoods)
         
         for index in 1...numberOfFoods {
+ 
             
             let foodImageView: UIImageView = UIImageView(image: foodImage)
             foodImageView.frame = CGRect(x: Int(5 + (index * 25)), y: 5, width: 25, height: 25)
