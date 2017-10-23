@@ -19,7 +19,8 @@ class GameViewController: UIViewController, ARSCNViewDelegate {
     let sceneView: ARSCNView = ARSCNView()
     let numberOfObjects = 4
     var bunnyDidAppear = false
-    var bunnyModel:SCNNode!
+    var bunnyWrapperNode = SCNNode()
+    let bunnyScene = SCNScene(named: "art.scnassets/Bunny.scn")
     let bunnyNode = "bunny" // Same name we set for the node on SceneKit's editor
     
     override func viewDidLoad() {
@@ -78,21 +79,31 @@ class GameViewController: UIViewController, ARSCNViewDelegate {
             bunnyDidAppear = true
 //            self.addBunny(node: node, anchor: planeAnchor)
             let planeNode = addBunny(anchor: planeAnchor)
-
+//            nodeModel =  modelScene.rootNode.childNode(withName: nodeName, recursively: true)
             // ARKit owns the node corresponding to the anchor, so make the plane a child node.
             node.addChildNode(planeNode)
+            planeNode.addChildNode(bunnyWrapperNode)
             print("renderer func works")
-            bunnyDidAppear = true
+//            bunnyDidAppear = true
         }
 
     }
+//
+//    func renderer(_ renderer: SCNSceneRenderer, didUpdate node: SCNNode, for anchor: ARAnchor) {
+//        let node = bunnyWrapperNode
+//
+//    }
     
     func addBunny(anchor: ARPlaneAnchor) -> SCNNode {
         let bunny = Bunny()
 
-        bunny.position = SCNVector3Make(anchor.center.x, 0, anchor.center.z)
+        bunnyWrapperNode.position = SCNVector3Make(0, 0, 0)
 
-        bunny.loadModel()
+//        bunny.loadModel()
+        
+        for child in (bunnyScene?.rootNode.childNodes)! {
+            bunnyWrapperNode.addChildNode(child)
+        }
 
         print("addBunny called")
         return bunny
