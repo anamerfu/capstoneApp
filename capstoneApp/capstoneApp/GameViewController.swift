@@ -23,11 +23,17 @@ class GameViewController: UIViewController, ARSCNViewDelegate {
     let bunnyScene = SCNScene(named: "art.scnassets/Bunny.scn")
     let bunnyNode = "bunny" // Same name we set for the node on SceneKit's editor
     
+    //create food request view
+    let foodRequestView = FoodRequestView()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         sceneView.frame = self.view.frame
         view.addSubview(sceneView)
+        
+        foodRequestView.frame = CGRect(x: 20 , y: 20, width: 40, height:40 )
+        view.addSubview(foodRequestView)
         
         // Set the view's delegate
         sceneView.delegate = self
@@ -44,6 +50,9 @@ class GameViewController: UIViewController, ARSCNViewDelegate {
         // Set the scene to the view
         sceneView.scene = scene
         
+
+
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -56,7 +65,7 @@ class GameViewController: UIViewController, ARSCNViewDelegate {
         // Run the view's session
         sceneView.session.run(configuration)
         
-//        addBunny()
+        
         
         for _ in 0..<numberOfObjects {
             addObject()
