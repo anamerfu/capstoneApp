@@ -19,6 +19,8 @@ class GameViewController: UIViewController, ARSCNViewDelegate {
     let sceneView: ARSCNView = ARSCNView()
     let numberOfObjects = 4
     var bunnyDidAppear = false
+    var bunnyModel:SCNNode!
+    let bunnyNode = "bunny" // Same name we set for the node on SceneKit's editor
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,14 +34,14 @@ class GameViewController: UIViewController, ARSCNViewDelegate {
         // Show statistics such as fps and timing information
         sceneView.showsStatistics = true
         
+        self.sceneView.autoenablesDefaultLighting = true
+        sceneView.antialiasingMode = .multisampling4X
+        
         // Create a new scene
-       let scene = SCNScene()
+        let scene = SCNScene()
       
-        
         // Set the scene to the view
-        
         sceneView.scene = scene
-        
         
     }
     
@@ -72,33 +74,35 @@ class GameViewController: UIViewController, ARSCNViewDelegate {
     func renderer(_ renderer: SCNSceneRenderer, didAdd node: SCNNode, for anchor: ARAnchor) {
         if (bunnyDidAppear == false){
             guard let planeAnchor = anchor as? ARPlaneAnchor else { return }
-            
+
+            bunnyDidAppear = true
+//            self.addBunny(node: node, anchor: planeAnchor)
             let planeNode = addBunny(anchor: planeAnchor)
-            
+
             // ARKit owns the node corresponding to the anchor, so make the plane a child node.
             node.addChildNode(planeNode)
             print("renderer func works")
             bunnyDidAppear = true
         }
+
     }
     
     func addBunny(anchor: ARPlaneAnchor) -> SCNNode {
-        
         let bunny = Bunny()
-        
+
         bunny.position = SCNVector3Make(anchor.center.x, 0, anchor.center.z)
-        
+
         bunny.loadModel()
 
         print("addBunny called")
         return bunny
-        
+
         //        bunny.position = SCNVector3(0, 0, -1)
         //
         //        sceneView.scene.rootNode.addChildNode(bunny)
         //        print ("add bunny worked")
-        
-        
+
+
     }
     
     
