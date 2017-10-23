@@ -95,18 +95,17 @@ class GameViewController: UIViewController, ARSCNViewDelegate {
 //    }
     
     func addBunny(anchor: ARPlaneAnchor) -> SCNNode {
-        let bunny = Bunny()
-
+//        let bunny = Bunny()
+//        bunnyWrapperNode =  (bunnyScene?.rootNode.childNode(withName: bunnyNode, recursively: true))!
         bunnyWrapperNode.position = SCNVector3Make(0, 0, 0)
 
 //        bunny.loadModel()
-        
         for child in (bunnyScene?.rootNode.childNodes)! {
             bunnyWrapperNode.addChildNode(child)
         }
 
         print("addBunny called")
-        return bunny
+        return bunnyWrapperNode
 
         //        bunny.position = SCNVector3(0, 0, -1)
         //
