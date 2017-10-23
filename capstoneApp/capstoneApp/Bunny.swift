@@ -10,18 +10,18 @@ import ARKit
 
 class Bunny: SCNNode {
     
-    func loadModel() {
-        guard let bunnyScene = SCNScene(named: "art.scnassets/Bunny.scn") else {return}
-
-        let wrapperNode = SCNNode()
-
-        for child in bunnyScene.rootNode.childNodes {
-            wrapperNode.addChildNode(child)
-        }
-
-        self.addChildNode(wrapperNode)
-
-    }
+//    func loadModel() {
+//        guard let bunnyScene = SCNScene(named: "art.scnassets/Bunny.scn") else {return}
+//
+//        let wrapperNode = SCNNode()
+//
+//        for child in bunnyScene.rootNode.childNodes {
+//            wrapperNode.addChildNode(child)
+//        }
+//
+//        self.addChildNode(wrapperNode)
+//
+//    }
     
 
 }
