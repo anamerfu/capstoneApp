@@ -8,7 +8,6 @@
 
 import UIKit
 
-let foods: Array = ["apple.png", "cake.png", "grapes.png", "icecream.png", "orange.png", "pumpkin.png"];
 
 class FoodRequestView: UIView {
     
@@ -21,7 +20,7 @@ class FoodRequestView: UIView {
         super.init(frame: frame)
         
         let randomFoodNumber = Int (arc4random_uniform ( UInt32(foods.count) ) )
-        let randomFoodName = foods[randomFoodNumber]
+        let randomFoodName = foods[randomFoodNumber] + ".png"
         let foodImage = UIImage(named: randomFoodName)
         let numberOfFoods = arc4random_uniform(6) + 1
         
