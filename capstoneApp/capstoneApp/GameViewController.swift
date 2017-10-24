@@ -23,9 +23,6 @@ class GameViewController: UIViewController, ARSCNViewDelegate {
     let bunnyScene = SCNScene(named: "art.scnassets/Bunny.scn")
     let bunnyNode = "bunny" // Same name we set for the node on SceneKit's editor
     
-    //stores what the current 
-    var currentRequest:String
-    
     //create food request view
     let foodRequestView = FoodRequestView()
     
