@@ -151,7 +151,7 @@ class GameViewController: UIViewController, ARSCNViewDelegate {
             let hitList = sceneView.hitTest(location, options:nil)
             if let hitObject = hitList.first {
                 let node = hitObject.node
-                if node.name == "apple"{
+                if foods.contains(node.name!){
                     node.removeFromParentNode()
                 }
             }
