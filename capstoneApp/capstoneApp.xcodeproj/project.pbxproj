@@ -16,6 +16,7 @@
 		2438A6DC1F8584E800B76B59 /* capstoneAppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2438A6DB1F8584E800B76B59 /* capstoneAppUITests.swift */; };
 		2438A6EA1F8585AC00B76B59 /* Bunny.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2438A6E91F8585AC00B76B59 /* Bunny.swift */; };
 		245AA3581FA00D850011F723 /* Foods.swift in Sources */ = {isa = PBXBuildFile; fileRef = 245AA3571FA00D850011F723 /* Foods.swift */; };
+		245AA35A1FA00DDE0011F723 /* FoodRequestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 245AA3591FA00DDE0011F723 /* FoodRequestView.swift */; };
 		24A2BD5A1F86981C00FD94A5 /* Object.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24A2BD591F86981C00FD94A5 /* Object.swift */; };
 		984C5B431F86BFBF0060D3FC /* HomeScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 984C5B421F86BFBF0060D3FC /* HomeScreenViewController.swift */; };
 /* End PBXBuildFile section */
@@ -53,6 +54,7 @@
 		2438A6DD1F8584E800B76B59 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2438A6E91F8585AC00B76B59 /* Bunny.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bunny.swift; sourceTree = "<group>"; };
 		245AA3571FA00D850011F723 /* Foods.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Foods.swift; sourceTree = "<group>"; };
+		245AA3591FA00DDE0011F723 /* FoodRequestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodRequestView.swift; sourceTree = "<group>"; };
 		24A2BD591F86981C00FD94A5 /* Object.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Object.swift; sourceTree = "<group>"; };
 		984C5B421F86BFBF0060D3FC /* HomeScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeScreenViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -115,6 +117,7 @@
 				2438A6C21F8584E800B76B59 /* Assets.xcassets */,
 				2438A6C41F8584E800B76B59 /* LaunchScreen.storyboard */,
 				2438A6C71F8584E800B76B59 /* Info.plist */,
+				245AA3591FA00DDE0011F723 /* FoodRequestView.swift */,
 			);
 			path = capstoneApp;
 			sourceTree = "<group>";
@@ -273,6 +276,7 @@
 			files = (
 				2438A6EA1F8585AC00B76B59 /* Bunny.swift in Sources */,
 				2438A6BE1F8584E800B76B59 /* GameViewController.swift in Sources */,
+				245AA35A1FA00DDE0011F723 /* FoodRequestView.swift in Sources */,
 				24A2BD5A1F86981C00FD94A5 /* Object.swift in Sources */,
 				245AA3581FA00D850011F723 /* Foods.swift in Sources */,
 				2438A6BA1F8584E800B76B59 /* AppDelegate.swift in Sources */,
