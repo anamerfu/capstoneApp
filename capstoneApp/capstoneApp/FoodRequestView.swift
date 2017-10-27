@@ -24,6 +24,8 @@ class FoodRequestView: UIView {
         let foodImage = UIImage(named: randomFoodName)
         let numberOfFoods = arc4random_uniform(6) + 1
         
+        currentRequest = foods[randomFoodNumber]
+        
         print(randomFoodNumber)
         print(randomFoodName)
         print (numberOfFoods)

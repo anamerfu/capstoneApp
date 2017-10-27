@@ -14,10 +14,16 @@ import ARKit
 // self.navigationController?.isNavigationBarHidden = false
 //to viewWillDisappear??
 
+//current food that is requested
+var currentRequest: String! = nil
+
+//amount of correct items that the user has alread tapped
+var correctSelected = 0
+
 class GameViewController: UIViewController, ARSCNViewDelegate {
 
     let sceneView: ARSCNView = ARSCNView()
-    let numberOfObjects = 4
+    var numberOfObjects = 4
     var bunnyDidAppear = false
     var bunnyWrapperNode = SCNNode()
     let bunnyScene = SCNScene(named: "art.scnassets/Bunny.scn")
@@ -25,6 +31,12 @@ class GameViewController: UIViewController, ARSCNViewDelegate {
     
     //create food request view
     let foodRequestView = FoodRequestView()
+    
+    
+
+
+    
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -152,6 +164,13 @@ class GameViewController: UIViewController, ARSCNViewDelegate {
             if let hitObject = hitList.first {
                 let node = hitObject.node
                 if foods.contains(node.name!){
+                    
+                    //checks if item selected is an item that is requested
+                    if node.name == currentRequest {
+                        print("correct item selected")
+                    } else {
+                        print("incorrect item selected")
+                    }
                     node.removeFromParentNode()
                 }
             }
