@@ -21,7 +21,7 @@ class GameViewController: UIViewController, ARSCNViewDelegate {
     var bunnyDidAppear = false
     var bunnyWrapperNode = SCNNode()
     let bunnyScene = SCNScene(named: "art.scnassets/Bunny.scn")
-    let bunnyNode = "bunny" // Same name we set for the node on SceneKit's editor
+    let bunnyNode = "bunny"
     
     //create food request view
     let foodRequestView = FoodRequestView()
@@ -107,7 +107,7 @@ class GameViewController: UIViewController, ARSCNViewDelegate {
 //        let bunny = Bunny()
 //        bunnyWrapperNode =  (bunnyScene?.rootNode.childNode(withName: bunnyNode, recursively: true))!
         bunnyWrapperNode.position = SCNVector3Make(0, 0, 0)
-
+        
 //        bunny.loadModel()
         for child in (bunnyScene?.rootNode.childNodes)! {
             bunnyWrapperNode.addChildNode(child)
