@@ -8,6 +8,7 @@
 
 import UIKit
 
+var currentRequestNumber = 0
 
 class FoodRequestView: UIView {
     
@@ -20,6 +21,7 @@ class FoodRequestView: UIView {
         super.init(frame: frame)
         
         let randomFoodNumber = Int (arc4random_uniform ( UInt32(foods.count) ) )
+        
         let randomFoodName = foods[randomFoodNumber] + ".png"
         let foodImage = UIImage(named: randomFoodName)
         let numberOfFoods = arc4random_uniform(6) + 1
@@ -37,6 +39,8 @@ class FoodRequestView: UIView {
             foodImageView.frame = CGRect(x: Int(5 + (index * 25)), y: 5, width: 25, height: 25)
             self.addSubview(foodImageView)
         }
+        
+        currentRequestNumber = randomFoodNumber
     }
     
     required init?(coder aDecoder: NSCoder) {

@@ -168,6 +168,12 @@ class GameViewController: UIViewController, ARSCNViewDelegate {
                     //checks if item selected is an item that is requested
                     if node.name == currentRequest {
                         print("correct item selected")
+                        correctSelected += 1
+                        
+                        if correctSelected == currentRequestNumber {
+                            print ("Request Complete!")
+                        }
+                        
                     } else {
                         print("incorrect item selected")
                     }
