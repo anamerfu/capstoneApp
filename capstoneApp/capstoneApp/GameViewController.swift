@@ -19,9 +19,20 @@ class GameViewController: UIViewController, ARSCNViewDelegate {
     let sceneView: ARSCNView = ARSCNView()
     let numberOfObjects = 4
     var bunnyDidAppear = false
-    var bunnyWrapperNode = SCNNode()
-    let bunnyScene = SCNScene(named: "art.scnassets/Bunny.scn")
-    let bunnyNode = "bunny"
+//    var bunnyWrapperNode = SCNNode()
+//    let bunnyScene = SCNScene(named: "art.scnassets/Bunny.scn")
+//    let bunnyNode = "bunny"
+//    var bunnyModel:SCNNode!
+//    let bunnyName = "Bunny07"
+    var planeIdentifiers = [UUID]()
+    var anchors = [ARAnchor]()
+    var nodes = [SCNNode]()
+    var planeNodesCount = 0
+    var planeHeight: CGFloat = 0.01
+    var disableTracking = false
+    var isPlaneSelected = false
+
+    var bunnyNode: SCNNode?
     
     //create food request view
     let foodRequestView = FoodRequestView()
@@ -50,9 +61,13 @@ class GameViewController: UIViewController, ARSCNViewDelegate {
         // Set the scene to the view
         sceneView.scene = scene
         
-
-
-        
+        setUpScenesAndNodes()
+    }
+    
+    func setUpScenesAndNodes() {
+        // load the lamp model from scene
+        let bunnyScene = SCNScene(named: "art.scnassets/Bunny.scn")!
+        bunnyNode = bunnyScene.rootNode.childNode(withName: "Bunny07", recursively: true)!
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -64,8 +79,6 @@ class GameViewController: UIViewController, ARSCNViewDelegate {
 
         // Run the view's session
         sceneView.session.run(configuration)
-        
-        
         
         for _ in 0..<numberOfObjects {
             addObject()
@@ -81,48 +94,56 @@ class GameViewController: UIViewController, ARSCNViewDelegate {
         sceneView.session.pause()
     }
     
-    func renderer(_ renderer: SCNSceneRenderer, didAdd node: SCNNode, for anchor: ARAnchor) {
-        if (bunnyDidAppear == false){
-            guard let planeAnchor = anchor as? ARPlaneAnchor else { return }
-
-            bunnyDidAppear = true
-//            self.addBunny(node: node, anchor: planeAnchor)
-            let planeNode = addBunny(anchor: planeAnchor)
-//            nodeModel =  modelScene.rootNode.childNode(withName: nodeName, recursively: true)
-            // ARKit owns the node corresponding to the anchor, so make the plane a child node.
-            node.addChildNode(planeNode)
-            planeNode.addChildNode(bunnyWrapperNode)
-            print("renderer func works")
-//            bunnyDidAppear = true
+    func renderer(_ renderer: SCNSceneRenderer, nodeFor anchor: ARAnchor) -> SCNNode? {
+        if disableTracking {
+            return nil
         }
-
-    }
-//
-//    func renderer(_ renderer: SCNSceneRenderer, didUpdate node: SCNNode, for anchor: ARAnchor) {
-//        let node = bunnyWrapperNode
-//
-//    }
-    
-    func addBunny(anchor: ARPlaneAnchor) -> SCNNode {
-//        let bunny = Bunny()
-//        bunnyWrapperNode =  (bunnyScene?.rootNode.childNode(withName: bunnyNode, recursively: true))!
-        bunnyWrapperNode.position = SCNVector3Make(0, 0, 0)
+        var node:  SCNNode?
+        if let planeAnchor = anchor as? ARPlaneAnchor {
+            node = SCNNode()
         
-//        bunny.loadModel()
-        for child in (bunnyScene?.rootNode.childNodes)! {
-            bunnyWrapperNode.addChildNode(child)
+            let planeGeometry = SCNPlane(width: CGFloat(planeAnchor.extent.x), height: CGFloat(planeAnchor.extent.z))
+            let planeNode = SCNNode(geometry: planeGeometry)
+            planeNode.position = SCNVector3Make(planeAnchor.center.x, Float(planeHeight / 2), planeAnchor.center.z)
+            //            since SCNPlane is vertical, needs to be rotated -90 degress on X axis to make a plane
+            planeNode.transform = SCNMatrix4MakeRotation(Float(-CGFloat.pi/2), 1, 0, 0)
+            node?.addChildNode(planeNode)
+            anchors.append(planeAnchor)
+            
+        } else {
+            // haven't encountered this scenario yet
+            print("not plane anchor \(anchor)")
         }
-
-        print("addBunny called")
-        return bunnyWrapperNode
-
-        //        bunny.position = SCNVector3(0, 0, -1)
-        //
-        //        sceneView.scene.rootNode.addChildNode(bunny)
-        //        print ("add bunny worked")
-
-
+        return node
     }
+    
+    func renderer(_ renderer: SCNSceneRenderer, didAdd node: SCNNode, for anchor: ARAnchor) {
+//        planeNodesCount += 1
+//        if node.childNodes.count > 0 && planeNodesCount % 2 == 0 {
+//            node.childNodes[0].geometry?.firstMaterial?.diffuse.contents = UIColor.yellow
+//        }
+    }
+    
+    func renderer(_ renderer: SCNSceneRenderer, didUpdate node: SCNNode, for anchor: ARAnchor) {
+        if disableTracking {
+            return
+        }
+        if let planeAnchor = anchor as? ARPlaneAnchor {
+            if anchors.contains(planeAnchor) {
+                if node.childNodes.count > 0 {
+                    let planeNode = node.childNodes.first!
+                    planeNode.position = SCNVector3Make(planeAnchor.center.x, Float(planeHeight / 2), planeAnchor.center.z)
+                    if let plane = planeNode.geometry as? SCNBox {
+                        plane.width = CGFloat(planeAnchor.extent.x)
+                        plane.length = CGFloat(planeAnchor.extent.z)
+                        plane.height = planeHeight
+                    }
+                }
+            }
+        }
+    }
+    
+    
     
     
     func addObject(){
@@ -144,23 +165,23 @@ class GameViewController: UIViewController, ARSCNViewDelegate {
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        print("touchesBegan running")
-        if let touch = touches.first {
-            print("if let one")
-            let location = touch.location(in: sceneView)
-            let hitList = sceneView.hitTest(location, options:nil)
-            if let hitObject = hitList.first {
-                let node = hitObject.node
-                if foods.contains(node.name!){
-                    node.removeFromParentNode()
-                }
+        let touch = touches.first!
+        let location = touch.location(in: sceneView)
+        
+        let hitResults = sceneView.hitTest(location, types: .existingPlaneUsingExtent)
+        if hitResults.count > 0 {
+            let result: ARHitTestResult = hitResults.first!
+            
+            let newLocation = SCNVector3Make(result.worldTransform.columns.3.x, result.worldTransform.columns.3.y, result.worldTransform.columns.3.z)
+            let newBunnyNode = bunnyNode?.clone()
+            if let newBunnyNode = newBunnyNode {
+                newBunnyNode.position = newLocation
+                sceneView.scene.rootNode.addChildNode(newBunnyNode)
             }
         }
-        
     }
     
-
-    
+  
     //Tests
     
     override func didReceiveMemoryWarning() {
