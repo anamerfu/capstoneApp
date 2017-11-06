@@ -176,48 +176,98 @@ class GameViewController: UIViewController, ARSCNViewDelegate {
        return Float(arc4random()) / Float(UInt32.max) * (lower - upper) + upper
     }
     
+//    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+//        print("touchesBegan running")
+//        if let touch = touches.first {
+//            print("if let one")
+//            let location = touch.location(in: sceneView)
+//            let hitResultsFoods = sceneView.hitTest(location, types: .featurePoint)
+//            let hitResultsBunny = sceneView.hitTest(location, types: .existingPlaneUsingExtent)
+//            if let hitObjectFood = hitResultsFoods.first  {
+//
+//                let node = hitObjectFood.node
+//
+//                //let hitObjectBunny = hitResultsBunny.first
+//                let result: ARHitTestResult = hitResultsBunny.first!
+//
+//                if node.name != nil && foods.contains(node.name!){
+//
+//                    //checks if item selected is an item that is requested
+//                    if node.name == currentRequest {
+//                        print("correct item selected")
+//                        correctSelected += 1
+//
+//                        if correctSelected == currentRequestNumber {
+//                            print ("Request Complete!")
+//                        }
+//
+//                    } else {
+//                        print("incorrect item selected")
+//                    }
+//
+//                    node.removeFromParentNode()
+//
+//                } else if hitResultsBunny.count > 0 {
+//                    //do the bunny stuff
+//
+//
+//                    let newLocation = SCNVector3Make(result.worldTransform.columns.3.x, result.worldTransform.columns.3.y, result.worldTransform.columns.3.z)
+//                    let newBunnyNode = bunnyNode?.clone()
+//                    if let newBunnyNode = newBunnyNode {
+//                        newBunnyNode.position = newLocation
+//                        sceneView.scene.rootNode.addChildNode(newBunnyNode)
+//                    }
+//                }
+//            }
+//        }
+//    }
+//
+    
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         print("touchesBegan running")
         if let touch = touches.first {
             print("if let one")
             let location = touch.location(in: sceneView)
-            let hitResultsFoods = sceneView.hitTest(location, options:nil)
+            let hitResultsFoods = sceneView.hitTest(location, options: nil)
             let hitResultsBunny = sceneView.hitTest(location, types: .existingPlaneUsingExtent)
-            if let hitObjectFood = hitResultsFoods.first  {
-                
-                let node = hitObjectFood.node
-                
-                //let hitObjectBunny = hitResultsBunny.first
-                let result: ARHitTestResult = hitResultsBunny.first!
-                
-                if foods.contains(node.name!){
+            
+            let result: ARHitTestResult = hitResultsBunny.first!
+            let resultFood: SCNHitTestResult = hitResultsFoods.first!
+            
+            let node = resultFood.node
+            print (hitResultsFoods)
+            print (hitResultsBunny)
+            //let hitObjectBunny = hitResultsBunny.first
+            
+            if node.name != nil {
+                print (node.name ?? "no name")
+                //checks if item selected is an item that is requested
+                if node.name == currentRequest {
+                    print("correct item selected")
+                    correctSelected += 1
                     
-                    //checks if item selected is an item that is requested
-                    if node.name == currentRequest {
-                        print("correct item selected")
-                        correctSelected += 1
-                        
-                        if correctSelected == currentRequestNumber {
-                            print ("Request Complete!")
-                        }
-                        
-                    } else {
-                        print("incorrect item selected")
+                    if correctSelected == currentRequestNumber {
+                        print ("Request Complete!")
                     }
                     
-                    node.removeFromParentNode()
-                } else if hitResultsBunny.count > 0 {
-                    //do the bunny stuff
-                    
-                    
-                    let newLocation = SCNVector3Make(result.worldTransform.columns.3.x, result.worldTransform.columns.3.y, result.worldTransform.columns.3.z)
-                    let newBunnyNode = bunnyNode?.clone()
-                    if let newBunnyNode = newBunnyNode {
-                        newBunnyNode.position = newLocation
-                        sceneView.scene.rootNode.addChildNode(newBunnyNode)
-                    }
+                } else {
+                    print("incorrect item selected")
+                }
+                
+                node.removeFromParentNode()
+                
+            } else if hitResultsBunny.count > 0 {
+                //do the bunny stuff
+                
+                
+                let newLocation = SCNVector3Make(result.worldTransform.columns.3.x, result.worldTransform.columns.3.y, result.worldTransform.columns.3.z)
+                let newBunnyNode = bunnyNode?.clone()
+                if let newBunnyNode = newBunnyNode {
+                    newBunnyNode.position = newLocation
+                    sceneView.scene.rootNode.addChildNode(newBunnyNode)
                 }
             }
+            
         }
     }
     
