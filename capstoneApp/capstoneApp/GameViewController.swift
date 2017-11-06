@@ -144,8 +144,6 @@ class GameViewController: UIViewController, ARSCNViewDelegate {
     }
     
     
-    
-    
     func addObject(){
         let object = Object()
         object.loadModel()
@@ -163,6 +161,37 @@ class GameViewController: UIViewController, ARSCNViewDelegate {
     func randomPosition(lowerBound lower:Float, upperBound upper:Float) -> Float {
        return Float(arc4random()) / Float(UInt32.max) * (lower - upper) + upper
     }
+    
+    
+    
+//    func addTapGestureToSceneView() {
+//        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(GameViewController.didTap(withGestureRecognizer:)))
+//        sceneView.addGestureRecognizer(tapGestureRecognizer)
+//    }
+    
+    //    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+    //        print("touchesBegan running")
+    //        if let touch = touches.first {
+    //            print("if let one")
+    //            let location = touch.location(in: sceneView)
+    //            let hitList = sceneView.hitTest(location, options:nil)
+    //            if let hitObject = hitList.first {
+    //                let node = hitObject.node
+    //                if foods.contains(node.name!){
+    //                    node.removeFromParentNode()
+    //                }
+    //            }
+    //        }
+    //
+    //    }
+
+    
+//    @objc func didTap(withGestureRecognizer recognizer: UIGestureRecognizer) {
+//        let tapLocation = recognizer.location(in: sceneView)
+//        let hitTestResults = sceneView.hitTest(tapLocation)
+//        guard let node = hitTestResults.first?.node else { return }
+//        node.removeFromParentNode()
+//    }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         let touch = touches.first!
