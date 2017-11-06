@@ -139,7 +139,7 @@ class GameViewController: UIViewController, ARSCNViewDelegate {
     
     func addObject(){
         let object = Object()
-        object.loadModel()
+        object.loadModel(object: currentRequest)
         
         let xPos = randomPosition(lowerBound: -3, upperBound: 3)
         let yPos = randomPosition(lowerBound: -1.5, upperBound: 0.75)
@@ -160,8 +160,9 @@ class GameViewController: UIViewController, ARSCNViewDelegate {
         if let touch = touches.first {
             print("if let one")
             let location = touch.location(in: sceneView)
-            let hitList = sceneView.hitTest(location, options:nil)
-            if let hitObject = hitList.first {
+            let hitResultsFoods = sceneView.hitTest(location, options:nil)
+            let hitResultsBunny = sceneView.hitTest(location, types: .existingPlaneUsingExtent)
+            if let hitObject = hitResultsFoods.first {
                 let node = hitObject.node
                 if foods.contains(node.name!){
                     
@@ -177,7 +178,10 @@ class GameViewController: UIViewController, ARSCNViewDelegate {
                     } else {
                         print("incorrect item selected")
                     }
+                    
                     node.removeFromParentNode()
+                } else if hitResultsBunny.count > 0 {
+                    //do the bunny stuff
                 }
             }
         }

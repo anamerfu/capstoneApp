@@ -32,15 +32,17 @@ class FoodRequestView: UIView {
         print(randomFoodName)
         print (numberOfFoods)
         
-        for index in 1...numberOfFoods {
+        currentRequestNumber = randomFoodNumber
+        
+        for index in 1...currentRequestNumber{
  
-            
             let foodImageView: UIImageView = UIImageView(image: foodImage)
             foodImageView.frame = CGRect(x: Int(5 + (index * 25)), y: 5, width: 25, height: 25)
             self.addSubview(foodImageView)
+            
         }
         
-        currentRequestNumber = randomFoodNumber
+       
     }
     
     required init?(coder aDecoder: NSCoder) {

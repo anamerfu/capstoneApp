@@ -10,16 +10,16 @@ import ARKit
 
 class Object: SCNNode {
 
-    func loadModel() {
-        let randomFoodNumber = Int (arc4random_uniform ( UInt32(foods.count) ) )
-        let nodeName = foods[randomFoodNumber]
+    func loadModel(object:String) {
+        //let randomFoodNumber = Int (arc4random_uniform ( UInt32(foods.count) ) )
+        //let nodeName = foods[randomFoodNumber]
         
-        guard let virtualObjectScene = SCNScene(named: "art.scnassets/" + nodeName + ".dae") else {return}
+        guard let virtualObjectScene = SCNScene(named: "art.scnassets/" + object + ".dae") else {return}
         
         let wrapperNode = SCNNode()
         
-    
-        wrapperNode.name = nodeName
+
+        wrapperNode.name = object
         
         for child in virtualObjectScene.rootNode.childNodes {
             wrapperNode.addChildNode(child)
