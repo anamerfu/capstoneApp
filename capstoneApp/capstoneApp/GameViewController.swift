@@ -226,17 +226,16 @@ class GameViewController: UIViewController, ARSCNViewDelegate {
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         print("touchesBegan running")
         if let touch = touches.first {
-            print("if let one")
             let location = touch.location(in: sceneView)
             let hitResultsFoods = sceneView.hitTest(location, options: nil)
-            let hitResultsBunny = sceneView.hitTest(location, types: .existingPlaneUsingExtent)
+            //let hitResultsBunny = sceneView.hitTest(location, types: .existingPlaneUsingExtent)
             
-            let result: ARHitTestResult = hitResultsBunny.first!
+           
             let resultFood: SCNHitTestResult = hitResultsFoods.first!
             
             let node = resultFood.node
             print (hitResultsFoods)
-            print (hitResultsBunny)
+            //print (hitResultsBunny)
             //let hitObjectBunny = hitResultsBunny.first
             
             if node.name != nil {
@@ -256,15 +255,17 @@ class GameViewController: UIViewController, ARSCNViewDelegate {
                 
                 node.removeFromParentNode()
                 
-            } else if hitResultsBunny.count > 0 {
+            } else {
                 //do the bunny stuff
-                
-                
-                let newLocation = SCNVector3Make(result.worldTransform.columns.3.x, result.worldTransform.columns.3.y, result.worldTransform.columns.3.z)
-                let newBunnyNode = bunnyNode?.clone()
-                if let newBunnyNode = newBunnyNode {
-                    newBunnyNode.position = newLocation
-                    sceneView.scene.rootNode.addChildNode(newBunnyNode)
+                let hitResultsBunny = sceneView.hitTest(location, types: .existingPlaneUsingExtent)
+                 let result: ARHitTestResult = hitResultsBunny.first!
+                if hitResultsBunny.count > 0 {
+                    let newLocation = SCNVector3Make(result.worldTransform.columns.3.x, result.worldTransform.columns.3.y, result.worldTransform.columns.3.z)
+                    let newBunnyNode = bunnyNode?.clone()
+                    if let newBunnyNode = newBunnyNode {
+                        newBunnyNode.position = newLocation
+                        sceneView.scene.rootNode.addChildNode(newBunnyNode)
+                }
                 }
             }
             
