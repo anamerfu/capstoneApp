@@ -34,7 +34,7 @@ class FoodRequestView: UIView {
         
         currentRequestNumber = randomFoodNumber
         
-        for index in 1...currentRequestNumber{
+        for index in 0...currentRequestNumber{
  
             let foodImageView: UIImageView = UIImageView(image: foodImage)
             foodImageView.frame = CGRect(x: Int(5 + (index * 25)), y: 5, width: 25, height: 25)

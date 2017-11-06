@@ -183,8 +183,12 @@ class GameViewController: UIViewController, ARSCNViewDelegate {
             let location = touch.location(in: sceneView)
             let hitResultsFoods = sceneView.hitTest(location, options:nil)
             let hitResultsBunny = sceneView.hitTest(location, types: .existingPlaneUsingExtent)
-            if let hitObject = hitResultsFoods.first {
-                let node = hitObject.node
+            if let hitObjectFood = hitResultsFoods.first  {
+                
+                let node = hitObjectFood.node
+                
+                let hitObjectBunny = hitResultsBunny.first
+                
                 if foods.contains(node.name!){
                     
                     //checks if item selected is an item that is requested
