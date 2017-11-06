@@ -226,22 +226,17 @@ class GameViewController: UIViewController, ARSCNViewDelegate {
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         print("touchesBegan running")
         if let touch = touches.first {
+            
             let location = touch.location(in: sceneView)
             let hitResultsFoods = sceneView.hitTest(location, options: nil)
-            //let hitResultsBunny = sceneView.hitTest(location, types: .existingPlaneUsingExtent)
-            
-           
             let resultFood: SCNHitTestResult = hitResultsFoods.first!
-            
             let node = resultFood.node
-            print (hitResultsFoods)
-            //print (hitResultsBunny)
-            //let hitObjectBunny = hitResultsBunny.first
-            
+   
             if node.name != nil {
-                print (node.name ?? "no name")
+                
                 //checks if item selected is an item that is requested
                 if node.name == currentRequest {
+                    
                     print("correct item selected")
                     correctSelected += 1
                     
@@ -256,9 +251,9 @@ class GameViewController: UIViewController, ARSCNViewDelegate {
                 node.removeFromParentNode()
                 
             } else {
-                //do the bunny stuff
+                //put bunny on the plane detected
                 let hitResultsBunny = sceneView.hitTest(location, types: .existingPlaneUsingExtent)
-                 let result: ARHitTestResult = hitResultsBunny.first!
+                let result: ARHitTestResult = hitResultsBunny.first!
                 if hitResultsBunny.count > 0 {
                     let newLocation = SCNVector3Make(result.worldTransform.columns.3.x, result.worldTransform.columns.3.y, result.worldTransform.columns.3.z)
                     let newBunnyNode = bunnyNode?.clone()
@@ -266,6 +261,7 @@ class GameViewController: UIViewController, ARSCNViewDelegate {
                         newBunnyNode.position = newLocation
                         sceneView.scene.rootNode.addChildNode(newBunnyNode)
                 }
+                    
                 }
             }
             
