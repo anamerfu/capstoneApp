@@ -187,7 +187,8 @@ class GameViewController: UIViewController, ARSCNViewDelegate {
                 
                 let node = hitObjectFood.node
                 
-                let hitObjectBunny = hitResultsBunny.first
+                //let hitObjectBunny = hitResultsBunny.first
+                let result: ARHitTestResult = hitResultsBunny.first!
                 
                 if foods.contains(node.name!){
                     
@@ -207,7 +208,7 @@ class GameViewController: UIViewController, ARSCNViewDelegate {
                     node.removeFromParentNode()
                 } else if hitResultsBunny.count > 0 {
                     //do the bunny stuff
-                    let result: ARHitTestResult = hitResultsBunny.first!
+                    
                     
                     let newLocation = SCNVector3Make(result.worldTransform.columns.3.x, result.worldTransform.columns.3.y, result.worldTransform.columns.3.z)
                     let newBunnyNode = bunnyNode?.clone()
