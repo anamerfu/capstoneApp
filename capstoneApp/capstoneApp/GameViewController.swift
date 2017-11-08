@@ -152,10 +152,10 @@ class GameViewController: UIViewController, ARSCNViewDelegate {
     
     
     
-    func addObject(){
+    func addObject(item:String){
         let object = Object()
         
-        object.loadModel(object: foodRequestView.currentRequest)
+        object.loadModel(object: item)
         
         let xPos = randomPosition(lowerBound: -3, upperBound: 3)
         let yPos = randomPosition(lowerBound: -1.5, upperBound: 0.75)
@@ -168,13 +168,20 @@ class GameViewController: UIViewController, ARSCNViewDelegate {
     }
     
     func loadNewRequest(){
+        foodRequestView.removeFromSuperview()
         
         foodRequestView.frame = CGRect(x: 20 , y: 20, width: 40, height:40 )
         view.addSubview(foodRequestView)
         
         for _ in 0..<foodRequestView.numberOfFoodsRequested{
-            addObject()
+            addObject(item:foodRequestView.currentRequest)
             
+        }
+        
+        for _ in 0..<5 {
+            let randomFoodNumber = Int (arc4random_uniform ( UInt32(foods.count) ) )
+            let randomObject = foods[randomFoodNumber]
+            addObject(item: randomObject)
         }
 
     }

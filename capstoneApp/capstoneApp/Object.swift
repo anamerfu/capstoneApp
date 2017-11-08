@@ -11,9 +11,7 @@ import ARKit
 class Object: SCNNode {
 
     func loadModel(object:String) {
-        //let randomFoodNumber = Int (arc4random_uniform ( UInt32(foods.count) ) )
-        //let nodeName = foods[randomFoodNumber]
-        
+
         //request objected
         guard let requestedObjectScene = SCNScene(named: "art.scnassets/" + object + ".dae") else {return}
 
