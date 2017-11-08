@@ -57,7 +57,6 @@ class GameViewController: UIViewController, ARSCNViewDelegate {
         
         foodRequestView.frame = CGRect(x: 20 , y: 20, width: 40, height:40 )
         view.addSubview(foodRequestView)
-        
         // Set the view's delegate
         sceneView.delegate = self
         
@@ -160,6 +159,7 @@ class GameViewController: UIViewController, ARSCNViewDelegate {
     
     func addObject(){
         let object = Object()
+        
         object.loadModel(object: currentRequest)
         
         let xPos = randomPosition(lowerBound: -3, upperBound: 3)
@@ -176,52 +176,6 @@ class GameViewController: UIViewController, ARSCNViewDelegate {
        return Float(arc4random()) / Float(UInt32.max) * (lower - upper) + upper
     }
     
-//    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-//        print("touchesBegan running")
-//        if let touch = touches.first {
-//            print("if let one")
-//            let location = touch.location(in: sceneView)
-//            let hitResultsFoods = sceneView.hitTest(location, types: .featurePoint)
-//            let hitResultsBunny = sceneView.hitTest(location, types: .existingPlaneUsingExtent)
-//            if let hitObjectFood = hitResultsFoods.first  {
-//
-//                let node = hitObjectFood.node
-//
-//                //let hitObjectBunny = hitResultsBunny.first
-//                let result: ARHitTestResult = hitResultsBunny.first!
-//
-//                if node.name != nil && foods.contains(node.name!){
-//
-//                    //checks if item selected is an item that is requested
-//                    if node.name == currentRequest {
-//                        print("correct item selected")
-//                        correctSelected += 1
-//
-//                        if correctSelected == currentRequestNumber {
-//                            print ("Request Complete!")
-//                        }
-//
-//                    } else {
-//                        print("incorrect item selected")
-//                    }
-//
-//                    node.removeFromParentNode()
-//
-//                } else if hitResultsBunny.count > 0 {
-//                    //do the bunny stuff
-//
-//
-//                    let newLocation = SCNVector3Make(result.worldTransform.columns.3.x, result.worldTransform.columns.3.y, result.worldTransform.columns.3.z)
-//                    let newBunnyNode = bunnyNode?.clone()
-//                    if let newBunnyNode = newBunnyNode {
-//                        newBunnyNode.position = newLocation
-//                        sceneView.scene.rootNode.addChildNode(newBunnyNode)
-//                    }
-//                }
-//            }
-//        }
-//    }
-//
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         print("touchesBegan running")

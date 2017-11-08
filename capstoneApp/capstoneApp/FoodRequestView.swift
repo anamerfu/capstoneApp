@@ -14,9 +14,8 @@ class FoodRequestView: UIView {
     
     var shouldSetupConstraints = true
     
-    //let foodImageView = UIImageView()
-
     
+    //let foodImageView = UIImageView()
     override init(frame: CGRect){
         super.init(frame: frame)
         
@@ -24,7 +23,7 @@ class FoodRequestView: UIView {
         
         let randomFoodName = foods[randomFoodNumber] + ".png"
         let foodImage = UIImage(named: randomFoodName)
-        let numberOfFoods = arc4random_uniform(6) + 1
+        let numberOfFoods = arc4random_uniform(4) + 1
         
         currentRequest = foods[randomFoodNumber]
         
@@ -32,9 +31,9 @@ class FoodRequestView: UIView {
         print(randomFoodName)
         print (numberOfFoods)
         
-        currentRequestNumber = randomFoodNumber
+        currentRequestNumber = Int(numberOfFoods)
         
-        for index in 0...currentRequestNumber{
+        for index in 1...currentRequestNumber{
  
             let foodImageView: UIImageView = UIImageView(image: foodImage)
             foodImageView.frame = CGRect(x: Int(5 + (index * 25)), y: 5, width: 25, height: 25)

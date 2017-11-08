@@ -14,14 +14,15 @@ class Object: SCNNode {
         //let randomFoodNumber = Int (arc4random_uniform ( UInt32(foods.count) ) )
         //let nodeName = foods[randomFoodNumber]
         
-        guard let virtualObjectScene = SCNScene(named: "art.scnassets/" + object + ".dae") else {return}
-        
+        //request objected
+        guard let requestedObjectScene = SCNScene(named: "art.scnassets/" + object + ".dae") else {return}
+
         let wrapperNode = SCNNode()
         
 
         wrapperNode.name = object
         
-        for child in virtualObjectScene.rootNode.childNodes {
+        for child in requestedObjectScene.rootNode.childNodes {
             wrapperNode.addChildNode(child)
         }
 
