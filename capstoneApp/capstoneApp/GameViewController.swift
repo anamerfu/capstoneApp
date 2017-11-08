@@ -160,7 +160,7 @@ class GameViewController: UIViewController, ARSCNViewDelegate {
     func addObject(){
         let object = Object()
         
-        object.loadModel(object: currentRequest)
+        object.loadModel(object: foodRequestView.currentRequest)
         
         let xPos = randomPosition(lowerBound: -3, upperBound: 3)
         let yPos = randomPosition(lowerBound: -1.5, upperBound: 0.75)
@@ -189,12 +189,12 @@ class GameViewController: UIViewController, ARSCNViewDelegate {
             if node.name != nil {
                 
                 //checks if item selected is an item that is requested
-                if node.name == currentRequest {
+                if node.name == foodRequestView.currentRequest {
                     
                     print("correct item selected")
                     correctSelected += 1
                     
-                    if correctSelected == currentRequestNumber {
+                    if correctSelected == foodRequestView.numberOfFoodsRequested {
                         print ("Request Complete!")
                     }
                     
