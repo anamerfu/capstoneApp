@@ -55,8 +55,7 @@ class GameViewController: UIViewController, ARSCNViewDelegate {
         sceneView.frame = self.view.frame
         view.addSubview(sceneView)
         
-        foodRequestView.frame = CGRect(x: 20 , y: 20, width: 40, height:40 )
-        view.addSubview(foodRequestView)
+
         // Set the view's delegate
         sceneView.delegate = self
         
@@ -91,11 +90,7 @@ class GameViewController: UIViewController, ARSCNViewDelegate {
         // Run the view's session
         sceneView.session.run(configuration)
         
-        for _ in 0..<foodRequestView.numberOfFoodsRequested{
-            addObject()
-            
-        }
-        
+        loadNewRequest()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -170,6 +165,18 @@ class GameViewController: UIViewController, ARSCNViewDelegate {
         
         sceneView.scene.rootNode.addChildNode(object)
         print ("add object working")
+    }
+    
+    func loadNewRequest(){
+        
+        foodRequestView.frame = CGRect(x: 20 , y: 20, width: 40, height:40 )
+        view.addSubview(foodRequestView)
+        
+        for _ in 0..<foodRequestView.numberOfFoodsRequested{
+            addObject()
+            
+        }
+
     }
     
     func randomPosition(lowerBound lower:Float, upperBound upper:Float) -> Float {
