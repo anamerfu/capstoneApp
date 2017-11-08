@@ -34,9 +34,8 @@ class FoodRequestView: UIView {
         
 
         
-        print(randomFoodNumber)
-        print(randomFoodName)
-        print (numberOfFoodsRequested)
+        print("requested \(numberOfFoodsRequested) \(foods[randomFoodNumber])")
+
         
         //currentRequestNumber = Int(numberOfFoods)
         

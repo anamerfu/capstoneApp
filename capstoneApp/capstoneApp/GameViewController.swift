@@ -91,9 +91,9 @@ class GameViewController: UIViewController, ARSCNViewDelegate {
         // Run the view's session
         sceneView.session.run(configuration)
         
-        for _ in 0..<numberOfObjects {
+        for _ in 0..<foodRequestView.numberOfFoodsRequested{
             addObject()
-            print ("for loop working")
+            
         }
         
     }

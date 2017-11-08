@@ -109,10 +109,10 @@
 			children = (
 				245AA3531FA0021C0011F723 /* Foods.swift */,
 				245AA34F1F9E645A0011F723 /* FoodRequestView.swift */,
-				984C5B421F86BFBF0060D3FC /* HomeScreenViewController.swift */,
 				2438A6BD1F8584E800B76B59 /* GameViewController.swift */,
 				24A2BD591F86981C00FD94A5 /* Object.swift */,
 				2438A6E91F8585AC00B76B59 /* Bunny.swift */,
+				984C5B421F86BFBF0060D3FC /* HomeScreenViewController.swift */,
 				2438A6B91F8584E800B76B59 /* AppDelegate.swift */,
 				2438A6BB1F8584E800B76B59 /* art.scnassets */,
 				2438A6C21F8584E800B76B59 /* Assets.xcassets */,
