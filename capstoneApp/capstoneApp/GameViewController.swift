@@ -179,18 +179,22 @@ class GameViewController: UIViewController, ARSCNViewDelegate {
     }
     
     func loadNewRequest(){
-        print("load request running")
-        //let foodRequestView = FoodRequestView()
-        
+
+        //removes old 2D images
         for view in foodRequestView.subviews {
             view.removeFromSuperview()
         }
+        
+        //reset properties
         foodRequestView.setNewProperty()
         
         print("requested \(foodRequestView.numberOfFoodsRequested) \(foods[foodRequestView.randomFoodNumber])" )
+        
+        //adds new 2D icons
         foodRequestView.frame = CGRect(x: 20 , y: 20, width: 40, height:40 )
-        print(foodRequestView.randomFoodName)
         foodRequestView.addNewRequest()
+        
+        //adds new foodRequestView 
         view.addSubview(foodRequestView)
        
 
@@ -232,11 +236,10 @@ class GameViewController: UIViewController, ARSCNViewDelegate {
             if node.name != nil {
                 
                 //checks if item selected is an item that is requested
+                print("user selected \(node.name)")
                 if node.name == foodRequestView.currentRequest {
                     
                     print("correct item selected")
-                    print(foods[foodRequestView.randomFoodNumber!])
-                    print(foodRequestView.numberOfFoodsRequested)
                     correctSelected += 1
                     
                     if correctSelected == foodRequestView.numberOfFoodsRequested {

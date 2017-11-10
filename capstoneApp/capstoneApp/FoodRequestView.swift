@@ -31,34 +31,26 @@ class FoodRequestView: UIView {
         super.init(frame: frame)
         
 
-        
-        print("foodrequestview requested \(numberOfFoodsRequested) \(foods[randomFoodNumber])")
+        print("foodRequestView requested \(numberOfFoodsRequested) \(foods[randomFoodNumber])")
 
     
        
     }
     
-    func removeOldRequests() {
-        for index in 1...numberOfFoodsRequested{
-            
-            let foodImageView: UIImageView = UIImageView(image: foodImage)
-            foodImageView.frame = CGRect(x: Int(5 + (index * 25)), y: 5, width: 25, height: 25)
-            print("added \(randomFoodName)")
-            self.addSubview(foodImageView)
-            
-        }
-    }
+    //adds the new 2d image to the foodRequestView
     func addNewRequest () {
         
         for index in 1...numberOfFoodsRequested{
             
             let foodImageView: UIImageView = UIImageView(image: foodImage)
             foodImageView.frame = CGRect(x: Int(5 + (index * 25)), y: 5, width: 25, height: 25)
-            print("added \(randomFoodName)")
             self.addSubview(foodImageView)
             
         }
+        print("added \(numberOfFoodsRequested) \(randomFoodName) image(s) to foodRequestView")
     }
+    
+    //reset foodRequestView properties
     func setNewProperty() {
         self.randomFoodNumber = Int (arc4random_uniform ( UInt32(foods.count) ) )
         self.randomFoodName = foods[randomFoodNumber] + ".png"
@@ -66,6 +58,7 @@ class FoodRequestView: UIView {
         self.numberOfFoodsRequested = Int(arc4random_uniform(4) + 1)
         self.currentRequest = foods[randomFoodNumber]
     }
+    
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
