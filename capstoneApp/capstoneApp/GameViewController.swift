@@ -180,10 +180,11 @@ class GameViewController: UIViewController, ARSCNViewDelegate {
     
     func loadNewRequest(){
         print("load request running")
-        let foodRequestView = FoodRequestView()
+        //let foodRequestView = FoodRequestView()
         
-        foodRequestView.removeFromSuperview()
-        
+        for view in foodRequestView.subviews {
+            view.removeFromSuperview()
+        }
         foodRequestView.setNewProperty()
         
         print("requested \(foodRequestView.numberOfFoodsRequested) \(foods[foodRequestView.randomFoodNumber])" )

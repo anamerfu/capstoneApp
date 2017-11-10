@@ -19,9 +19,7 @@ class FoodRequestView: UIView {
     var foodImage: UIImage!
     var numberOfFoodsRequested: Int!
     var currentRequest: String!
-    //var currentRequestNumber: Int!
 
-    //let foodImageView = UIImageView()
     
       override init(frame: CGRect){
         
@@ -34,16 +32,29 @@ class FoodRequestView: UIView {
         
 
         
-        print("requested \(numberOfFoodsRequested) \(foods[randomFoodNumber])")
+        print("foodrequestview requested \(numberOfFoodsRequested) \(foods[randomFoodNumber])")
 
     
        
     }
-    func addNewRequest () {
+    
+    func removeOldRequests() {
         for index in 1...numberOfFoodsRequested{
             
             let foodImageView: UIImageView = UIImageView(image: foodImage)
             foodImageView.frame = CGRect(x: Int(5 + (index * 25)), y: 5, width: 25, height: 25)
+            print("added \(randomFoodName)")
+            self.addSubview(foodImageView)
+            
+        }
+    }
+    func addNewRequest () {
+        
+        for index in 1...numberOfFoodsRequested{
+            
+            let foodImageView: UIImageView = UIImageView(image: foodImage)
+            foodImageView.frame = CGRect(x: Int(5 + (index * 25)), y: 5, width: 25, height: 25)
+            print("added \(randomFoodName)")
             self.addSubview(foodImageView)
             
         }
