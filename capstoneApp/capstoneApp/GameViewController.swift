@@ -114,6 +114,14 @@ class GameViewController: UIViewController, ARSCNViewDelegate {
         
             let planeGeometry = SCNPlane(width: CGFloat(planeAnchor.extent.x), height: CGFloat(planeAnchor.extent.z))
             let planeNode = SCNNode(geometry: planeGeometry)
+            
+            let grassImage = UIImage(named: "grass")
+            let grassMaterial = SCNMaterial()
+            grassMaterial.diffuse.contents = grassImage
+            grassMaterial.isDoubleSided = true
+            
+            planeGeometry.materials = [grassMaterial]
+            
             planeNode.position = SCNVector3Make(planeAnchor.center.x, Float(planeHeight / 2), planeAnchor.center.z)
             //            since SCNPlane is vertical, needs to be rotated -90 degress on X axis to make a plane
             planeNode.transform = SCNMatrix4MakeRotation(Float(-CGFloat.pi/2), 1, 0, 0)
@@ -140,7 +148,7 @@ class GameViewController: UIViewController, ARSCNViewDelegate {
         }
         if let planeAnchor = anchor as? ARPlaneAnchor {
             if anchors.contains(planeAnchor) {
-                if node.childNodes.count > 0 {
+                if node.childNodes.count == 1 {
                     let planeNode = node.childNodes.first!
                     planeNode.position = SCNVector3Make(planeAnchor.center.x, Float(planeHeight / 2), planeAnchor.center.z)
                     if let plane = planeNode.geometry as? SCNBox {
@@ -242,7 +250,6 @@ class GameViewController: UIViewController, ARSCNViewDelegate {
                     print(foods[foodRequestView.randomFoodNumber!])
                     print(foodRequestView.numberOfFoodsRequested)
                 }
-                
                 node.removeFromParentNode()
                 
             } else {
@@ -251,15 +258,13 @@ class GameViewController: UIViewController, ARSCNViewDelegate {
                 let result: ARHitTestResult = hitResultsBunny.first!
                 if hitResultsBunny.count > 0 {
                     let newLocation = SCNVector3Make(result.worldTransform.columns.3.x, result.worldTransform.columns.3.y, result.worldTransform.columns.3.z)
-                    let newBunnyNode = bunnyNode?.clone()
+                    let newBunnyNode = bunnyNode
                     if let newBunnyNode = newBunnyNode {
                         newBunnyNode.position = newLocation
                         sceneView.scene.rootNode.addChildNode(newBunnyNode)
-                }
-                    
+                    }
                 }
             }
-            
         }
     }
     
