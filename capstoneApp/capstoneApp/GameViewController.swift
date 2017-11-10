@@ -150,7 +150,7 @@ class GameViewController: UIViewController, ARSCNViewDelegate {
         }
         if let planeAnchor = anchor as? ARPlaneAnchor {
             if anchors.contains(planeAnchor) {
-                if node.childNodes.count > 0 {
+                if node.childNodes.count == 1 {
                     let planeNode = node.childNodes.first!
                     planeNode.position = SCNVector3Make(planeAnchor.center.x, Float(planeHeight / 2), planeAnchor.center.z)
                     if let plane = planeNode.geometry as? SCNBox {
@@ -253,7 +253,6 @@ class GameViewController: UIViewController, ARSCNViewDelegate {
                 } else {
                     print("incorrect item selected")
                 }
-                
                 node.removeFromParentNode()
                 
             } else {
@@ -266,11 +265,9 @@ class GameViewController: UIViewController, ARSCNViewDelegate {
                     if let newBunnyNode = newBunnyNode {
                         newBunnyNode.position = newLocation
                         sceneView.scene.rootNode.addChildNode(newBunnyNode)
-                }
-                    
+                    }
                 }
             }
-            
         }
     }
     
