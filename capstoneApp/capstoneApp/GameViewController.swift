@@ -15,7 +15,7 @@ import ARKit
 //to viewWillDisappear??
 
 //current food that is requested
-var currentRequest: String! = nil
+//var currentRequest: String! = nil
 
 //amount of correct items that the user has alread tapped
 var correctSelected = 0
@@ -23,7 +23,7 @@ var correctSelected = 0
 class GameViewController: UIViewController, ARSCNViewDelegate {
 
     let sceneView: ARSCNView = ARSCNView()
-    var numberOfObjects = 4
+
     var bunnyDidAppear = false
 //    var bunnyWrapperNode = SCNNode()
 //    let bunnyScene = SCNScene(named: "art.scnassets/Bunny.scn")
@@ -90,7 +90,11 @@ class GameViewController: UIViewController, ARSCNViewDelegate {
         // Run the view's session
         sceneView.session.run(configuration)
         
-        loadNewRequest()
+        foodRequestView.frame = CGRect(x: 20 , y: 20, width: 40, height:40 )
+        foodRequestView.addNewRequest()
+        view.addSubview(foodRequestView)
+        
+        loadNewObjects()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -164,26 +168,42 @@ class GameViewController: UIViewController, ARSCNViewDelegate {
         object.position = SCNVector3(xPos, yPos, zPos)
         
         sceneView.scene.rootNode.addChildNode(object)
-        print ("add object working")
     }
     
     func loadNewRequest(){
+        print("load request running")
+        let foodRequestView = FoodRequestView()
+        
         foodRequestView.removeFromSuperview()
         
-        foodRequestView.frame = CGRect(x: 20 , y: 20, width: 40, height:40 )
-        view.addSubview(foodRequestView)
+        foodRequestView.setNewProperty()
         
-        for _ in 0..<foodRequestView.numberOfFoodsRequested{
-            addObject(item:foodRequestView.currentRequest)
-            
+        print("requested \(foodRequestView.numberOfFoodsRequested) \(foods[foodRequestView.randomFoodNumber])" )
+        foodRequestView.frame = CGRect(x: 20 , y: 20, width: 40, height:40 )
+        print(foodRequestView.randomFoodName)
+        foodRequestView.addNewRequest()
+        view.addSubview(foodRequestView)
+       
+
+    }
+    
+    func loadNewObjects(){
+        
+        //adds the correct 3D objects
+        if let numberOfFoodsRequested = foodRequestView.numberOfFoodsRequested {
+            for _ in 0..<numberOfFoodsRequested{
+                addObject(item:foodRequestView.currentRequest)
+                
+            }
         }
         
+        //adds some random objects
         for _ in 0..<5 {
             let randomFoodNumber = Int (arc4random_uniform ( UInt32(foods.count) ) )
             let randomObject = foods[randomFoodNumber]
             addObject(item: randomObject)
         }
-
+        
     }
     
     func randomPosition(lowerBound lower:Float, upperBound upper:Float) -> Float {
@@ -206,14 +226,21 @@ class GameViewController: UIViewController, ARSCNViewDelegate {
                 if node.name == foodRequestView.currentRequest {
                     
                     print("correct item selected")
+                    print(foods[foodRequestView.randomFoodNumber!])
+                    print(foodRequestView.numberOfFoodsRequested)
                     correctSelected += 1
                     
                     if correctSelected == foodRequestView.numberOfFoodsRequested {
                         print ("Request Complete!")
+                        correctSelected = 0
+                        loadNewRequest()
+                        loadNewObjects()
                     }
                     
                 } else {
                     print("incorrect item selected")
+                    print(foods[foodRequestView.randomFoodNumber!])
+                    print(foodRequestView.numberOfFoodsRequested)
                 }
                 
                 node.removeFromParentNode()
