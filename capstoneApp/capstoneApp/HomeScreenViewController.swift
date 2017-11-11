@@ -8,6 +8,7 @@
 
 import UIKit
 let playGameController = GameViewController()
+let purple = "#7189ff"
 
 class HomeScreenViewController: UIViewController {
     override func viewDidLoad() {
@@ -17,8 +18,11 @@ class HomeScreenViewController: UIViewController {
         print("hello i am home screen")
         
         let button = UIButton(frame: CGRect(x: 100, y: 100, width: 100, height: 50))
-        button.backgroundColor = .green
-        button.setTitle("Test Button", for: .normal)
+        button.backgroundColor = UIColor(hex: "00dfdc")
+        button.layer.cornerRadius = 10
+        button.setTitle("Play", for: .normal)
+        button.titleLabel?.font = UIFont(name: "Nunito-Bold", size: 16)
+        button.setTitleColor(UIColor.white, for: .normal)
         button.addTarget(self, action: #selector(buttonAction), for: .touchUpInside)
         
         self.view.addSubview(button)
