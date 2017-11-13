@@ -202,6 +202,11 @@ class GameViewController: UIViewController, ARSCNViewDelegate {
     
     func loadNewObjects(){
         
+        //removes all 3D objects
+        for each in sceneView.scene.rootNode.childNodes {
+            each.removeFromParentNode()
+        }
+        
         //adds the correct 3D objects
         if let numberOfFoodsRequested = foodRequestView.numberOfFoodsRequested {
             for _ in 0..<numberOfFoodsRequested{
