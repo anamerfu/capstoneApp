@@ -235,14 +235,17 @@ class GameViewController: UIViewController, ARSCNViewDelegate {
             
             let location = touch.location(in: sceneView)
             let hitResultsFoods = sceneView.hitTest(location, options: nil)
-            let resultFood: SCNHitTestResult = hitResultsFoods.first!
-            let node = resultFood.node
-   
-            if foods.contains(node.name) {
+            let resultFood: SCNHitTestResult? = hitResultsFoods.first
+            
+            if resultFood != nil {
+                let node = resultFood?.node
+           
+            
+                if foods.contains((node?.name!)!) {
                 
                 //checks if item selected is an item that is requested
-                print("user selected \(node.name)")
-                if node.name == foodRequestView.currentRequest {
+                    print("user selected \(String(describing: node?.name))")
+                    if node?.name == foodRequestView.currentRequest {
                     
                     print("correct item selected")
                     correctSelected += 1
@@ -259,9 +262,9 @@ class GameViewController: UIViewController, ARSCNViewDelegate {
                     print(foods[foodRequestView.randomFoodNumber!])
                     print(foodRequestView.numberOfFoodsRequested)
                 }
-                node.removeFromParentNode()
+                    node?.removeFromParentNode()
                 
-            } else if node.name != nil {
+            } else  {
                 //put bunny on the plane detected
                 let hitResultsBunny = sceneView.hitTest(location, types: .existingPlaneUsingExtent)
                 let result: ARHitTestResult = hitResultsBunny.first!
@@ -273,8 +276,7 @@ class GameViewController: UIViewController, ARSCNViewDelegate {
                         sceneView.scene.rootNode.addChildNode(newBunnyNode)
                     }
                 }
-            } else {
-                print("nil")
+            }
             }
         }
     }
