@@ -241,7 +241,7 @@ class GameViewController: UIViewController, ARSCNViewDelegate {
                 let node = resultFood?.node
            
             
-                if foods.contains((node?.name!)!) {
+                if node?.name != nil {
                 
                 //checks if item selected is an item that is requested
                     print("user selected \(String(describing: node?.name))")
