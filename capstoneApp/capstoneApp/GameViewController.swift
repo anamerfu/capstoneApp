@@ -238,7 +238,7 @@ class GameViewController: UIViewController, ARSCNViewDelegate {
             let resultFood: SCNHitTestResult = hitResultsFoods.first!
             let node = resultFood.node
    
-            if node.name != nil {
+            if foods.contains(node.name) {
                 
                 //checks if item selected is an item that is requested
                 print("user selected \(node.name)")
@@ -261,7 +261,7 @@ class GameViewController: UIViewController, ARSCNViewDelegate {
                 }
                 node.removeFromParentNode()
                 
-            } else {
+            } else if node.name != nil {
                 //put bunny on the plane detected
                 let hitResultsBunny = sceneView.hitTest(location, types: .existingPlaneUsingExtent)
                 let result: ARHitTestResult = hitResultsBunny.first!
@@ -273,6 +273,8 @@ class GameViewController: UIViewController, ARSCNViewDelegate {
                         sceneView.scene.rootNode.addChildNode(newBunnyNode)
                     }
                 }
+            } else {
+                print("nil")
             }
         }
     }
