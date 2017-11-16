@@ -169,9 +169,9 @@ class GameViewController: UIViewController, ARSCNViewDelegate {
         
         object.loadModel(object: item)
         
-        let xPos = randomPosition(lowerBound: -3, upperBound: 3)
-        let yPos = randomPosition(lowerBound: -1.5, upperBound: 0.75)
-        let zPos = randomPosition(lowerBound: -5, upperBound: -1.5)
+        let xPos = randomPosition(lowerBound: -3, upperBound: 8)
+        let yPos = randomPosition(lowerBound: -3, upperBound: 0.5)
+        let zPos = randomPosition(lowerBound: -5, upperBound: 2)
         
         object.position = SCNVector3(xPos, yPos, zPos)
         
@@ -203,8 +203,10 @@ class GameViewController: UIViewController, ARSCNViewDelegate {
     func loadNewObjects(){
         
         //removes all 3D objects
-        for each in sceneView.scene.rootNode.childNodes {
-            each.removeFromParentNode()
+        //need to specify removing food objects only in order to load food after
+        //bunny has been placed
+        for object in sceneView.scene.rootNode.childNodes {
+            object.removeFromParentNode()
         }
         
         //adds the correct 3D objects
@@ -274,11 +276,12 @@ class GameViewController: UIViewController, ARSCNViewDelegate {
                     if let newBunnyNode = newBunnyNode {
                         newBunnyNode.position = newLocation
                         sceneView.scene.rootNode.addChildNode(newBunnyNode)
+                        }
                     }
                 }
             }
-            }
         }
+//        loadNewObjects()
     }
     
   
