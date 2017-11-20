@@ -39,6 +39,8 @@ class GameViewController: UIViewController, ARSCNViewDelegate {
     var isPlaneSelected = false
 
     var bunnyNode: SCNNode?
+    var bunnyAnimations = [String: CAAnimation]()
+    var idle: Bool = true
     
     //create food request view
     let foodRequestView = FoodRequestView()
@@ -72,12 +74,25 @@ class GameViewController: UIViewController, ARSCNViewDelegate {
         sceneView.scene = scene
         
         setUpScenesAndNodes()
+        
+        //loadAnimations()
     }
     
     func setUpScenesAndNodes() {
+
         // load the lamp model from scene
-        let bunnyScene = SCNScene(named: "art.scnassets/Bunny.scn")!
-        bunnyNode = bunnyScene.rootNode.childNode(withName: "Bunny07", recursively: true)!
+        let bunnyScene = SCNScene(named: "art.scnassets/bunnyTestFixed.dae")!
+        
+        
+        //bunnyNode = bunnyScene.rootNode.childNode(withName: "Bunny", recursively: true)!
+        
+        for child in bunnyScene.rootNode.childNodes {
+            bunnyNode?.addChildNode(child)
+        }
+        
+        sceneView.scene.rootNode.addChildNode(bunnyNode)
+        print(bunnyNode?.position ?? 0)
+
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -95,6 +110,7 @@ class GameViewController: UIViewController, ARSCNViewDelegate {
         view.addSubview(foodRequestView)
         
         loadNewObjects()
+        
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -131,6 +147,7 @@ class GameViewController: UIViewController, ARSCNViewDelegate {
         } else {
             // haven't encountered this scenario yet
             print("not plane anchor \(anchor)")
+        
         }
         return node
     }
@@ -204,7 +221,9 @@ class GameViewController: UIViewController, ARSCNViewDelegate {
         
         //removes all 3D objects
         for each in sceneView.scene.rootNode.childNodes {
+           
             each.removeFromParentNode()
+        
         }
         
         //adds the correct 3D objects
@@ -228,7 +247,7 @@ class GameViewController: UIViewController, ARSCNViewDelegate {
        return Float(arc4random()) / Float(UInt32.max) * (lower - upper) + upper
     }
     
-    
+
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         print("touchesBegan running")
         if let touch = touches.first {
@@ -264,7 +283,7 @@ class GameViewController: UIViewController, ARSCNViewDelegate {
                 }
                     node?.removeFromParentNode()
                 
-            } else  {
+            } else {
                 //put bunny on the plane detected
                 let hitResultsBunny = sceneView.hitTest(location, types: .existingPlaneUsingExtent)
                 let result: ARHitTestResult = hitResultsBunny.first!
@@ -276,7 +295,7 @@ class GameViewController: UIViewController, ARSCNViewDelegate {
                         sceneView.scene.rootNode.addChildNode(newBunnyNode)
                     }
                 }
-            }
+                }
             }
         }
     }
