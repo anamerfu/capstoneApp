@@ -81,17 +81,15 @@ class GameViewController: UIViewController, ARSCNViewDelegate {
     func setUpScenesAndNodes() {
 
         // load the lamp model from scene
-        let bunnyScene = SCNScene(named: "art.scnassets/bunnyTestFixed.dae")!
+        let bunnyScene = SCNScene(named: "art.scnassets/Bunny.scn")!
         
         
-        //bunnyNode = bunnyScene.rootNode.childNode(withName: "Bunny", recursively: true)!
+        bunnyNode = bunnyScene.rootNode.childNode(withName: "Bunny", recursively: true)!
         
-        for child in bunnyScene.rootNode.childNodes {
-            bunnyNode?.addChildNode(child)
-        }
-        
-        sceneView.scene.rootNode.addChildNode(bunnyNode)
-        print(bunnyNode?.position ?? 0)
+//        for child in bunnyScene.rootNode.childNodes {
+//            bunnyNode?.addChildNode(child)
+//        }
+  
 
     }
     
