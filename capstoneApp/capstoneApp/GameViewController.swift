@@ -42,6 +42,9 @@ class GameViewController: UIViewController, ARSCNViewDelegate {
     var bunnyAnimations = [String: CAAnimation]()
     var idle: Bool = true
     
+    var testNode =  SCNNode()
+    var testAnchors: [ARAnchor] = []
+    
     //create food request view
     let foodRequestView = FoodRequestView()
     
