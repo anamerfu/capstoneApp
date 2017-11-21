@@ -87,6 +87,8 @@ class GameViewController: UIViewController, ARSCNViewDelegate {
 //            bunnyNode?.addChildNode(child)
 //        }
         
+        loadAnimation(withKey: "idle", sceneName: "art.scnassets/bunnyTestFixed", animationIdentifier: "Idle")
+
         
     }
     
@@ -222,7 +224,7 @@ class GameViewController: UIViewController, ARSCNViewDelegate {
         }
         
         //creates new array from foods array that doesn't include the current request
-        var newfoodArray: Array = foods.filter {$0 > foodRequestView.currentRequest}
+        var newfoodArray: Array = foods.filter {$0 != foodRequestView.currentRequest}
         
         //adds the correct 3D objects
         if let numberOfFoodsRequested = foodRequestView.numberOfFoodsRequested {
@@ -244,6 +246,33 @@ class GameViewController: UIViewController, ARSCNViewDelegate {
     func randomPosition(lowerBound lower:Float, upperBound upper:Float) -> Float {
        return Float(arc4random()) / Float(UInt32.max) * (lower - upper) + upper
     }
+    
+    func loadAnimation(withKey: String, sceneName:String, animationIdentifier:String) {
+        let sceneURL = Bundle.main.url(forResource: sceneName, withExtension: "dae")
+        let sceneSource = SCNSceneSource(url: sceneURL!, options: nil)
+        
+        if let animationObject = sceneSource?.entryWithIdentifier(animationIdentifier, withClass: CAAnimation.self) {
+            // The animation will only play once
+            animationObject.repeatCount = 1
+            // To create smooth transitions between animations
+            animationObject.fadeInDuration = CGFloat(1)
+            animationObject.fadeOutDuration = CGFloat(0.5)
+            
+            // Store the animation for later use
+            bunnyAnimations[withKey] = animationObject
+        }
+    }
+    
+    func playAnimation(key: String) {
+        // Add the animation to start playing it right away
+        sceneView.scene.rootNode.addAnimation(bunnyAnimations[key]!, forKey: key)
+    }
+    
+    func stopAnimation(key: String) {
+        // Stop the animation with a smooth transition
+        sceneView.scene.rootNode.removeAnimation(forKey: key, blendOutDuration: CGFloat(0.5))
+    }
+    
     
 
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -289,6 +318,8 @@ class GameViewController: UIViewController, ARSCNViewDelegate {
                     let newLocation = SCNVector3Make(result.worldTransform.columns.3.x, result.worldTransform.columns.3.y, result.worldTransform.columns.3.z)
                     let newBunnyNode = bunnyNode
                     if let newBunnyNode = newBunnyNode {
+                        
+                        print("adding bunny worked")
                         newBunnyNode.position = newLocation
                         sceneView.scene.rootNode.addChildNode(newBunnyNode)
                         }
