@@ -81,16 +81,13 @@ class GameViewController: UIViewController, ARSCNViewDelegate {
     func setUpScenesAndNodes() {
 
         // load the lamp model from scene
-        let bunnyScene = SCNScene(named: "art.scnassets/Bunny.scn")!
-        
-        
+        let bunnyScene = SCNScene(named: "art.scnassets/bunnyTestFixed.dae")!
         bunnyNode = bunnyScene.rootNode.childNode(withName: "Bunny", recursively: true)!
-        
 //        for child in bunnyScene.rootNode.childNodes {
 //            bunnyNode?.addChildNode(child)
 //        }
-  
-
+        
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -224,6 +221,9 @@ class GameViewController: UIViewController, ARSCNViewDelegate {
         
         }
         
+        //creates new array from foods array that doesn't include the current request
+        var newfoodArray: Array = foods.filter {$0 > foodRequestView.currentRequest}
+        
         //adds the correct 3D objects
         if let numberOfFoodsRequested = foodRequestView.numberOfFoodsRequested {
             for _ in 0..<numberOfFoodsRequested{
@@ -234,8 +234,8 @@ class GameViewController: UIViewController, ARSCNViewDelegate {
         
         //adds some random objects
         for _ in 0..<5 {
-            let randomFoodNumber = Int (arc4random_uniform ( UInt32(foods.count) ) )
-            let randomObject = foods[randomFoodNumber]
+            let randomFoodNumber = Int (arc4random_uniform ( UInt32(newfoodArray.count) ) )
+            let randomObject = newfoodArray[randomFoodNumber]
             addObject(item: randomObject)
         }
         
@@ -298,8 +298,8 @@ class GameViewController: UIViewController, ARSCNViewDelegate {
             }
         }
 //        loadNewObjects()
-    }
     
+
   
     //Tests
     
@@ -334,3 +334,4 @@ class GameViewController: UIViewController, ARSCNViewDelegate {
         
     }
 }
+
