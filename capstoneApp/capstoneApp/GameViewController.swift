@@ -102,11 +102,11 @@ class GameViewController: UIViewController, ARSCNViewDelegate {
         // Run the view's session
         sceneView.session.run(configuration)
         
-        foodRequestView.frame = CGRect(x: 20 , y: 20, width: 40, height:40 )
-        foodRequestView.addNewRequest()
-        view.addSubview(foodRequestView)
+//        foodRequestView.frame = CGRect(x: 20 , y: 20, width: 40, height:40 )
+//        foodRequestView.addNewRequest()
+//        view.addSubview(foodRequestView)
         
-        loadNewObjects()
+//        loadNewObjects()
         
     }
     
@@ -210,17 +210,21 @@ class GameViewController: UIViewController, ARSCNViewDelegate {
         
         //adds new foodRequestView 
         view.addSubview(foodRequestView)
-       
+        
+        loadNewObjects()
 
     }
     
     func loadNewObjects(){
         
+        print(sceneView.scene.rootNode.childNodes)
+        
         //removes all 3D objects
         for each in sceneView.scene.rootNode.childNodes {
-           
-            each.removeFromParentNode()
-        
+            if each.name != "Bunny" {
+             each.removeFromParentNode()
+            }
+
         }
         
         //creates new array from foods array that doesn't include the current request
@@ -322,6 +326,7 @@ class GameViewController: UIViewController, ARSCNViewDelegate {
                         print("adding bunny worked")
                         newBunnyNode.position = newLocation
                         sceneView.scene.rootNode.addChildNode(newBunnyNode)
+                        loadNewRequest()
                         }
                     }
                 }
