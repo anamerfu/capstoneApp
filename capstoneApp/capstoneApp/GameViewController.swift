@@ -312,7 +312,9 @@ class GameViewController: UIViewController, ARSCNViewDelegate {
                     print(foods[foodRequestView.randomFoodNumber!])
                     print(foodRequestView.numberOfFoodsRequested)
                 }
-                    node?.removeFromParentNode()
+                    if foods.contains((node?.name)!) {
+                     node?.removeFromParentNode()
+                    }
                 
             } else {
                 //put bunny on the plane detected
