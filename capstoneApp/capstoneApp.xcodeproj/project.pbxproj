@@ -24,6 +24,7 @@
 		245AA3541FA0021C0011F723 /* Foods.swift in Sources */ = {isa = PBXBuildFile; fileRef = 245AA3531FA0021C0011F723 /* Foods.swift */; };
 		24A2BD5A1F86981C00FD94A5 /* Object.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24A2BD591F86981C00FD94A5 /* Object.swift */; };
 		984C5B431F86BFBF0060D3FC /* HomeScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 984C5B421F86BFBF0060D3FC /* HomeScreenViewController.swift */; };
+		98CF9AB41FCD0736008A564D /* RequestProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98CF9AB31FCD0736008A564D /* RequestProgressView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -67,6 +68,7 @@
 		245AA3531FA0021C0011F723 /* Foods.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Foods.swift; sourceTree = "<group>"; };
 		24A2BD591F86981C00FD94A5 /* Object.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Object.swift; sourceTree = "<group>"; };
 		984C5B421F86BFBF0060D3FC /* HomeScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeScreenViewController.swift; sourceTree = "<group>"; };
+		98CF9AB31FCD0736008A564D /* RequestProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestProgressView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -122,6 +124,7 @@
 			children = (
 				245AA3531FA0021C0011F723 /* Foods.swift */,
 				245AA34F1F9E645A0011F723 /* FoodRequestView.swift */,
+				98CF9AB31FCD0736008A564D /* RequestProgressView.swift */,
 				2438A6BD1F8584E800B76B59 /* GameViewController.swift */,
 				24A2BD591F86981C00FD94A5 /* Object.swift */,
 				2438A6E91F8585AC00B76B59 /* Bunny.swift */,
@@ -298,6 +301,7 @@
 				245AA3501F9E645A0011F723 /* FoodRequestView.swift in Sources */,
 				2447D1411FB66AD800CB3F68 /* extensions.swift in Sources */,
 				245AA3541FA0021C0011F723 /* Foods.swift in Sources */,
+				98CF9AB41FCD0736008A564D /* RequestProgressView.swift in Sources */,
 				24A2BD5A1F86981C00FD94A5 /* Object.swift in Sources */,
 				2438A6BA1F8584E800B76B59 /* AppDelegate.swift in Sources */,
 				984C5B431F86BFBF0060D3FC /* HomeScreenViewController.swift in Sources */,

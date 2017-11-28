@@ -38,6 +38,7 @@ class GameViewController: UIViewController, ARSCNViewDelegate {
     var planeHeight: CGFloat = 0.01
     var disableTracking = false
     var isPlaneSelected = false
+    var correctSelected = 0
 
     var bunnyNode: SCNNode?
     var bunnyAnimations = [String: CAAnimation]()
@@ -51,7 +52,6 @@ class GameViewController: UIViewController, ARSCNViewDelegate {
     
 
     
-
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -162,12 +162,12 @@ class GameViewController: UIViewController, ARSCNViewDelegate {
         return node
     }
     
-    func renderer(_ renderer: SCNSceneRenderer, didAdd node: SCNNode, for anchor: ARAnchor) {
-//        planeNodesCount += 1
-//        if node.childNodes.count > 0 && planeNodesCount % 2 == 0 {
-//            node.childNodes[0].geometry?.firstMaterial?.diffuse.contents = UIColor.yellow
-//        }
-    }
+//    func renderer(_ renderer: SCNSceneRenderer, didAdd node: SCNNode, for anchor: ARAnchor) {
+////        planeNodesCount += 1
+////        if node.childNodes.count > 0 && planeNodesCount % 2 == 0 {
+////            node.childNodes[0].geometry?.firstMaterial?.diffuse.contents = UIColor.yellow
+////        }
+//    }
     
     func renderer(_ renderer: SCNSceneRenderer, didUpdate node: SCNNode, for anchor: ARAnchor) {
         if disableTracking {
@@ -221,8 +221,13 @@ class GameViewController: UIViewController, ARSCNViewDelegate {
         foodRequestView.frame = CGRect(x: 20 , y: 20, width: 40, height:40 )
         foodRequestView.addNewRequest()
         
+        
         //adds new foodRequestView 
         view.addSubview(foodRequestView)
+//        requestProgressView.label.text = "\0 / " + String(foodRequestView.numberOfFoodsRequested)
+        requestProgressView.label.text = String(correctSelected) + " / " + String(foodRequestView.numberOfFoodsRequested)
+        view.addSubview(requestProgressView)
+        
         
         loadNewObjects()
 
@@ -312,7 +317,11 @@ class GameViewController: UIViewController, ARSCNViewDelegate {
                     
                     print("correct item selected")
                     correctSelected += 1
+                    print(foodRequestView.numberOfFoodsRequested)
+                    print("you have: \(String(describing: correctSelected)) out of \(String(describing: foodRequestView.numberOfFoodsRequested))")
+                    requestProgressView.label.text = String(correctSelected) + " / " + String(foodRequestView.numberOfFoodsRequested)
                     
+                        
                     if correctSelected == foodRequestView.numberOfFoodsRequested {
                         print ("Request Complete!")
                         correctSelected = 0
