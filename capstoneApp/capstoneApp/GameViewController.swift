@@ -47,9 +47,13 @@ class GameViewController: UIViewController, ARSCNViewDelegate {
     //create food request view
     let foodRequestView = FoodRequestView()
     
-    var foodRequestNode: SCNNode?
-   
+    //create request progress view
+    let requestProgressView = RequestProgressView()
     
+    let requestPlane = RequestPlane()
+
+   
+    var requestNode: SCNNode?
 
     
     
@@ -75,6 +79,7 @@ class GameViewController: UIViewController, ARSCNViewDelegate {
         // Set the scene to the view
         sceneView.scene = scene
         
+        //var requestNode = requestPlane.requestNode
         setUpScenesAndNodes()
         
         //loadAnimations()
@@ -91,11 +96,9 @@ class GameViewController: UIViewController, ARSCNViewDelegate {
         
         loadAnimation(withKey: "idle", sceneName: "art.scnassets/bunnyTestFixed", animationIdentifier: "Idle")
         
-        //let skScene = SKScene(size: CGSize(width: 200, height: 200))
-        //skScene.backgroundColor = UIColor.clear
         
-        let planeShape = SCNPlane(width: 0.5, height: 0.5)
-        foodRequestNode = SCNNode(geometry: planeShape)
+        let planeShape = requestPlane.planeShape
+        let requestNode = requestPlane.requestNode
         //sceneView.scene.rootNode.addChildNode(planeNode)
         
         
@@ -345,7 +348,7 @@ class GameViewController: UIViewController, ARSCNViewDelegate {
                 if hitResultsBunny.count > 0 {
                     let newLocation = SCNVector3Make(result.worldTransform.columns.3.x, result.worldTransform.columns.3.y, result.worldTransform.columns.3.z)
                     let newBunnyNode = bunnyNode
-                    let newRequestNode = foodRequestNode
+                    let newRequestNode = requestNode
                     
                     if let newBunnyNode = newBunnyNode{
                         
@@ -363,6 +366,7 @@ class GameViewController: UIViewController, ARSCNViewDelegate {
                         sceneView.scene.rootNode.addChildNode(newRequestNode)
                         
                     } else {
+                        print (newRequestNode)
                         print ("not true")
                     }
                 }
