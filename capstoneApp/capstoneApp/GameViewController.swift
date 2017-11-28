@@ -37,7 +37,7 @@ class GameViewController: UIViewController, ARSCNViewDelegate {
     var planeHeight: CGFloat = 0.01
     var disableTracking = false
     var isPlaneSelected = false
-    var progress = 0
+    var correctSelected = 0
 
     var bunnyNode: SCNNode?
     var bunnyAnimations = [String: CAAnimation]()
@@ -46,11 +46,10 @@ class GameViewController: UIViewController, ARSCNViewDelegate {
     //create food request view
     let foodRequestView = FoodRequestView()
     
+    //create request progress view
+    let requestProgressView = RequestProgressView()
     
-
-
     
-
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -209,8 +208,13 @@ class GameViewController: UIViewController, ARSCNViewDelegate {
         foodRequestView.frame = CGRect(x: 20 , y: 20, width: 40, height:40 )
         foodRequestView.addNewRequest()
         
+        
         //adds new foodRequestView 
         view.addSubview(foodRequestView)
+//        requestProgressView.label.text = "\0 / " + String(foodRequestView.numberOfFoodsRequested)
+        requestProgressView.label.text = String(correctSelected) + " / " + String(foodRequestView.numberOfFoodsRequested)
+        view.addSubview(requestProgressView)
+        
         
         loadNewObjects()
 
@@ -302,7 +306,9 @@ class GameViewController: UIViewController, ARSCNViewDelegate {
                     correctSelected += 1
                     print(foodRequestView.numberOfFoodsRequested)
                     print("you have: \(String(describing: correctSelected)) out of \(String(describing: foodRequestView.numberOfFoodsRequested))")
+                    requestProgressView.label.text = String(correctSelected) + " / " + String(foodRequestView.numberOfFoodsRequested)
                     
+                        
                     if correctSelected == foodRequestView.numberOfFoodsRequested {
                         print ("Request Complete!")
                         correctSelected = 0
