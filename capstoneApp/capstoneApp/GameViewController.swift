@@ -9,6 +9,7 @@
 import UIKit
 import SceneKit
 import ARKit
+import SpriteKit
 
 //if a navigation back to HomeScreenViewController is needed, add:
 // self.navigationController?.isNavigationBarHidden = false
@@ -41,15 +42,13 @@ class GameViewController: UIViewController, ARSCNViewDelegate {
     var bunnyNode: SCNNode?
     var bunnyAnimations = [String: CAAnimation]()
     var idle: Bool = true
-    
-    var testNode =  SCNNode()
-    var testAnchors: [ARAnchor] = []
-    
+
     //create food request view
     let foodRequestView = FoodRequestView()
     
+    var foodRequestNode: SCNNode?
+   
     
-
 
     
 
@@ -91,6 +90,17 @@ class GameViewController: UIViewController, ARSCNViewDelegate {
 //        }
         
         loadAnimation(withKey: "idle", sceneName: "art.scnassets/bunnyTestFixed", animationIdentifier: "Idle")
+        
+        //let skScene = SKScene(size: CGSize(width: 200, height: 200))
+        //skScene.backgroundColor = UIColor.clear
+        
+        let planeShape = SCNPlane(width: 0.5, height: 0.5)
+        foodRequestNode = SCNNode(geometry: planeShape)
+        //sceneView.scene.rootNode.addChildNode(planeNode)
+        
+        
+        
+        
 
         
     }
@@ -326,16 +336,29 @@ class GameViewController: UIViewController, ARSCNViewDelegate {
                 if hitResultsBunny.count > 0 {
                     let newLocation = SCNVector3Make(result.worldTransform.columns.3.x, result.worldTransform.columns.3.y, result.worldTransform.columns.3.z)
                     let newBunnyNode = bunnyNode
-                    if let newBunnyNode = newBunnyNode {
+                    let newRequestNode = foodRequestNode
+                    
+                    if let newBunnyNode = newBunnyNode{
                         
                         print("adding bunny worked")
                         newBunnyNode.position = newLocation
                         sceneView.scene.rootNode.addChildNode(newBunnyNode)
                         loadNewRequest()
-                        }
+                        
+                       
+                    }
+                    
+                    if let newRequestNode = newRequestNode {
+                        print("adding plane worked")
+                        newRequestNode.position = SCNVector3Make(newLocation.x, newLocation.y + 1, newLocation.z)
+                        sceneView.scene.rootNode.addChildNode(newRequestNode)
+                        
+                    } else {
+                        print ("not true")
                     }
                 }
-                }
+            }
+            }
             }
         }
 //        loadNewObjects()
