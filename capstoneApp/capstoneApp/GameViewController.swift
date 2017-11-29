@@ -50,8 +50,8 @@ class GameViewController: UIViewController, ARSCNViewDelegate {
     //create request progress view
     let requestProgressView = RequestProgressView()
     
-    let requestPlane = RequestPlane()
-
+    //let requestPlane = RequestPlane()
+    let request = Request()
    
     var requestNode: SCNNode?
 
@@ -96,9 +96,9 @@ class GameViewController: UIViewController, ARSCNViewDelegate {
         
         loadAnimation(withKey: "idle", sceneName: "art.scnassets/bunnyTestFixed", animationIdentifier: "Idle")
         
+        request.loadObjects()
         
-        let planeShape = requestPlane.planeShape
-        requestNode = requestPlane.requestNode
+        requestNode = request.backgroundNode
         //sceneView.scene.rootNode.addChildNode(planeNode)
         
         
@@ -348,8 +348,7 @@ class GameViewController: UIViewController, ARSCNViewDelegate {
                 if hitResultsBunny.count > 0 {
                     let newLocation = SCNVector3Make(result.worldTransform.columns.3.x, result.worldTransform.columns.3.y, result.worldTransform.columns.3.z)
                     let newBunnyNode = bunnyNode
-                    let newRequestNode = requestNode
-                    
+                    let newRequestNode = request.wrapperNode
                     if let newBunnyNode = newBunnyNode{
                         
                         print("adding bunny worked")

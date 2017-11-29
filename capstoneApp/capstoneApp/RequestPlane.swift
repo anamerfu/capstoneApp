@@ -18,19 +18,16 @@ class RequestPlane: SCNPlane {
     var requestMaterial:SCNMaterial?
     
     override init(){
-        self.image = UIImage(named: "apple.png")
+        //self.image = UIImage(named: "apple.png")
         self.planeShape = SCNPlane(width: 0.5, height: 0.5)
         self.requestNode = SCNNode(geometry: planeShape)
-        self.planeShape?.firstMaterial?.diffuse.contents = image
+        //self.planeShape?.firstMaterial?.diffuse.contents = image
         super.init()
     }
     
 
-    func loadModel(){
-        //let image = UIImage(named: "apple.png")
-        //let planeShape = SCNPlane(width: 0.5, height: 0.5)
-        //requestNode = SCNNode(geometry: planeShape)
-        //requestMaterial.diffuse.contents = image
+    func loadFoods(){
+       
         
         
     }
