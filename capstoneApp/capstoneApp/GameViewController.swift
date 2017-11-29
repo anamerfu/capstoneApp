@@ -98,7 +98,7 @@ class GameViewController: UIViewController, ARSCNViewDelegate {
         
         
         let planeShape = requestPlane.planeShape
-        let requestNode = requestPlane.requestNode
+        requestNode = requestPlane.requestNode
         //sceneView.scene.rootNode.addChildNode(planeNode)
         
         
