@@ -23,10 +23,14 @@ class Request: SCNNode {
     
     override init() {
         self.image = UIImage(named: "apple.png")
-        self.backgroundShape = SCNPlane(width: 0.5, height: 0.5)
+        self.backgroundShape = SCNPlane(width: 0.35, height: 0.2)
         self.backgroundNode = SCNNode(geometry: backgroundShape)
         //self.planeShape?.firstMaterial?.diffuse.contents = image
         self.wrapperNode = SCNNode()
+        
+        self.foodShape = SCNPlane(width: 0.1, height: 0.1)
+        self.foodNode = SCNNode(geometry:foodShape)
+        self.foodShape?.firstMaterial?.diffuse.contents = image
         
         super.init()
     }
@@ -34,21 +38,14 @@ class Request: SCNNode {
     
     func loadObjects() {
         
-        //guard let requestedObjectScene = SCNScene() else { return }
-    
-        //let backgroundNode = SCNNode()
-    
-        //var wrapperNode: SCNNode?
-        
         backgroundNode?.name = "background"
-        
-//        for child in requestedObjectScene.rootNode.childNodes {
-//        wrapperNode.addChildNode(child)
-//        }
         wrapperNode?.addChildNode(backgroundNode!)
+        
+        
+        foodNode?.name = "food"
+        wrapperNode?.addChildNode(foodNode!)
+    
         self.addChildNode(wrapperNode!)
-    
-    
     }
     
     required init?(coder aDecoder: NSCoder) {
