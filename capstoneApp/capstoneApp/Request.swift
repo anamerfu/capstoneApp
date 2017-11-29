@@ -23,12 +23,12 @@ class Request: SCNNode {
     
     override init() {
         self.image = UIImage(named: "apple.png")
-        self.backgroundShape = SCNPlane(width: 0.35, height: 0.2)
+        self.backgroundShape = SCNPlane(width: 0.2, height: 0.1)
         self.backgroundNode = SCNNode(geometry: backgroundShape)
         //self.planeShape?.firstMaterial?.diffuse.contents = image
         self.wrapperNode = SCNNode()
         
-        self.foodShape = SCNPlane(width: 0.1, height: 0.1)
+        self.foodShape = SCNPlane(width: 0.05, height: 0.05)
         self.foodNode = SCNNode(geometry:foodShape)
         self.foodShape?.firstMaterial?.diffuse.contents = image
         
@@ -43,6 +43,8 @@ class Request: SCNNode {
         
         
         foodNode?.name = "food"
+        
+        foodNode?.position = SCNVector3Make((wrapperNode?.position.x)!, (wrapperNode?.position.y)!, (wrapperNode?.position.z)! + 0.001)
         wrapperNode?.addChildNode(foodNode!)
     
         self.addChildNode(wrapperNode!)
