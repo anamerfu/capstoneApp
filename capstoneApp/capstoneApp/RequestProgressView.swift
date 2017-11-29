@@ -20,12 +20,17 @@ class RequestProgressView: UIView {
         let screenWidth = screenSize.width
         let screenHeight = screenSize.height
         let numberRequested: String? = String(foodRequest.numberOfFoodsRequested)
-        
-        label.center = CGPoint(x: screenWidth - 70, y: screenHeight - 70)
+        let basket = UIImage(named: "basket")
+        let basketImageView = UIImageView(image: basket!)
+       
+        basketImageView.frame = CGRect(x: screenWidth - 100, y: screenHeight - 100, width: 86, height: 97)
+        label.center = CGPoint(x: screenWidth - 57, y: screenHeight - 30)
         label.textAlignment = .center
         label.textColor = .white
+        label.font = UIFont(name: "Nunito-Bold", size: 20)
 //        label.text = numberRequested
         super.init(frame: frame)
+        self.addSubview(basketImageView)
         self.addSubview(label)
         
     }
