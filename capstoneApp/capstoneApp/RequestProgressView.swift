@@ -10,7 +10,7 @@ import UIKit
 
 class RequestProgressView: UIView {
     
-    let foodRequest = FoodRequestView()
+    let request = Request()
     var numberRequested: String!
     let label = UILabel(frame: CGRect(x: 0, y: 0, width: 200, height: 21))
     
@@ -19,7 +19,7 @@ class RequestProgressView: UIView {
         let screenSize = UIScreen.main.bounds
         let screenWidth = screenSize.width
         let screenHeight = screenSize.height
-        let numberRequested: String? = String(foodRequest.numberOfFoodsRequested)
+        let numberRequested: String? = String(request.numberOfFoodsRequested)
         let basket = UIImage(named: "basket")
         let basketImageView = UIImageView(image: basket!)
        
@@ -36,7 +36,7 @@ class RequestProgressView: UIView {
     }
     
     func refreshProgress() {
-        let numberRequested: String? = String(foodRequest.numberOfFoodsRequested)
+        let numberRequested: String? = String(request.numberOfFoodsRequested)
         label.text = numberRequested
     }
     
