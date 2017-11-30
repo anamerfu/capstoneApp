@@ -18,7 +18,7 @@ import SpriteKit
 //current food that is requested
 //var currentRequest: String! = nil
 
-//amount of correct items that the user has alread tapped
+//amount of correct items that the user has already tapped
 var correctSelected = 0
 
 class GameViewController: UIViewController, ARSCNViewDelegate {
@@ -43,6 +43,9 @@ class GameViewController: UIViewController, ARSCNViewDelegate {
     var bunnyNode: SCNNode?
     var bunnyAnimations = [String: CAAnimation]()
     var idle: Bool = true
+    
+    
+    
 
     //create food request view
     let foodRequestView = FoodRequestView()
@@ -54,6 +57,13 @@ class GameViewController: UIViewController, ARSCNViewDelegate {
     let request = Request()
    
     var requestNode: SCNNode?
+    
+    // Variables pertaining to the food request
+    var randomFoodNumber: Int!
+    var numberOfFoodsRequested: Int!
+    var currentRequest: String!
+    
+    
 
     
     
@@ -79,7 +89,11 @@ class GameViewController: UIViewController, ARSCNViewDelegate {
         // Set the scene to the view
         sceneView.scene = scene
         
-        //var requestNode = requestPlane.requestNode
+        //add info from Request.swift to this views variables
+        randomFoodNumber = request.randomFoodNumber
+        numberOfFoodsRequested = request.numberOfFoodsRequested
+        currentRequest = request.currentRequest
+        
         setUpScenesAndNodes()
         
         //loadAnimations()
@@ -218,7 +232,7 @@ class GameViewController: UIViewController, ARSCNViewDelegate {
         //reset properties
         foodRequestView.setNewProperty()
         
-        print("requested \(foodRequestView.numberOfFoodsRequested) \(foods[foodRequestView.randomFoodNumber])" )
+        print("requested \(numberOfFoodsRequested) \(foods[randomFoodNumber])" )
         
         //adds new 2D icons
         foodRequestView.frame = CGRect(x: 20 , y: 20, width: 40, height:40 )
@@ -227,8 +241,7 @@ class GameViewController: UIViewController, ARSCNViewDelegate {
         
         //adds new foodRequestView 
         view.addSubview(foodRequestView)
-//        requestProgressView.label.text = "\0 / " + String(foodRequestView.numberOfFoodsRequested)
-        requestProgressView.label.text = String(correctSelected) + " / " + String(foodRequestView.numberOfFoodsRequested)
+        requestProgressView.label.text = String(correctSelected) + " / " + String(numberOfFoodsRequested)
         view.addSubview(requestProgressView)
         
         
@@ -248,13 +261,16 @@ class GameViewController: UIViewController, ARSCNViewDelegate {
 
         }
         
+        //make new request bubble
+        
+        
         //creates new array from foods array that doesn't include the current request
-        var newfoodArray: Array = foods.filter {$0 != foodRequestView.currentRequest}
+        var newfoodArray: Array = foods.filter {$0 != currentRequest}
         
         //adds the correct 3D objects
-        if let numberOfFoodsRequested = foodRequestView.numberOfFoodsRequested {
+        if let numberOfFoodsRequested = numberOfFoodsRequested {
             for _ in 0..<numberOfFoodsRequested{
-                addObject(item:foodRequestView.currentRequest)
+                addObject(item:currentRequest)
                 
             }
         }
@@ -316,16 +332,16 @@ class GameViewController: UIViewController, ARSCNViewDelegate {
                 
                 //checks if item selected is an item that is requested
                     print("user selected \(String(describing: node?.name))")
-                    if node?.name == foodRequestView.currentRequest {
+                    if node?.name == currentRequest {
                     
                     print("correct item selected")
                     correctSelected += 1
-                    print(foodRequestView.numberOfFoodsRequested)
-                    print("you have: \(String(describing: correctSelected)) out of \(String(describing: foodRequestView.numberOfFoodsRequested))")
-                    requestProgressView.label.text = String(correctSelected) + " / " + String(foodRequestView.numberOfFoodsRequested)
+                    print(numberOfFoodsRequested)
+                    print("you have: \(String(describing: correctSelected)) out of \(String(describing: numberOfFoodsRequested))")
+                    requestProgressView.label.text = String(correctSelected) + " / " + String(numberOfFoodsRequested)
                     
                         
-                    if correctSelected == foodRequestView.numberOfFoodsRequested {
+                    if correctSelected == numberOfFoodsRequested {
                         print ("Request Complete!")
                         correctSelected = 0
                         loadNewRequest()
@@ -334,8 +350,8 @@ class GameViewController: UIViewController, ARSCNViewDelegate {
                     
                 } else {
                     print("incorrect item selected")
-                    print(foods[foodRequestView.randomFoodNumber!])
-                    print(foodRequestView.numberOfFoodsRequested)
+                    print(foods[randomFoodNumber!])
+                    print(numberOfFoodsRequested)
                 }
                     if foods.contains((node?.name)!) {
                      node?.removeFromParentNode()
@@ -361,7 +377,7 @@ class GameViewController: UIViewController, ARSCNViewDelegate {
                     
                     if let newRequestNode = newRequestNode {
                         print("adding plane worked")
-                        newRequestNode.position = SCNVector3Make(newLocation.x, newLocation.y + 1, newLocation.z)
+                        newRequestNode.position = SCNVector3Make(newLocation.x, newLocation.y + 0.6, newLocation.z)
                         sceneView.scene.rootNode.addChildNode(newRequestNode)
                         
                     } else {

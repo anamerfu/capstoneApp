@@ -19,6 +19,8 @@ class FoodRequestView: UIView {
     var foodImage: UIImage!
     var numberOfFoodsRequested: Int!
     var currentRequest: String!
+    
+
 
     
       override init(frame: CGRect){
