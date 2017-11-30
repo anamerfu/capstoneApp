@@ -381,7 +381,6 @@ class GameViewController: UIViewController, ARSCNViewDelegate {
                         sceneView.scene.rootNode.addChildNode(newRequestNode)
                         
                     } else {
-                        print (newRequestNode)
                         print ("not true")
                     }
                 }

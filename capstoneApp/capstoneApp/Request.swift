@@ -25,8 +25,8 @@ class Request: SCNNode {
     var requestMaterial:SCNMaterial?
     
     var foodwrapperNode:SCNNode?
-    var foodNode: SCNNode?
-    var foodShape: SCNPlane?
+    //var foodNode: SCNNode?
+    //var foodShape: SCNPlane?
     
     override init() {
         
@@ -45,9 +45,9 @@ class Request: SCNNode {
         
         self.foodwrapperNode = SCNNode()
         
-        self.foodShape = SCNPlane(width: 0.05, height: 0.05)
-        self.foodNode = SCNNode(geometry:foodShape)
-        self.foodShape?.firstMaterial?.diffuse.contents = image
+//        self.foodShape = SCNPlane(width: 0.05, height: 0.05)
+//        self.foodNode = SCNNode(geometry:foodShape)
+//        self.foodShape?.firstMaterial?.diffuse.contents = image
         
         super.init()
         
@@ -63,10 +63,32 @@ class Request: SCNNode {
         wrapperNode?.addChildNode(foodwrapperNode!)
         
         
-        foodNode?.name = randomFoodName
-        foodwrapperNode?.addChildNode(foodNode!)
-    
+//        foodNode?.name = randomFoodName
+//        foodwrapperNode?.addChildNode(foodNode!)
+
+        
+        addFoodPlanes()
         self.addChildNode(wrapperNode!)
+    }
+    
+    func addFoodPlanes () {
+        
+        for index in 1...numberOfFoodsRequested {
+            
+            print("adding food ran")
+            
+            let foodShape = SCNPlane(width: 0.05, height: 0.05)
+            let foodNode = SCNNode(geometry:foodShape)
+            foodNode.name = randomFoodName
+            foodShape.firstMaterial?.diffuse.contents = image
+            
+            foodNode.position = SCNVector3Make(((wrapperNode?.position.x)! + Float( Double(index) * 0.05) ), (wrapperNode?.position.y)!, (wrapperNode?.position.z)! + 0.001)
+            foodwrapperNode?.addChildNode(foodNode)
+            
+            //self.addChildNode(foodNode!)
+            
+        }
+    
     }
     
     required init?(coder aDecoder: NSCoder) {
