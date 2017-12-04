@@ -207,7 +207,7 @@ class GameViewController: UIViewController, ARSCNViewDelegate {
     
     
     
-    
+    //adds a 3D food object to the scene
     func addObject(item:String){
         let object = Object()
         
@@ -223,29 +223,14 @@ class GameViewController: UIViewController, ARSCNViewDelegate {
     }
     
     func loadNewRequest(){
-
-        //removes old 2D images
-        for view in foodRequestView.subviews {
-            view.removeFromSuperview()
+        //removes all 3D objects
+        for each in sceneView.scene.rootNode.childNodes {
+            if each.name == "FoodWrapperNode" {
+                each.removeFromParentNode()
+            }
+            
         }
         
-        //reset properties
-        foodRequestView.setNewProperty()
-        
-        print("requested \(numberOfFoodsRequested) \(foods[randomFoodNumber])" )
-        
-        //adds new 2D icons
-        foodRequestView.frame = CGRect(x: 20 , y: 20, width: 40, height:40 )
-        foodRequestView.addNewRequest()
-        
-        
-        //adds new foodRequestView 
-        view.addSubview(foodRequestView)
-        requestProgressView.label.text = String(correctSelected) + " / " + String(numberOfFoodsRequested)
-        view.addSubview(requestProgressView)
-        
-        
-        loadNewObjects()
 
     }
     
@@ -255,7 +240,7 @@ class GameViewController: UIViewController, ARSCNViewDelegate {
         
         //removes all 3D objects
         for each in sceneView.scene.rootNode.childNodes {
-            if each.name != "Bunny" {
+            if each.name != "Bunny" && each.name != "BackgroundPlane" {
              each.removeFromParentNode()
             }
 

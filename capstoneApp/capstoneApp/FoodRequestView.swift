@@ -33,7 +33,7 @@ class FoodRequestView: UIView {
         super.init(frame: frame)
         
 
-        print("foodRequestView requested \(numberOfFoodsRequested) \(foods[randomFoodNumber])")
+        //print("foodRequestView requested \(numberOfFoodsRequested) \(foods[randomFoodNumber])")
 
     
        

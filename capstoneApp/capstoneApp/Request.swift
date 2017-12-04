@@ -56,11 +56,15 @@ class Request: SCNNode {
     
     func loadObjects() {
         
-        backgroundNode?.name = "background"
-        wrapperNode?.addChildNode(backgroundNode!)
+        backgroundNode?.name = "BackgroundPlane"
+        
+        backgroundNode?.position = SCNVector3Make((wrapperNode?.position.x)!, (wrapperNode?.position.y)!, (wrapperNode?.position.z)! )
         
         foodwrapperNode?.position = SCNVector3Make((wrapperNode?.position.x)!, (wrapperNode?.position.y)!, (wrapperNode?.position.z)! + 0.001)
+        
+        wrapperNode?.addChildNode(backgroundNode!)
         wrapperNode?.addChildNode(foodwrapperNode!)
+        
         
         
 //        foodNode?.name = randomFoodName
@@ -73,22 +77,34 @@ class Request: SCNNode {
     
     func addFoodPlanes () {
         
-        for index in 1...numberOfFoodsRequested {
-            
-            print("adding food ran")
-            
-            let foodShape = SCNPlane(width: 0.05, height: 0.05)
+            let size = 0.05
+            let foodShape = SCNPlane(width: CGFloat(size), height: CGFloat(size))
             let foodNode = SCNNode(geometry:foodShape)
             foodNode.name = randomFoodName
             foodShape.firstMaterial?.diffuse.contents = image
+        
+            var xPosition = (foodwrapperNode?.position.x)! - Float(Double(numberOfFoodsRequested) / 2 * size - size / 2)
+            //var xPosition = foodwrapperNode?.position.x
+            let yPosition = foodwrapperNode?.position.y
+            let zPosition = foodwrapperNode?.position.z
+        
+            foodNode.position = SCNVector3Make(xPosition, yPosition!, zPosition!)
+        
+        for _ in 1...numberOfFoodsRequested {
             
-            foodNode.position = SCNVector3Make(((wrapperNode?.position.x)! + Float( Double(index) * 0.05) ), (wrapperNode?.position.y)!, (wrapperNode?.position.z)! + 0.001)
+            print("adding food ran")
             foodwrapperNode?.addChildNode(foodNode)
-            
-            //self.addChildNode(foodNode!)
+            xPosition += Float(size)     
             
         }
     
+    }
+    
+    func refreshRandomFoods() {
+        self.randomFoodNumber = Int (arc4random_uniform ( UInt32(foods.count) ) )
+        self.randomFoodName = foods[randomFoodNumber!] + ".png"
+        self.numberOfFoodsRequested = Int(arc4random_uniform(4) + 1)
+        self.currentRequest = foods[randomFoodNumber!]
     }
     
     required init?(coder aDecoder: NSCoder) {
