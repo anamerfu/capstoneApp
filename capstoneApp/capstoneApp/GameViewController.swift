@@ -114,13 +114,10 @@ class GameViewController: UIViewController, ARSCNViewDelegate {
         
         requestNode = request.backgroundNode
         //sceneView.scene.rootNode.addChildNode(planeNode)
-        
-        
-        
-        
-
-        
+     
     }
+    
+    
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -131,12 +128,10 @@ class GameViewController: UIViewController, ARSCNViewDelegate {
 
         // Run the view's session
         sceneView.session.run(configuration)
+
+        //loadNewObjects()
+
         
-//        foodRequestView.frame = CGRect(x: 20 , y: 20, width: 40, height:40 )
-//        foodRequestView.addNewRequest()
-//        view.addSubview(foodRequestView)
-        
-//        loadNewObjects()
         
     }
     
@@ -329,8 +324,11 @@ class GameViewController: UIViewController, ARSCNViewDelegate {
                     if correctSelected == numberOfFoodsRequested {
                         print ("Request Complete!")
                         correctSelected = 0
+                        //loadNewRequest()
+                        
+                        //loadNewObjects()
+                        //request.loadObjects()
                         loadNewRequest()
-                        loadNewObjects()
                     }
                     
                 } else {
@@ -362,9 +360,9 @@ class GameViewController: UIViewController, ARSCNViewDelegate {
                     
                     if let newRequestNode = newRequestNode {
                         print("adding plane worked")
-                        newRequestNode.position = SCNVector3Make(newLocation.x, newLocation.y + 0.6, newLocation.z)
-                        sceneView.scene.rootNode.addChildNode(newRequestNode)
-                        
+//                        newRequestNode.position = SCNVector3Make(newLocation.x, newLocation.y + 0.6, newLocation.z)
+//                        sceneView.scene.rootNode.addChildNode(newRequestNode)
+                        RequestHelper.loadRequestBubble(sceneView: sceneView, node: newRequestNode, location: newLocation)
                     } else {
                         print ("not true")
                     }
