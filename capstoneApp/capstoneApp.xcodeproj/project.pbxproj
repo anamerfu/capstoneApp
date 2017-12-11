@@ -14,7 +14,6 @@
 		2438A6C61F8584E800B76B59 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2438A6C41F8584E800B76B59 /* LaunchScreen.storyboard */; };
 		2438A6D11F8584E800B76B59 /* capstoneAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2438A6D01F8584E800B76B59 /* capstoneAppTests.swift */; };
 		2438A6DC1F8584E800B76B59 /* capstoneAppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2438A6DB1F8584E800B76B59 /* capstoneAppUITests.swift */; };
-		2438A6EA1F8585AC00B76B59 /* Bunny.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2438A6E91F8585AC00B76B59 /* Bunny.swift */; };
 		2447D1411FB66AD800CB3F68 /* extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2447D1401FB66AD800CB3F68 /* extensions.swift */; };
 		2447D1631FB6794B00CB3F68 /* Nunito  in Resources */ = {isa = PBXBuildFile; fileRef = 2447D1621FB6794800CB3F68 /* Nunito  */; };
 		2447D1651FB6796F00CB3F68 /* Nunito-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2447D1641FB6796F00CB3F68 /* Nunito-Bold.ttf */; };
@@ -23,6 +22,7 @@
 		245AA3501F9E645A0011F723 /* FoodRequestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 245AA34F1F9E645A0011F723 /* FoodRequestView.swift */; };
 		245AA3541FA0021C0011F723 /* Foods.swift in Sources */ = {isa = PBXBuildFile; fileRef = 245AA3531FA0021C0011F723 /* Foods.swift */; };
 		248DE2491FCF51AF005E6057 /* Request.swift in Sources */ = {isa = PBXBuildFile; fileRef = 248DE2481FCF51AF005E6057 /* Request.swift */; };
+		248DE24B1FDE0B2D005E6057 /* RequestHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 248DE24A1FDE0B2D005E6057 /* RequestHelper.swift */; };
 		24A2BD5A1F86981C00FD94A5 /* Object.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24A2BD591F86981C00FD94A5 /* Object.swift */; };
 		984C5B431F86BFBF0060D3FC /* HomeScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 984C5B421F86BFBF0060D3FC /* HomeScreenViewController.swift */; };
 		98CF9AB41FCD0736008A564D /* RequestProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98CF9AB31FCD0736008A564D /* RequestProgressView.swift */; };
@@ -59,7 +59,6 @@
 		2438A6D71F8584E800B76B59 /* capstoneAppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = capstoneAppUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		2438A6DB1F8584E800B76B59 /* capstoneAppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = capstoneAppUITests.swift; sourceTree = "<group>"; };
 		2438A6DD1F8584E800B76B59 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		2438A6E91F8585AC00B76B59 /* Bunny.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bunny.swift; sourceTree = "<group>"; };
 		2447D1401FB66AD800CB3F68 /* extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = extensions.swift; sourceTree = "<group>"; };
 		2447D1621FB6794800CB3F68 /* Nunito  */ = {isa = PBXFileReference; lastKnownFileType = folder; path = "Nunito "; sourceTree = "<group>"; };
 		2447D1641FB6796F00CB3F68 /* Nunito-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Nunito-Bold.ttf"; sourceTree = "<group>"; };
@@ -68,6 +67,7 @@
 		245AA34F1F9E645A0011F723 /* FoodRequestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodRequestView.swift; sourceTree = "<group>"; };
 		245AA3531FA0021C0011F723 /* Foods.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Foods.swift; sourceTree = "<group>"; };
 		248DE2481FCF51AF005E6057 /* Request.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Request.swift; sourceTree = "<group>"; };
+		248DE24A1FDE0B2D005E6057 /* RequestHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestHelper.swift; sourceTree = "<group>"; };
 		24A2BD591F86981C00FD94A5 /* Object.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Object.swift; sourceTree = "<group>"; };
 		984C5B421F86BFBF0060D3FC /* HomeScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeScreenViewController.swift; sourceTree = "<group>"; };
 		98CF9AB31FCD0736008A564D /* RequestProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestProgressView.swift; sourceTree = "<group>"; };
@@ -127,12 +127,12 @@
 				245AA3531FA0021C0011F723 /* Foods.swift */,
 				248DE2481FCF51AF005E6057 /* Request.swift */,
 				245AA34F1F9E645A0011F723 /* FoodRequestView.swift */,
-				98CF9AB31FCD0736008A564D /* RequestProgressView.swift */,
+				248DE24A1FDE0B2D005E6057 /* RequestHelper.swift */,
 				2438A6BD1F8584E800B76B59 /* GameViewController.swift */,
 				24A2BD591F86981C00FD94A5 /* Object.swift */,
-				2438A6E91F8585AC00B76B59 /* Bunny.swift */,
 				984C5B421F86BFBF0060D3FC /* HomeScreenViewController.swift */,
 				2438A6B91F8584E800B76B59 /* AppDelegate.swift */,
+				98CF9AB31FCD0736008A564D /* RequestProgressView.swift */,
 				2447D1401FB66AD800CB3F68 /* extensions.swift */,
 				2447D1621FB6794800CB3F68 /* Nunito  */,
 				2438A6BB1F8584E800B76B59 /* art.scnassets */,
@@ -299,10 +299,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2438A6EA1F8585AC00B76B59 /* Bunny.swift in Sources */,
 				2438A6BE1F8584E800B76B59 /* GameViewController.swift in Sources */,
 				245AA3501F9E645A0011F723 /* FoodRequestView.swift in Sources */,
 				2447D1411FB66AD800CB3F68 /* extensions.swift in Sources */,
+				248DE24B1FDE0B2D005E6057 /* RequestHelper.swift in Sources */,
 				248DE2491FCF51AF005E6057 /* Request.swift in Sources */,
 				245AA3541FA0021C0011F723 /* Foods.swift in Sources */,
 				98CF9AB41FCD0736008A564D /* RequestProgressView.swift in Sources */,

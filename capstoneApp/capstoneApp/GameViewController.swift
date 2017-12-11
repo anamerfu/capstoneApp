@@ -20,6 +20,7 @@ import SpriteKit
 
 //amount of correct items that the user has already tapped
 var correctSelected = 0
+var currentLocation: SCNVector3 = SCNVector3Make(0, 0, 0)
 
 class GameViewController: UIViewController, ARSCNViewDelegate {
 
@@ -44,17 +45,12 @@ class GameViewController: UIViewController, ARSCNViewDelegate {
     var bunnyAnimations = [String: CAAnimation]()
     var idle: Bool = true
     
-    
-    
 
-    //create food request view
-    let foodRequestView = FoodRequestView()
-    
     //create request progress view
     let requestProgressView = RequestProgressView()
     
     //let requestPlane = RequestPlane()
-    let request = Request()
+    var request = Request()
    
     var requestNode: SCNNode?
     
@@ -63,7 +59,7 @@ class GameViewController: UIViewController, ARSCNViewDelegate {
     var numberOfFoodsRequested: Int!
     var currentRequest: String!
     
-    
+    var firstLoad: Bool = true
 
     
     
@@ -95,29 +91,25 @@ class GameViewController: UIViewController, ARSCNViewDelegate {
         currentRequest = request.currentRequest
         
         setUpScenesAndNodes()
+        setUpRequestNodes()
         
         //loadAnimations()
     }
     
     func setUpScenesAndNodes() {
 
-        // load the lamp model from scene
         let bunnyScene = SCNScene(named: "art.scnassets/bunnyTestFixed.dae")!
         bunnyNode = bunnyScene.rootNode.childNode(withName: "Bunny", recursively: true)!
-//        for child in bunnyScene.rootNode.childNodes {
-//            bunnyNode?.addChildNode(child)
-//        }
-        
-        loadAnimation(withKey: "idle", sceneName: "art.scnassets/bunnyTestFixed", animationIdentifier: "Idle")
-        
-        request.loadObjects()
-        
-        requestNode = request.backgroundNode
-        //sceneView.scene.rootNode.addChildNode(planeNode)
+
      
     }
     
-    
+    func setUpRequestNodes () {
+        
+        request.loadObjects()
+        requestNode = request.backgroundNode
+
+    }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -174,13 +166,7 @@ class GameViewController: UIViewController, ARSCNViewDelegate {
         return node
     }
     
-//    func renderer(_ renderer: SCNSceneRenderer, didAdd node: SCNNode, for anchor: ARAnchor) {
-////        planeNodesCount += 1
-////        if node.childNodes.count > 0 && planeNodesCount % 2 == 0 {
-////            node.childNodes[0].geometry?.firstMaterial?.diffuse.contents = UIColor.yellow
-////        }
-//    }
-    
+
     func renderer(_ renderer: SCNSceneRenderer, didUpdate node: SCNNode, for anchor: ARAnchor) {
         if disableTracking {
             return
@@ -199,58 +185,20 @@ class GameViewController: UIViewController, ARSCNViewDelegate {
             }
         }
     }
-    
-    
-    
-    //adds a 3D food object to the scene
-    func addObject(item:String){
-        let object = Object()
-        
-        object.loadModel(object: item)
-        
-        let xPos = randomPosition(lowerBound: -3, upperBound: 8)
-        let yPos = randomPosition(lowerBound: -3, upperBound: 0.5)
-        let zPos = randomPosition(lowerBound: -5, upperBound: 2)
-        
-        object.position = SCNVector3(xPos, yPos, zPos)
-        
-        sceneView.scene.rootNode.addChildNode(object)
-    }
-    
-    func loadNewRequest(){
-        //removes all 3D objects
-        for each in sceneView.scene.rootNode.childNodes {
-            if each.name == "FoodWrapperNode" {
-                each.removeFromParentNode()
-            }
-            
-        }
-        
 
-    }
     
     func loadNewObjects(){
         
         print(sceneView.scene.rootNode.childNodes)
-        
-        //removes all 3D objects
-        for each in sceneView.scene.rootNode.childNodes {
-            if each.name != "Bunny" && each.name != "BackgroundPlane" {
-             each.removeFromParentNode()
-            }
 
-        }
-        
-        //make new request bubble
-        
-        
         //creates new array from foods array that doesn't include the current request
         var newfoodArray: Array = foods.filter {$0 != currentRequest}
         
         //adds the correct 3D objects
         if let numberOfFoodsRequested = numberOfFoodsRequested {
             for _ in 0..<numberOfFoodsRequested{
-                addObject(item:currentRequest)
+                RequestHelper.addObject(sceneView: sceneView, item: currentRequest)
+                
                 
             }
         }
@@ -259,43 +207,12 @@ class GameViewController: UIViewController, ARSCNViewDelegate {
         for _ in 0..<5 {
             let randomFoodNumber = Int (arc4random_uniform ( UInt32(newfoodArray.count) ) )
             let randomObject = newfoodArray[randomFoodNumber]
-            addObject(item: randomObject)
+                RequestHelper.addObject(sceneView: sceneView, item: randomObject)
         }
         
     }
     
-    func randomPosition(lowerBound lower:Float, upperBound upper:Float) -> Float {
-       return Float(arc4random()) / Float(UInt32.max) * (lower - upper) + upper
-    }
     
-    func loadAnimation(withKey: String, sceneName:String, animationIdentifier:String) {
-        let sceneURL = Bundle.main.url(forResource: sceneName, withExtension: "dae")
-        let sceneSource = SCNSceneSource(url: sceneURL!, options: nil)
-        
-        if let animationObject = sceneSource?.entryWithIdentifier(animationIdentifier, withClass: CAAnimation.self) {
-            // The animation will only play once
-            animationObject.repeatCount = 1
-            // To create smooth transitions between animations
-            animationObject.fadeInDuration = CGFloat(1)
-            animationObject.fadeOutDuration = CGFloat(0.5)
-            
-            // Store the animation for later use
-            bunnyAnimations[withKey] = animationObject
-        }
-    }
-    
-    func playAnimation(key: String) {
-        // Add the animation to start playing it right away
-        sceneView.scene.rootNode.addAnimation(bunnyAnimations[key]!, forKey: key)
-    }
-    
-    func stopAnimation(key: String) {
-        // Stop the animation with a smooth transition
-        sceneView.scene.rootNode.removeAnimation(forKey: key, blendOutDuration: CGFloat(0.5))
-    }
-    
-    
-
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         print("touchesBegan running")
         if let touch = touches.first {
@@ -303,6 +220,7 @@ class GameViewController: UIViewController, ARSCNViewDelegate {
             let location = touch.location(in: sceneView)
             let hitResultsFoods = sceneView.hitTest(location, options: nil)
             let resultFood: SCNHitTestResult? = hitResultsFoods.first
+            
             
             if resultFood != nil {
                 let node = resultFood?.node
@@ -324,11 +242,21 @@ class GameViewController: UIViewController, ARSCNViewDelegate {
                     if correctSelected == numberOfFoodsRequested {
                         print ("Request Complete!")
                         correctSelected = 0
-                        //loadNewRequest()
+                        request = Request()
                         
-                        //loadNewObjects()
-                        //request.loadObjects()
-                        loadNewRequest()
+                        
+                        RequestHelper.removeOldRequestNodes(sceneView: sceneView)
+                        
+                        setUpRequestNodes()
+                        
+                        RequestHelper.loadRequestBubble(sceneView: sceneView, node: request.wrapperNode!, location: currentLocation)
+                        
+                        currentRequest = foods[request.randomFoodNumber!]
+                        loadNewObjects()
+                        print("new current request: \(currentRequest)")
+                        
+                        
+                        
                     }
                     
                 } else {
@@ -344,8 +272,11 @@ class GameViewController: UIViewController, ARSCNViewDelegate {
                 //put bunny on the plane detected
                 let hitResultsBunny = sceneView.hitTest(location, types: .existingPlaneUsingExtent)
                 let result: ARHitTestResult = hitResultsBunny.first!
+                
                 if hitResultsBunny.count > 0 {
                     let newLocation = SCNVector3Make(result.worldTransform.columns.3.x, result.worldTransform.columns.3.y, result.worldTransform.columns.3.z)
+                    
+                    
                     let newBunnyNode = bunnyNode
                     let newRequestNode = request.wrapperNode
                     if let newBunnyNode = newBunnyNode{
@@ -353,26 +284,29 @@ class GameViewController: UIViewController, ARSCNViewDelegate {
                         print("adding bunny worked")
                         newBunnyNode.position = newLocation
                         sceneView.scene.rootNode.addChildNode(newBunnyNode)
-                        loadNewRequest()
-                        
+
                        
                     }
                     
                     if let newRequestNode = newRequestNode {
                         print("adding plane worked")
-//                        newRequestNode.position = SCNVector3Make(newLocation.x, newLocation.y + 0.6, newLocation.z)
-//                        sceneView.scene.rootNode.addChildNode(newRequestNode)
                         RequestHelper.loadRequestBubble(sceneView: sceneView, node: newRequestNode, location: newLocation)
+                        currentLocation = newLocation
+                        if firstLoad {
+                            loadNewObjects()
+                            firstLoad = false
+                        }
+                        
                     } else {
                         print ("not true")
                     }
+                    
                 }
             }
             }
             }
         }
-//        loadNewObjects()
-    
+
 
   
     //Tests

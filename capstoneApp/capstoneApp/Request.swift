@@ -25,14 +25,20 @@ class Request: SCNNode {
     var requestMaterial:SCNMaterial?
     
     var foodwrapperNode:SCNNode?
-    //var foodNode: SCNNode?
-    //var foodShape: SCNPlane?
+    var foodNode: SCNNode?
+    var foodShape: SCNPlane?
+
+    var xPosition: Float?
+    let yPosition: Float?
+    let zPosition: Float?
     
     override init() {
+        let size = 0.05
         
         self.randomFoodNumber = Int (arc4random_uniform ( UInt32(foods.count) ) )
         self.randomFoodName = foods[randomFoodNumber!] + ".png"
-        self.numberOfFoodsRequested = Int(arc4random_uniform(4) + 1)
+        //self.numberOfFoodsRequested = Int(arc4random_uniform(4) + 1)
+        self.numberOfFoodsRequested = 1
         self.currentRequest = foods[randomFoodNumber!]
             
         
@@ -45,9 +51,15 @@ class Request: SCNNode {
         
         self.foodwrapperNode = SCNNode()
         
-//        self.foodShape = SCNPlane(width: 0.05, height: 0.05)
-//        self.foodNode = SCNNode(geometry:foodShape)
-//        self.foodShape?.firstMaterial?.diffuse.contents = image
+        self.foodShape = SCNPlane(width: 0.05, height: 0.05)
+        self.foodNode = SCNNode(geometry:foodShape)
+        self.foodShape?.firstMaterial?.diffuse.contents = image
+        
+        self.xPosition = (foodwrapperNode?.position.x)! - Float(Double(numberOfFoodsRequested) / 2 * size - size / 2)
+        self.yPosition = foodwrapperNode?.position.y
+        self.zPosition = foodwrapperNode?.position.z
+        
+        self.foodNode?.position = SCNVector3Make(xPosition!, yPosition!, zPosition!)
         
         super.init()
         
@@ -55,7 +67,9 @@ class Request: SCNNode {
 
     
     func loadObjects() {
+        print("loadObjects worked");
         
+        let size = 0.05
         backgroundNode?.name = "BackgroundPlane"
         
         backgroundNode?.position = SCNVector3Make((wrapperNode?.position.x)!, (wrapperNode?.position.y)!, (wrapperNode?.position.z)! )
@@ -64,47 +78,29 @@ class Request: SCNNode {
         
         wrapperNode?.addChildNode(backgroundNode!)
         wrapperNode?.addChildNode(foodwrapperNode!)
-        
-        
-        
-//        foodNode?.name = randomFoodName
-//        foodwrapperNode?.addChildNode(foodNode!)
 
-        
-        addFoodPlanes()
+        foodNode?.name = randomFoodName
+        foodShape?.firstMaterial?.diffuse.contents = image
+
         self.addChildNode(wrapperNode!)
-    }
-    
-    func addFoodPlanes () {
-        
-            let size = 0.05
-            let foodShape = SCNPlane(width: CGFloat(size), height: CGFloat(size))
-            let foodNode = SCNNode(geometry:foodShape)
-            foodNode.name = randomFoodName
-            foodShape.firstMaterial?.diffuse.contents = image
-        
-            var xPosition = (foodwrapperNode?.position.x)! - Float(Double(numberOfFoodsRequested) / 2 * size - size / 2)
-            //var xPosition = foodwrapperNode?.position.x
-            let yPosition = foodwrapperNode?.position.y
-            let zPosition = foodwrapperNode?.position.z
-        
-            foodNode.position = SCNVector3Make(xPosition, yPosition!, zPosition!)
-        
         for _ in 1...numberOfFoodsRequested {
-            
             print("adding food ran")
-            foodwrapperNode?.addChildNode(foodNode)
-            xPosition += Float(size)     
-            
+            print("new request: \(foodNode?.name)")
+            foodwrapperNode?.addChildNode(foodNode!)
+            xPosition? += Float(size)
         }
-    
+        
     }
+
     
     func refreshRandomFoods() {
+        
         self.randomFoodNumber = Int (arc4random_uniform ( UInt32(foods.count) ) )
         self.randomFoodName = foods[randomFoodNumber!] + ".png"
-        self.numberOfFoodsRequested = Int(arc4random_uniform(4) + 1)
+        //self.numberOfFoodsRequested = Int(arc4random_uniform(4) + 1)
         self.currentRequest = foods[randomFoodNumber!]
+        
+        print("Foods refreshed. Now requesting \(numberOfFoodsRequested) \(randomFoodName)." )
     }
     
     required init?(coder aDecoder: NSCoder) {
