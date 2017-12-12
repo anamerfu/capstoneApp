@@ -19,7 +19,6 @@
 		2447D1651FB6796F00CB3F68 /* Nunito-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2447D1641FB6796F00CB3F68 /* Nunito-Bold.ttf */; };
 		2447D16B1FB679C600CB3F68 /* Nunito-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2447D16A1FB679C500CB3F68 /* Nunito-Regular.ttf */; };
 		2447D16D1FB679DE00CB3F68 /* Nunito-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2447D16C1FB679DE00CB3F68 /* Nunito-SemiBold.ttf */; };
-		245AA3501F9E645A0011F723 /* FoodRequestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 245AA34F1F9E645A0011F723 /* FoodRequestView.swift */; };
 		245AA3541FA0021C0011F723 /* Foods.swift in Sources */ = {isa = PBXBuildFile; fileRef = 245AA3531FA0021C0011F723 /* Foods.swift */; };
 		248DE2491FCF51AF005E6057 /* Request.swift in Sources */ = {isa = PBXBuildFile; fileRef = 248DE2481FCF51AF005E6057 /* Request.swift */; };
 		248DE24B1FDE0B2D005E6057 /* RequestHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 248DE24A1FDE0B2D005E6057 /* RequestHelper.swift */; };
@@ -64,7 +63,6 @@
 		2447D1641FB6796F00CB3F68 /* Nunito-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Nunito-Bold.ttf"; sourceTree = "<group>"; };
 		2447D16A1FB679C500CB3F68 /* Nunito-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Nunito-Regular.ttf"; sourceTree = "<group>"; };
 		2447D16C1FB679DE00CB3F68 /* Nunito-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Nunito-SemiBold.ttf"; sourceTree = "<group>"; };
-		245AA34F1F9E645A0011F723 /* FoodRequestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodRequestView.swift; sourceTree = "<group>"; };
 		245AA3531FA0021C0011F723 /* Foods.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Foods.swift; sourceTree = "<group>"; };
 		248DE2481FCF51AF005E6057 /* Request.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Request.swift; sourceTree = "<group>"; };
 		248DE24A1FDE0B2D005E6057 /* RequestHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestHelper.swift; sourceTree = "<group>"; };
@@ -126,7 +124,6 @@
 			children = (
 				245AA3531FA0021C0011F723 /* Foods.swift */,
 				248DE2481FCF51AF005E6057 /* Request.swift */,
-				245AA34F1F9E645A0011F723 /* FoodRequestView.swift */,
 				248DE24A1FDE0B2D005E6057 /* RequestHelper.swift */,
 				2438A6BD1F8584E800B76B59 /* GameViewController.swift */,
 				24A2BD591F86981C00FD94A5 /* Object.swift */,
@@ -300,7 +297,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				2438A6BE1F8584E800B76B59 /* GameViewController.swift in Sources */,
-				245AA3501F9E645A0011F723 /* FoodRequestView.swift in Sources */,
 				2447D1411FB66AD800CB3F68 /* extensions.swift in Sources */,
 				248DE24B1FDE0B2D005E6057 /* RequestHelper.swift in Sources */,
 				248DE2491FCF51AF005E6057 /* Request.swift in Sources */,

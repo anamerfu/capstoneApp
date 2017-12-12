@@ -47,7 +47,7 @@ class GameViewController: UIViewController, ARSCNViewDelegate {
     
 
     //create request progress view
-    let requestProgressView = RequestProgressView()
+    var requestProgressView = RequestProgressView()
     
     //let requestPlane = RequestPlane()
     var request = Request()
@@ -185,7 +185,13 @@ class GameViewController: UIViewController, ARSCNViewDelegate {
             }
         }
     }
-
+    
+    func addProgressView () {
+        //let requestProgressView = RequestProgressView()
+        requestProgressView.label.text = String(correctSelected) + " / " + String(numberOfFoodsRequested)
+        view.addSubview(requestProgressView)
+        
+    }
     
     func loadNewObjects(){
         
@@ -253,6 +259,10 @@ class GameViewController: UIViewController, ARSCNViewDelegate {
                         
                         currentRequest = foods[request.randomFoodNumber!]
                         loadNewObjects()
+                        
+                        requestProgressView = RequestProgressView()
+                        addProgressView()
+                        view.addSubview(requestProgressView)
                         print("new current request: \(currentRequest)")
                         
                         
@@ -294,6 +304,7 @@ class GameViewController: UIViewController, ARSCNViewDelegate {
                         currentLocation = newLocation
                         if firstLoad {
                             loadNewObjects()
+                            addProgressView()
                             firstLoad = false
                         }
                         

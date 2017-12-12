@@ -19,6 +19,7 @@ class RequestHelper {
         node.position = SCNVector3Make(location.x, location.y + 0.6, location.z)
         sceneView.scene?.rootNode.addChildNode(node)
         
+        
 
     }
     
@@ -46,5 +47,7 @@ class RequestHelper {
         
         }
     }
+    
+
     
 }
