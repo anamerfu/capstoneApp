@@ -16,7 +16,7 @@ class RequestHelper {
     }
     
     class func loadRequestBubble(sceneView: SCNView, node: SCNNode, location: SCNVector3) {
-        node.position = SCNVector3Make(location.x, location.y + 0.6, location.z)
+        node.position = SCNVector3Make(location.x + 0.05, location.y + 0.7, location.z)
         sceneView.scene?.rootNode.addChildNode(node)
         
         

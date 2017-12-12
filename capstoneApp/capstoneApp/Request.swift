@@ -45,18 +45,17 @@ class Request: SCNNode {
         self.wrapperNode = SCNNode()
         
         self.image = UIImage(named: randomFoodName!)
-        self.backgroundShape = SCNPlane(width: 0.2, height: 0.1)
+        self.backgroundShape = SCNPlane(width: 0.4, height: 0.4)
         self.backgroundNode = SCNNode(geometry: backgroundShape)
-        //self.planeShape?.firstMaterial?.diffuse.contents = image
-        
+        self.backgroundShape?.firstMaterial?.diffuse.contents = UIImage(named: "thoughtBubble.png")
         self.foodwrapperNode = SCNNode()
         
-        self.foodShape = SCNPlane(width: 0.05, height: 0.05)
+        self.foodShape = SCNPlane(width: 0.07, height: 0.06)
         self.foodNode = SCNNode(geometry:foodShape)
         self.foodShape?.firstMaterial?.diffuse.contents = image
         
         self.xPosition = (foodwrapperNode?.position.x)! - Float(Double(numberOfFoodsRequested) / 2 * size - size / 2)
-        self.yPosition = foodwrapperNode?.position.y
+        self.yPosition = (foodwrapperNode?.position.y)! + 0.055
         self.zPosition = foodwrapperNode?.position.z
         
         self.foodNode?.position = SCNVector3Make(xPosition!, yPosition!, zPosition!)
@@ -88,6 +87,7 @@ class Request: SCNNode {
             print("new request: \(foodNode?.name)")
             foodwrapperNode?.addChildNode(foodNode!)
             xPosition? += Float(size)
+            print(xPosition)
         }
         
     }
