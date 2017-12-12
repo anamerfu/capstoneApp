@@ -45,6 +45,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		240360C71FE0925F00F143E0 /* thoughtBubble.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = thoughtBubble.png; sourceTree = "<group>"; };
 		2438A6B61F8584E800B76B59 /* capstoneApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = capstoneApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2438A6B91F8584E800B76B59 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2438A6BB1F8584E800B76B59 /* art.scnassets */ = {isa = PBXFileReference; lastKnownFileType = wrapper.scnassets; path = art.scnassets; sourceTree = "<group>"; };
@@ -134,6 +135,7 @@
 				2447D1621FB6794800CB3F68 /* Nunito  */,
 				2438A6BB1F8584E800B76B59 /* art.scnassets */,
 				2438A6C21F8584E800B76B59 /* Assets.xcassets */,
+				240360C71FE0925F00F143E0 /* thoughtBubble.png */,
 				2438A6C41F8584E800B76B59 /* LaunchScreen.storyboard */,
 				2438A6C71F8584E800B76B59 /* Info.plist */,
 			);
