@@ -258,6 +258,7 @@ class GameViewController: UIViewController, ARSCNViewDelegate {
                         RequestHelper.loadRequestBubble(sceneView: sceneView, node: request.wrapperNode!, location: currentLocation)
                         
                         currentRequest = foods[request.randomFoodNumber!]
+                        numberOfFoodsRequested = request.numberOfFoodsRequested
                         loadNewObjects()
                         
                         requestProgressView = RequestProgressView()
