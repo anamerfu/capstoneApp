@@ -80,50 +80,37 @@ class Request: SCNNode {
         
         self.addChildNode(wrapperNode!)
         
-        for _ in 1...numberOfFoodsRequested {
+        func loadFoodItems (z: Float, xPositionChange: Float) {
             
+            for _ in 1...numberOfFoodsRequested {
             
-            
-            let foodShape = SCNPlane(width: 0.07, height: 0.07)
-            let foodNode = SCNNode(geometry:foodShape)
-            foodShape.firstMaterial?.diffuse.contents = image
-            foodShape.firstMaterial?.isDoubleSided = true
-            foodNode.position = SCNVector3Make(xPosition, yPosition, zPositionFront)
-
-
-            print("added item at \(xPosition)")
-            print("new request: \(foodNode.name)")
-            foodwrapperNode?.addChildNode(foodNode)
-
-            xPosition += 0.075
-      
+                let foodShape = SCNPlane(width: 0.07, height: 0.07)
+                let foodNode = SCNNode(geometry:foodShape)
+                foodShape.firstMaterial?.diffuse.contents = image
+                foodShape.firstMaterial?.isDoubleSided = true
+                foodNode.position = SCNVector3Make(xPosition, yPosition, z)
+                
+                
+                print("added item at \(xPosition)")
+                print("new request: \(foodNode.name)")
+                foodwrapperNode?.addChildNode(foodNode)
+                
+                xPosition += xPositionChange
+                
+            }
         }
+        
+        loadFoodItems(z: zPositionFront, xPositionChange: 0.075)
         
         xPosition -= 0.075
         
-        for _ in 1...numberOfFoodsRequested {
-
-
-            let foodShape = SCNPlane(width: 0.07, height: 0.07)
-            let foodNode = SCNNode(geometry:foodShape)
-            foodShape.firstMaterial?.diffuse.contents = image
-            foodShape.firstMaterial?.isDoubleSided = true
-            foodNode.position = SCNVector3Make(xPosition, yPosition, zPositionBack)
-
-
-            print("added item at \(xPosition)")
-            print("new request: \(foodNode.name)")
-            foodwrapperNode?.addChildNode(foodNode)
-
-            xPosition -= 0.075
-
-        }
+        loadFoodItems(z: zPositionBack, xPositionChange: -0.075)
 
 
         
     }
 
-    
+
     func refreshRandomFoods() {
         
         self.randomFoodNumber = Int (arc4random_uniform ( UInt32(foods.count) ) )
