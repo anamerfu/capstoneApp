@@ -98,7 +98,7 @@ class GameViewController: UIViewController, ARSCNViewDelegate {
     
     func setUpScenesAndNodes() {
 
-        let bunnyScene = SCNScene(named: "art.scnassets/bunnyTestFixed.dae")!
+        let bunnyScene = SCNScene(named: "art.scnassets/bunny.dae")!
         bunnyNode = bunnyScene.rootNode.childNode(withName: "Bunny", recursively: true)!
 
      
