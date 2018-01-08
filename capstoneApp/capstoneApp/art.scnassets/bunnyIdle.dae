@@ -4,8 +4,8 @@
   <contributor>
    <authoring_tool>SceneKit Collada Exporter v1.0</authoring_tool>
   </contributor>
-  <created>2018-01-08T19:31:50Z</created>
-  <modified>2018-01-08T19:31:50Z</modified>
+  <created>2018-01-08T19:32:28Z</created>
+  <modified>2018-01-08T19:32:28Z</modified>
   <unit meter="1.000000"/>
   <up_axis>Y_UP</up_axis>
  </asset>
@@ -856,7 +856,7 @@
  </library_controllers>
  <library_visual_scenes>
   <visual_scene id="scene169">
-   <node id="_-1000" name="Bunny3">
+   <node id="_-1000" name="Bunny">
     <matrix>0.7 0 0 34.6 0 0.7 0 0 0 0 0.7 0 0 0 0 1 </matrix>
     <node id="_-1002" name="Group">
      <node id="_-1064" name="Main">
