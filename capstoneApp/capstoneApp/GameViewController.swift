@@ -45,7 +45,7 @@ class GameViewController: UIViewController, ARSCNViewDelegate {
     var correctSelected = 0
 
     var bunnyNode: SCNNode?
-    var bunnyAnimations = [String: CAAnimation]()
+    var animations = [String: CAAnimation]()
     var idle: Bool = true
     
 
@@ -103,8 +103,37 @@ class GameViewController: UIViewController, ARSCNViewDelegate {
 
         let bunnyScene = SCNScene(named: "art.scnassets/bunnyIdle.dae")!
         bunnyNode = bunnyScene.rootNode.childNode(withName: "Bunny", recursively: true)!
-
-     
+        
+        loadAnimation(withKey: "nope", sceneName: "art.scnassets/bunnyNope", animationIdentifier: "bunnyNope-1")
+        loadAnimation(withKey: "happy", sceneName: "art.scnassets/bunnyHappy", animationIdentifier: "bunnyHappy-1")
+        
+        
+    }
+    
+    func loadAnimation(withKey: String, sceneName:String, animationIdentifier:String) {
+        let sceneURL = Bundle.main.url(forResource: sceneName, withExtension: "dae")
+        let sceneSource = SCNSceneSource(url: sceneURL!, options: nil)
+        
+        if let animationObject = sceneSource?.entryWithIdentifier(animationIdentifier, withClass: CAAnimation.self) {
+            // The animation will only play once
+            animationObject.repeatCount = 1
+            // To create smooth transitions between animations
+            animationObject.fadeInDuration = CGFloat(1)
+            animationObject.fadeOutDuration = CGFloat(0.5)
+            
+            // Store the animation for later use
+            animations[withKey] = animationObject
+        }
+    }
+    
+    func playAnimation(key: String) {
+        // Add the animation to start playing it right away
+        sceneView.scene.rootNode.addAnimation(animations[key]!, forKey: key)
+    }
+    
+    func stopAnimation(key: String) {
+        // Stop the animation with a smooth transition
+        sceneView.scene.rootNode.removeAnimation(forKey: key, blendOutDuration: CGFloat(0.5))
     }
     
     func setUpRequestNodes () {
@@ -265,6 +294,8 @@ class GameViewController: UIViewController, ARSCNViewDelegate {
                         
                         
                         print ("Request Complete!")
+                        
+                        
                         correctSelected = 0
                         request = Request()
                         
@@ -303,6 +334,7 @@ class GameViewController: UIViewController, ARSCNViewDelegate {
                     }
                     print(foods[randomFoodNumber!])
                     print(numberOfFoodsRequested)
+                    playAnimation(key: "nope")
                 }
                     if foods.contains((node?.name)!) {
                      node?.removeFromParentNode()
