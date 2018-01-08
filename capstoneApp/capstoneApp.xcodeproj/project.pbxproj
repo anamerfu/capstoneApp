@@ -25,6 +25,7 @@
 		24A2BD5A1F86981C00FD94A5 /* Object.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24A2BD591F86981C00FD94A5 /* Object.swift */; };
 		984C5B431F86BFBF0060D3FC /* HomeScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 984C5B421F86BFBF0060D3FC /* HomeScreenViewController.swift */; };
 		989C2A2C20041D7000C738BF /* successSound.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 989C2A2B20041D7000C738BF /* successSound.mp3 */; };
+		989C2A2E2004245E00C738BF /* mistakeSound.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 989C2A2D2004245E00C738BF /* mistakeSound.mp3 */; };
 		98CF9AB41FCD0736008A564D /* RequestProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98CF9AB31FCD0736008A564D /* RequestProgressView.swift */; };
 /* End PBXBuildFile section */
 
@@ -71,6 +72,7 @@
 		24A2BD591F86981C00FD94A5 /* Object.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Object.swift; sourceTree = "<group>"; };
 		984C5B421F86BFBF0060D3FC /* HomeScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeScreenViewController.swift; sourceTree = "<group>"; };
 		989C2A2B20041D7000C738BF /* successSound.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = successSound.mp3; sourceTree = "<group>"; };
+		989C2A2D2004245E00C738BF /* mistakeSound.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = mistakeSound.mp3; sourceTree = "<group>"; };
 		98CF9AB31FCD0736008A564D /* RequestProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestProgressView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -139,6 +141,7 @@
 				2438A6C21F8584E800B76B59 /* Assets.xcassets */,
 				240360C71FE0925F00F143E0 /* thoughtBubble.png */,
 				2438A6C41F8584E800B76B59 /* LaunchScreen.storyboard */,
+				989C2A2D2004245E00C738BF /* mistakeSound.mp3 */,
 				989C2A2B20041D7000C738BF /* successSound.mp3 */,
 				2438A6C71F8584E800B76B59 /* Info.plist */,
 			);
@@ -275,6 +278,7 @@
 				2447D1651FB6796F00CB3F68 /* Nunito-Bold.ttf in Resources */,
 				2447D16D1FB679DE00CB3F68 /* Nunito-SemiBold.ttf in Resources */,
 				2447D1631FB6794B00CB3F68 /* Nunito  in Resources */,
+				989C2A2E2004245E00C738BF /* mistakeSound.mp3 in Resources */,
 				2438A6BC1F8584E800B76B59 /* art.scnassets in Resources */,
 				2438A6C61F8584E800B76B59 /* LaunchScreen.storyboard in Resources */,
 				2438A6C31F8584E800B76B59 /* Assets.xcassets in Resources */,

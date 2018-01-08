@@ -290,6 +290,17 @@ class GameViewController: UIViewController, ARSCNViewDelegate {
                     
                 } else {
                     print("incorrect item selected")
+                    //audio - set file name & extension
+                    let mistakePath = Bundle.main.path(forResource: "mistakeSound.mp3", ofType:nil)!
+                    let mistakeURL = URL(fileURLWithPath: mistakePath)
+                    
+                    do {
+                        audioPlayer = try AVAudioPlayer(contentsOf: mistakeURL)
+                        audioPlayer.play()
+                        print ("audio played")
+                    } catch {
+                        // couldn't load file :(
+                    }
                     print(foods[randomFoodNumber!])
                     print(numberOfFoodsRequested)
                 }
