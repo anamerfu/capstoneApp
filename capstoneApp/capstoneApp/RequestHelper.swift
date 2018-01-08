@@ -29,9 +29,9 @@ class RequestHelper {
         
         object.loadModel(object: item)
         
-        let xPos = randomPosition(lowerBound: -3, upperBound: 8)
-        let yPos = randomPosition(lowerBound: -3, upperBound: 0.5)
-        let zPos = randomPosition(lowerBound: -5, upperBound: 2)
+        let xPos = randomPosition(lowerBound: -1, upperBound: 7)
+        let yPos = randomPosition(lowerBound: -2, upperBound: 0.8)
+        let zPos = randomPosition(lowerBound: -4, upperBound: 2)
         
         object.position = SCNVector3(xPos, yPos, zPos)
         
