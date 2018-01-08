@@ -271,7 +271,7 @@ class GameViewController: UIViewController, ARSCNViewDelegate {
                     if node?.name == currentRequest {
                     
                     print("correct item selected")
-                        
+                    playAnimation(key: "happy")
                     //audio - set file name & extension
                     let successPath = Bundle.main.path(forResource: "successSound.mp3", ofType:nil)!
                     let successURL = URL(fileURLWithPath: successPath)
