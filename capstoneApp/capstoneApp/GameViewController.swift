@@ -10,6 +10,7 @@ import UIKit
 import SceneKit
 import ARKit
 import SpriteKit
+import AVFoundation
 
 //if a navigation back to HomeScreenViewController is needed, add:
 // self.navigationController?.isNavigationBarHidden = false
@@ -23,6 +24,8 @@ var correctSelected = 0
 var currentLocation: SCNVector3 = SCNVector3Make(0, 0, 0)
 
 class GameViewController: UIViewController, ARSCNViewDelegate {
+    
+    var audioPlayer = AVAudioPlayer()
 
     let sceneView: ARSCNView = ARSCNView()
 
@@ -239,6 +242,19 @@ class GameViewController: UIViewController, ARSCNViewDelegate {
                     if node?.name == currentRequest {
                     
                     print("correct item selected")
+                        
+                    //audio - set file name & extension
+                    let successPath = Bundle.main.path(forResource: "successSound.mp3", ofType:nil)!
+                    let successURL = URL(fileURLWithPath: successPath)
+                    
+                    do {
+                        audioPlayer = try AVAudioPlayer(contentsOf: successURL)
+                        audioPlayer.play()
+                        print ("audio played")
+                    } catch {
+                        // couldn't load file :(
+                    }
+                        
                     correctSelected += 1
                     print(numberOfFoodsRequested)
                     print("you have: \(String(describing: correctSelected)) out of \(String(describing: numberOfFoodsRequested))")
@@ -246,6 +262,8 @@ class GameViewController: UIViewController, ARSCNViewDelegate {
                     
                         
                     if correctSelected == numberOfFoodsRequested {
+                        
+                        
                         print ("Request Complete!")
                         correctSelected = 0
                         request = Request()
