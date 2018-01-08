@@ -352,7 +352,17 @@ class GameViewController: UIViewController, ARSCNViewDelegate {
                     let newBunnyNode = bunnyNode
                     let newRequestNode = request.wrapperNode
                     if let newBunnyNode = newBunnyNode{
+                        //audio - set file name & extension
+                        let bunnyAppearPath = Bundle.main.path(forResource: "bunnyAppearSound.mp3", ofType:nil)!
+                        let bunnyAppearURL = URL(fileURLWithPath: bunnyAppearPath)
                         
+                        do {
+                            audioPlayer = try AVAudioPlayer(contentsOf: bunnyAppearURL)
+                            audioPlayer.play()
+                            print ("audio played")
+                        } catch {
+                            // couldn't load file :(
+                        }
                         print("adding bunny worked")
                         newBunnyNode.position = newLocation
                         sceneView.scene.rootNode.addChildNode(newBunnyNode)
