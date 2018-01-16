@@ -33,7 +33,7 @@ class HomeScreenViewController: UIViewController {
         button.setTitleColor(UIColor.white, for: .normal)
         button.addTarget(self, action: #selector(buttonAction), for: .touchUpInside)
         
-        title.frame = CGRect(x: self.view.frame.size.width / 2 - titleImage!.size.width, y: 10, width: titleImage!.size.width , height: (titleImage?.size.height)!)
+        title.frame = CGRect(x: self.view.frame.size.width / 2 - titleImage!.size.width / 2 , y: 70, width: titleImage!.size.width , height: (titleImage?.size.height)!)
         
         
         self.view.addSubview(background)
