@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import AVFoundation
+
 let playGameController = GameViewController()
 let purple = "#7189ff"
 
@@ -14,6 +16,8 @@ class HomeScreenViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationController?.isNavigationBarHidden = true
+        
+        
         
         let button = UIButton(frame: CGRect(x: self.view.frame.size.width / 2 - 75, y: self.view.frame.size.height - 125, width: 150, height: 60))
         
@@ -43,7 +47,20 @@ class HomeScreenViewController: UIViewController {
     }
     
     @objc func buttonAction(sender: UIButton!) {
+        var audioPlayer = AVAudioPlayer()
         print("Button tapped")
+        //audio - set file name & extension
+        let pop = Bundle.main.path(forResource: "pop.mp3", ofType:nil)!
+        let popURL = URL(fileURLWithPath: pop)
+        
+        do {
+            audioPlayer = try AVAudioPlayer(contentsOf: popURL)
+            audioPlayer.play()
+            print ("audio played")
+        } catch {
+            // couldn't load file :(
+        }
+        
         self.navigationController?.pushViewController(playGameController, animated: true)
     }
     
