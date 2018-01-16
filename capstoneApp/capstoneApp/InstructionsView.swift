@@ -20,7 +20,7 @@ class InstructionsView: UIView {
         super.init(frame: frame)
         
         
-        self.backgroundColor = UIColor(red:0.44, green:0.54, blue:1.00, alpha:0.8)
+        self.backgroundColor = UIColor(red:0.24, green:0.37, blue:1.00, alpha:0.8)
         self.layer.cornerRadius = 40.0
         label = UILabel(frame: CGRect(x: 50, y: 50, width: 280, height: 200))
         label.center = CGPoint(x: 147, y: 40)

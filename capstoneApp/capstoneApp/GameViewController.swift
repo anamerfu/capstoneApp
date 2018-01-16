@@ -68,7 +68,23 @@ class GameViewController: UIViewController, ARSCNViewDelegate {
     
     var firstLoad: Bool = true
 
-    
+    func playSwoosh(seconds: Double){
+        let swooshPath = Bundle.main.path(forResource: "swoosh.mp3", ofType:nil)!
+        let swooshURL = URL(fileURLWithPath: swooshPath)
+        
+        do {
+            self.self.audioPlayer = try AVAudioPlayer(contentsOf: swooshURL)
+//            let seconds = 0.7//Time To Delay
+            let when = DispatchTime.now() + seconds
+            
+            DispatchQueue.main.asyncAfter(deadline: when) {
+                self.audioPlayer.play()
+            }
+            print ("audio played")
+        } catch {
+            // couldn't load file :(
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -83,28 +99,11 @@ class GameViewController: UIViewController, ARSCNViewDelegate {
                                    usingSpringWithDamping: 0.55,
                                    initialSpringVelocity: 0.3,
                                    options: .curveEaseInOut, animations:  {
-            playSwoosh()
+            self.playSwoosh(seconds: 0.7)
             self.instructionsView.frame.origin.y -= 200
             
         }, completion: nil)
         
-        func playSwoosh(){
-            let swooshPath = Bundle.main.path(forResource: "swoosh.mp3", ofType:nil)!
-            let swooshURL = URL(fileURLWithPath: swooshPath)
-            
-            do {
-                self.self.audioPlayer = try AVAudioPlayer(contentsOf: swooshURL)
-                let seconds = 0.7//Time To Delay
-                let when = DispatchTime.now() + seconds
-                
-                DispatchQueue.main.asyncAfter(deadline: when) {
-                   self.audioPlayer.play()
-                }
-                print ("audio played")
-            } catch {
-                // couldn't load file :(
-            }
-        }
         
         // Set the view's delegate
         sceneView.delegate = self
@@ -230,21 +229,22 @@ class GameViewController: UIViewController, ARSCNViewDelegate {
                                initialSpringVelocity: 0.3,
                                options: .curveEaseInOut, animations: {
                                 
-                    let swooshPath = Bundle.main.path(forResource: "swoosh.mp3", ofType:nil)!
-                    let swooshURL = URL(fileURLWithPath: swooshPath)
-                    
-                    do {
-                        self.self.audioPlayer = try AVAudioPlayer(contentsOf: swooshURL)
-                        let seconds = 0.3//Time To Delay
-                        let when = DispatchTime.now() + seconds
-                        
-                        DispatchQueue.main.asyncAfter(deadline: when) {
-                            self.audioPlayer.play()
-                        }
-                        print ("audio played")
-                    } catch {
-                        // couldn't load file :(
-                    }
+//                    let swooshPath = Bundle.main.path(forResource: "swoosh.mp3", ofType:nil)!
+//                    let swooshURL = URL(fileURLWithPath: swooshPath)
+//
+//                    do {
+//                        self.self.audioPlayer = try AVAudioPlayer(contentsOf: swooshURL)
+//                        let seconds = 0.3//Time To Delay
+//                        let when = DispatchTime.now() + seconds
+//
+//                        DispatchQueue.main.asyncAfter(deadline: when) {
+//                            self.audioPlayer.play()
+//                        }
+//                        print ("audio played")
+//                    } catch {
+//                        // couldn't load file :(
+//                    }
+                    self.playSwoosh(seconds: 0.3)
                     self.instructionsView.label.text = "Tap on the grass to find the bunny!"
                     self.instructionsView.frame.origin.y -= 200
                 }, completion: nil)
@@ -294,21 +294,22 @@ class GameViewController: UIViewController, ARSCNViewDelegate {
                        usingSpringWithDamping: 0.55,
                        initialSpringVelocity: 0.3,
                        options: .curveEaseInOut, animations: {
-                        let swooshPath = Bundle.main.path(forResource: "swoosh.mp3", ofType:nil)!
-                        let swooshURL = URL(fileURLWithPath: swooshPath)
-                        
-                        do {
-                            self.self.audioPlayer = try AVAudioPlayer(contentsOf: swooshURL)
-                            let seconds = 0.3//Time To Delay
-                            let when = DispatchTime.now() + seconds
-                            
-                            DispatchQueue.main.asyncAfter(deadline: when) {
-                                self.audioPlayer.play()
-                            }
-                            print ("audio played")
-                        } catch {
-                            // couldn't load file :(
-                        }
+//                        let swooshPath = Bundle.main.path(forResource: "swoosh.mp3", ofType:nil)!
+//                        let swooshURL = URL(fileURLWithPath: swooshPath)
+//
+//                        do {
+//                            self.self.audioPlayer = try AVAudioPlayer(contentsOf: swooshURL)
+//                            let seconds = 0.3//Time To Delay
+//                            let when = DispatchTime.now() + seconds
+//
+//                            DispatchQueue.main.asyncAfter(deadline: when) {
+//                                self.audioPlayer.play()
+//                            }
+//                            print ("audio played")
+//                        } catch {
+//                            // couldn't load file :(
+//                        }
+                        self.playSwoosh(seconds: 0.3)
                         self.instructionsView.label.text = "Let's look for the foods that Bunny wants to eat!"
                         self.instructionsView.frame.origin.y -= 200
         }, completion: nil)
