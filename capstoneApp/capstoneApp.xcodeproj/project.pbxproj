@@ -23,6 +23,8 @@
 		248DE2491FCF51AF005E6057 /* Request.swift in Sources */ = {isa = PBXBuildFile; fileRef = 248DE2481FCF51AF005E6057 /* Request.swift */; };
 		248DE24B1FDE0B2D005E6057 /* RequestHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 248DE24A1FDE0B2D005E6057 /* RequestHelper.swift */; };
 		24A2BD5A1F86981C00FD94A5 /* Object.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24A2BD591F86981C00FD94A5 /* Object.swift */; };
+		98269CE8200E96D300EE9CB7 /* pop.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 98269CE7200E96D300EE9CB7 /* pop.mp3 */; };
+		98269CEA200E96DF00EE9CB7 /* swoosh.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 98269CE9200E96DE00EE9CB7 /* swoosh.mp3 */; };
 		984C5B431F86BFBF0060D3FC /* HomeScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 984C5B421F86BFBF0060D3FC /* HomeScreenViewController.swift */; };
 		987D4736200D4F8D001CF8DC /* InstructionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 987D4735200D4F8D001CF8DC /* InstructionsView.swift */; };
 		989C2A2C20041D7000C738BF /* successSound.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 989C2A2B20041D7000C738BF /* successSound.mp3 */; };
@@ -72,6 +74,8 @@
 		248DE2481FCF51AF005E6057 /* Request.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Request.swift; sourceTree = "<group>"; };
 		248DE24A1FDE0B2D005E6057 /* RequestHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestHelper.swift; sourceTree = "<group>"; };
 		24A2BD591F86981C00FD94A5 /* Object.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Object.swift; sourceTree = "<group>"; };
+		98269CE7200E96D300EE9CB7 /* pop.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = pop.mp3; sourceTree = "<group>"; };
+		98269CE9200E96DE00EE9CB7 /* swoosh.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = swoosh.mp3; sourceTree = "<group>"; };
 		984C5B421F86BFBF0060D3FC /* HomeScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeScreenViewController.swift; sourceTree = "<group>"; };
 		987D4735200D4F8D001CF8DC /* InstructionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstructionsView.swift; sourceTree = "<group>"; };
 		989C2A2B20041D7000C738BF /* successSound.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = successSound.mp3; sourceTree = "<group>"; };
@@ -145,6 +149,8 @@
 				2438A6BB1F8584E800B76B59 /* art.scnassets */,
 				2438A6C21F8584E800B76B59 /* Assets.xcassets */,
 				240360C71FE0925F00F143E0 /* thoughtBubble.png */,
+				98269CE7200E96D300EE9CB7 /* pop.mp3 */,
+				98269CE9200E96DE00EE9CB7 /* swoosh.mp3 */,
 				2438A6C41F8584E800B76B59 /* LaunchScreen.storyboard */,
 				989C2A2D2004245E00C738BF /* mistakeSound.mp3 */,
 				989C2A312004294500C738BF /* bunnyAppearSound.mp3 */,
@@ -282,8 +288,10 @@
 				989C2A2C20041D7000C738BF /* successSound.mp3 in Resources */,
 				2447D16B1FB679C600CB3F68 /* Nunito-Regular.ttf in Resources */,
 				989C2A322004294500C738BF /* bunnyAppearSound.mp3 in Resources */,
+				98269CEA200E96DF00EE9CB7 /* swoosh.mp3 in Resources */,
 				2447D1651FB6796F00CB3F68 /* Nunito-Bold.ttf in Resources */,
 				2447D16D1FB679DE00CB3F68 /* Nunito-SemiBold.ttf in Resources */,
+				98269CE8200E96D300EE9CB7 /* pop.mp3 in Resources */,
 				2447D1631FB6794B00CB3F68 /* Nunito  in Resources */,
 				989C2A2E2004245E00C738BF /* mistakeSound.mp3 in Resources */,
 				2438A6BC1F8584E800B76B59 /* art.scnassets in Resources */,

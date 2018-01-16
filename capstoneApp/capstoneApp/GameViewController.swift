@@ -77,11 +77,31 @@ class GameViewController: UIViewController, ARSCNViewDelegate {
         view.addSubview(sceneView)
         
         view.addSubview(instructionsView)
+        
+        
+        UIView.animate(withDuration: 1, delay: 0.7,
+                                   usingSpringWithDamping: 0.55,
+                                   initialSpringVelocity: 0.3,
+                                   options: .curveEaseInOut, animations:  {
+            self.instructionsView.frame.origin.y -= 200
+                                    
+            let swooshPath = Bundle.main.path(forResource: "swoosh.mp3", ofType:nil)!
+            let swooshURL = URL(fileURLWithPath: swooshPath)
+            
+            do {
+                self.self.audioPlayer = try AVAudioPlayer(contentsOf: swooshURL)
+                self.audioPlayer.play()
+                print ("audio played")
+            } catch {
+                // couldn't load file :(
+            }
+        }, completion: nil)
+        
         // Set the view's delegate
         sceneView.delegate = self
         
         // Show statistics such as fps and timing information
-        sceneView.showsStatistics = true
+//        sceneView.showsStatistics = true
         
         self.sceneView.autoenablesDefaultLighting = true
         sceneView.antialiasingMode = .multisampling4X
@@ -191,8 +211,19 @@ class GameViewController: UIViewController, ARSCNViewDelegate {
             planeNode.transform = SCNMatrix4MakeRotation(Float(-CGFloat.pi/2), 1, 0, 0)
             node?.addChildNode(planeNode)
             anchors.append(planeAnchor)
+            
             DispatchQueue.main.async {
-                self.instructionsView.label.text = "Tap on the grass to find the bunny!"
+                UIView.animate(withDuration: 0.1, animations: {
+                    self.instructionsView.frame.origin.y += 200
+                }, completion: nil)
+                UIView.animate(withDuration: 0.5, delay: 0.3,
+                               usingSpringWithDamping: 0.55,
+                               initialSpringVelocity: 0.3,
+                               options: .curveEaseInOut, animations: {
+                    self.instructionsView.label.text = "Tap on the grass to find the bunny!"
+                    self.instructionsView.frame.origin.y -= 200
+                }, completion: nil)
+
             }
             
         } else {
@@ -232,8 +263,16 @@ class GameViewController: UIViewController, ARSCNViewDelegate {
         //let requestProgressView = RequestProgressView()
         requestProgressView.label.text = String(correctSelected) + " / " + String(numberOfFoodsRequested)
         view.addSubview(requestProgressView)
-
-        instructionsView.label.text = "Let's look for the foods that Bunny wants to eat!"
+        UIView.animate(withDuration: 0.1, animations: {
+            self.instructionsView.frame.origin.y += 200
+        }, completion: nil)
+        UIView.animate(withDuration: 0.5, delay: 0.3,
+                       usingSpringWithDamping: 0.55,
+                       initialSpringVelocity: 0.3,
+                       options: .curveEaseInOut, animations: {
+                        self.instructionsView.label.text = "Let's look for the foods that Bunny wants to eat!"
+                        self.instructionsView.frame.origin.y -= 200
+        }, completion: nil)
         
     }
     
@@ -307,7 +346,12 @@ class GameViewController: UIViewController, ARSCNViewDelegate {
                         
                         print ("Request Complete!")
                         
-                        instructionsView.removeFromSuperview()
+                        UIView.animate(withDuration: 0.1, animations: {
+                            self.instructionsView.frame.origin.y += 200
+                        }) { _ in
+                            self.instructionsView.removeFromSuperview()
+                        }
+                        
                         correctSelected = 0
                         request = Request()
                         
