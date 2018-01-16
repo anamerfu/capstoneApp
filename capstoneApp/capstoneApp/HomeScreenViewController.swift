@@ -15,25 +15,30 @@ class HomeScreenViewController: UIViewController {
         super.viewDidLoad()
         self.navigationController?.isNavigationBarHidden = true
         
-        let button = UIButton(frame: CGRect(x: (self.view.frame.size.width - 100) / 2, y: self.view.frame.size.height - 150, width: 100, height: 50))
-        let label = UILabel(frame: CGRect(x: (self.view.frame.size.width - 400) / 2, y: (self.view.frame.size.height - 600) / 2, width: 400, height: 500))
+        let button = UIButton(frame: CGRect(x: self.view.frame.size.width / 2 - 75, y: self.view.frame.size.height - 125, width: 150, height: 60))
         
+        let titleImage = UIImage(named: "thumper.png")
+        let title = UIImageView(image: titleImage!)
+        
+        let bgImage = UIImage(named: "backgroundFoods.png")
+        let background = UIImageView(image: bgImage!)
+        
+        
+        //background.image = UIImage(named: "backgroundFoods.png")
+        background.frame = CGRect(x:-20, y:-30, width: (bgImage?.size.width)! * 0.9 , height: (bgImage?.size.height)! * 0.9)
         button.backgroundColor = UIColor(hex: "00dfdc")
-        button.layer.cornerRadius = 10
+        button.layer.cornerRadius = 30
         button.setTitle("Play", for: .normal)
-        button.titleLabel?.font = UIFont(name: "Nunito-Bold", size: 16)
+        button.titleLabel?.font = UIFont(name: "Nunito-Bold", size: 32)
         button.setTitleColor(UIColor.white, for: .normal)
         button.addTarget(self, action: #selector(buttonAction), for: .touchUpInside)
         
-//        label.center = CGPoint(x: self.view.frame.size.width - 325, y: self.view.frame.size.height - 250)
-        label.textAlignment = .center
-        label.textColor = .white
-        label.numberOfLines = 0
-        label.font = UIFont(name: "Nunito-Bold", size: 20)
-        label.text = "Look for the patch of grass and tap to find the bunny! Help him find the food he wants to eat by looking around the room and tapping on the correct food!"
+        title.frame = CGRect(x: self.view.frame.size.width / 2 - titleImage!.size.width, y: 10, width: titleImage!.size.width , height: (titleImage?.size.height)!)
         
+        
+        self.view.addSubview(background)
         self.view.addSubview(button)
-        self.view.addSubview(label)
+        self.view.addSubview(title)
         
     }
     

@@ -21,7 +21,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let homeViewController =  HomeScreenViewController()
         let navigationController = UINavigationController(rootViewController: homeViewController)
 
-        homeViewController.view.backgroundColor = UIColor(hex: "7189ff")
+        homeViewController.view.backgroundColor = UIColor(hex: "3d5eff")
         
         self.window = UIWindow(frame: UIScreen.main.bounds)
         self.window?.rootViewController = navigationController
