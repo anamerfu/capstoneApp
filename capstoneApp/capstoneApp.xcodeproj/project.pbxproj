@@ -24,6 +24,7 @@
 		248DE24B1FDE0B2D005E6057 /* RequestHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 248DE24A1FDE0B2D005E6057 /* RequestHelper.swift */; };
 		24A2BD5A1F86981C00FD94A5 /* Object.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24A2BD591F86981C00FD94A5 /* Object.swift */; };
 		984C5B431F86BFBF0060D3FC /* HomeScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 984C5B421F86BFBF0060D3FC /* HomeScreenViewController.swift */; };
+		987D4736200D4F8D001CF8DC /* InstructionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 987D4735200D4F8D001CF8DC /* InstructionsView.swift */; };
 		989C2A2C20041D7000C738BF /* successSound.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 989C2A2B20041D7000C738BF /* successSound.mp3 */; };
 		989C2A2E2004245E00C738BF /* mistakeSound.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 989C2A2D2004245E00C738BF /* mistakeSound.mp3 */; };
 		989C2A322004294500C738BF /* bunnyAppearSound.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 989C2A312004294500C738BF /* bunnyAppearSound.mp3 */; };
@@ -72,6 +73,7 @@
 		248DE24A1FDE0B2D005E6057 /* RequestHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestHelper.swift; sourceTree = "<group>"; };
 		24A2BD591F86981C00FD94A5 /* Object.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Object.swift; sourceTree = "<group>"; };
 		984C5B421F86BFBF0060D3FC /* HomeScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeScreenViewController.swift; sourceTree = "<group>"; };
+		987D4735200D4F8D001CF8DC /* InstructionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstructionsView.swift; sourceTree = "<group>"; };
 		989C2A2B20041D7000C738BF /* successSound.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = successSound.mp3; sourceTree = "<group>"; };
 		989C2A2D2004245E00C738BF /* mistakeSound.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = mistakeSound.mp3; sourceTree = "<group>"; };
 		989C2A312004294500C738BF /* bunnyAppearSound.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = bunnyAppearSound.mp3; sourceTree = "<group>"; };
@@ -137,6 +139,7 @@
 				984C5B421F86BFBF0060D3FC /* HomeScreenViewController.swift */,
 				2438A6B91F8584E800B76B59 /* AppDelegate.swift */,
 				98CF9AB31FCD0736008A564D /* RequestProgressView.swift */,
+				987D4735200D4F8D001CF8DC /* InstructionsView.swift */,
 				2447D1401FB66AD800CB3F68 /* extensions.swift */,
 				2447D1621FB6794800CB3F68 /* Nunito  */,
 				2438A6BB1F8584E800B76B59 /* art.scnassets */,
@@ -311,6 +314,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2438A6BE1F8584E800B76B59 /* GameViewController.swift in Sources */,
+				987D4736200D4F8D001CF8DC /* InstructionsView.swift in Sources */,
 				2447D1411FB66AD800CB3F68 /* extensions.swift in Sources */,
 				248DE24B1FDE0B2D005E6057 /* RequestHelper.swift in Sources */,
 				248DE2491FCF51AF005E6057 /* Request.swift in Sources */,

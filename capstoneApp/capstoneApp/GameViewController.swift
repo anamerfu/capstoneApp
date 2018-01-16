@@ -52,6 +52,10 @@ class GameViewController: UIViewController, ARSCNViewDelegate {
     //create request progress view
     var requestProgressView = RequestProgressView()
     
+    //create instructions view
+    var instructionsView = InstructionsView()
+    
+    
     //let requestPlane = RequestPlane()
     var request = Request()
    
@@ -72,7 +76,7 @@ class GameViewController: UIViewController, ARSCNViewDelegate {
         sceneView.frame = self.view.frame
         view.addSubview(sceneView)
         
-
+        view.addSubview(instructionsView)
         // Set the view's delegate
         sceneView.delegate = self
         
@@ -154,7 +158,6 @@ class GameViewController: UIViewController, ARSCNViewDelegate {
         sceneView.session.run(configuration)
 
         //loadNewObjects()
-
         
         
     }
@@ -181,7 +184,6 @@ class GameViewController: UIViewController, ARSCNViewDelegate {
             let grassMaterial = SCNMaterial()
             grassMaterial.diffuse.contents = grassImage
             grassMaterial.isDoubleSided = true
-            
             planeGeometry.materials = [grassMaterial]
             
             planeNode.position = SCNVector3Make(planeAnchor.center.x, Float(planeHeight / 2), planeAnchor.center.z)
@@ -189,6 +191,9 @@ class GameViewController: UIViewController, ARSCNViewDelegate {
             planeNode.transform = SCNMatrix4MakeRotation(Float(-CGFloat.pi/2), 1, 0, 0)
             node?.addChildNode(planeNode)
             anchors.append(planeAnchor)
+            DispatchQueue.main.async {
+                self.instructionsView.label.text = "Tap on the grass to find the bunny!"
+            }
             
         } else {
             // haven't encountered this scenario yet
@@ -196,6 +201,11 @@ class GameViewController: UIViewController, ARSCNViewDelegate {
         
         }
         return node
+    }
+    
+    func changeInstruction(){
+        print("changeCalled")
+        instructionsView.label.text = "Tap on the grass to find the bunny!"
     }
     
 
@@ -222,6 +232,8 @@ class GameViewController: UIViewController, ARSCNViewDelegate {
         //let requestProgressView = RequestProgressView()
         requestProgressView.label.text = String(correctSelected) + " / " + String(numberOfFoodsRequested)
         view.addSubview(requestProgressView)
+
+        instructionsView.label.text = "Let's look for the foods that Bunny wants to eat!"
         
     }
     
@@ -295,7 +307,7 @@ class GameViewController: UIViewController, ARSCNViewDelegate {
                         
                         print ("Request Complete!")
                         
-                        
+                        instructionsView.removeFromSuperview()
                         correctSelected = 0
                         request = Request()
                         
