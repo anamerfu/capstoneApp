@@ -83,19 +83,28 @@ class GameViewController: UIViewController, ARSCNViewDelegate {
                                    usingSpringWithDamping: 0.55,
                                    initialSpringVelocity: 0.3,
                                    options: .curveEaseInOut, animations:  {
+            playSwoosh()
             self.instructionsView.frame.origin.y -= 200
-                                    
+            
+        }, completion: nil)
+        
+        func playSwoosh(){
             let swooshPath = Bundle.main.path(forResource: "swoosh.mp3", ofType:nil)!
             let swooshURL = URL(fileURLWithPath: swooshPath)
             
             do {
                 self.self.audioPlayer = try AVAudioPlayer(contentsOf: swooshURL)
-                self.audioPlayer.play()
+                let seconds = 0.7//Time To Delay
+                let when = DispatchTime.now() + seconds
+                
+                DispatchQueue.main.asyncAfter(deadline: when) {
+                   self.audioPlayer.play()
+                }
                 print ("audio played")
             } catch {
                 // couldn't load file :(
             }
-        }, completion: nil)
+        }
         
         // Set the view's delegate
         sceneView.delegate = self
@@ -220,10 +229,25 @@ class GameViewController: UIViewController, ARSCNViewDelegate {
                                usingSpringWithDamping: 0.55,
                                initialSpringVelocity: 0.3,
                                options: .curveEaseInOut, animations: {
+                                
+                    let swooshPath = Bundle.main.path(forResource: "swoosh.mp3", ofType:nil)!
+                    let swooshURL = URL(fileURLWithPath: swooshPath)
+                    
+                    do {
+                        self.self.audioPlayer = try AVAudioPlayer(contentsOf: swooshURL)
+                        let seconds = 0.3//Time To Delay
+                        let when = DispatchTime.now() + seconds
+                        
+                        DispatchQueue.main.asyncAfter(deadline: when) {
+                            self.audioPlayer.play()
+                        }
+                        print ("audio played")
+                    } catch {
+                        // couldn't load file :(
+                    }
                     self.instructionsView.label.text = "Tap on the grass to find the bunny!"
                     self.instructionsView.frame.origin.y -= 200
                 }, completion: nil)
-
             }
             
         } else {
@@ -270,6 +294,21 @@ class GameViewController: UIViewController, ARSCNViewDelegate {
                        usingSpringWithDamping: 0.55,
                        initialSpringVelocity: 0.3,
                        options: .curveEaseInOut, animations: {
+                        let swooshPath = Bundle.main.path(forResource: "swoosh.mp3", ofType:nil)!
+                        let swooshURL = URL(fileURLWithPath: swooshPath)
+                        
+                        do {
+                            self.self.audioPlayer = try AVAudioPlayer(contentsOf: swooshURL)
+                            let seconds = 0.3//Time To Delay
+                            let when = DispatchTime.now() + seconds
+                            
+                            DispatchQueue.main.asyncAfter(deadline: when) {
+                                self.audioPlayer.play()
+                            }
+                            print ("audio played")
+                        } catch {
+                            // couldn't load file :(
+                        }
                         self.instructionsView.label.text = "Let's look for the foods that Bunny wants to eat!"
                         self.instructionsView.frame.origin.y -= 200
         }, completion: nil)
