@@ -15,6 +15,7 @@ class HomeScreenViewController: UIViewController {
         super.viewDidLoad()
         self.navigationController?.isNavigationBarHidden = true
         
+        
         let button = UIButton(frame: CGRect(x: self.view.frame.size.width / 2 - 75, y: self.view.frame.size.height - 125, width: 150, height: 60))
         
         let titleImage = UIImage(named: "thumper.png")
