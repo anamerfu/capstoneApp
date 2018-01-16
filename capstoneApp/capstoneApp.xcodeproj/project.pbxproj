@@ -25,6 +25,7 @@
 		24A2BD5A1F86981C00FD94A5 /* Object.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24A2BD591F86981C00FD94A5 /* Object.swift */; };
 		98269CE8200E96D300EE9CB7 /* pop.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 98269CE7200E96D300EE9CB7 /* pop.mp3 */; };
 		98269CEA200E96DF00EE9CB7 /* swoosh.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 98269CE9200E96DE00EE9CB7 /* swoosh.mp3 */; };
+		98269CF8200EAF1500EE9CB7 /* backgroundSong.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 98269CF7200EAF1500EE9CB7 /* backgroundSong.mp3 */; };
 		984C5B431F86BFBF0060D3FC /* HomeScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 984C5B421F86BFBF0060D3FC /* HomeScreenViewController.swift */; };
 		987D4736200D4F8D001CF8DC /* InstructionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 987D4735200D4F8D001CF8DC /* InstructionsView.swift */; };
 		989C2A2C20041D7000C738BF /* successSound.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 989C2A2B20041D7000C738BF /* successSound.mp3 */; };
@@ -52,17 +53,14 @@
 
 /* Begin PBXFileReference section */
 		240360C71FE0925F00F143E0 /* thoughtBubble.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = thoughtBubble.png; sourceTree = "<group>"; };
-		2438A6B61F8584E800B76B59 /* capstoneApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; name = capstoneApp.app; path = "/Users/anamerfu/Documents/GitHub/capstoneApp/capstoneApp/build/Debug-iphoneos/capstoneApp.app"; sourceTree = "<absolute>"; };
 		2438A6B91F8584E800B76B59 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2438A6BB1F8584E800B76B59 /* art.scnassets */ = {isa = PBXFileReference; lastKnownFileType = wrapper.scnassets; path = art.scnassets; sourceTree = "<group>"; };
 		2438A6BD1F8584E800B76B59 /* GameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
 		2438A6C21F8584E800B76B59 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2438A6C51F8584E800B76B59 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		2438A6C71F8584E800B76B59 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		2438A6CC1F8584E800B76B59 /* capstoneAppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; name = capstoneAppTests.xctest; path = "/Users/anamerfu/Documents/GitHub/capstoneApp/capstoneApp/build/Debug-iphoneos/capstoneAppTests.xctest"; sourceTree = "<absolute>"; };
 		2438A6D01F8584E800B76B59 /* capstoneAppTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = capstoneAppTests.swift; sourceTree = "<group>"; };
 		2438A6D21F8584E800B76B59 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		2438A6D71F8584E800B76B59 /* capstoneAppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; name = capstoneAppUITests.xctest; path = "/Users/anamerfu/Documents/GitHub/capstoneApp/capstoneApp/build/Debug-iphoneos/capstoneAppUITests.xctest"; sourceTree = "<absolute>"; };
 		2438A6DB1F8584E800B76B59 /* capstoneAppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = capstoneAppUITests.swift; sourceTree = "<group>"; };
 		2438A6DD1F8584E800B76B59 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2447D1401FB66AD800CB3F68 /* extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = extensions.swift; sourceTree = "<group>"; };
@@ -76,6 +74,10 @@
 		24A2BD591F86981C00FD94A5 /* Object.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Object.swift; sourceTree = "<group>"; };
 		98269CE7200E96D300EE9CB7 /* pop.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = pop.mp3; sourceTree = "<group>"; };
 		98269CE9200E96DE00EE9CB7 /* swoosh.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = swoosh.mp3; sourceTree = "<group>"; };
+		98269CF4200E9DA300EE9CB7 /* capstoneApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = capstoneApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		98269CF5200E9DA300EE9CB7 /* capstoneAppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = capstoneAppTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		98269CF6200E9DA300EE9CB7 /* capstoneAppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = capstoneAppUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		98269CF7200EAF1500EE9CB7 /* backgroundSong.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = backgroundSong.mp3; sourceTree = "<group>"; };
 		984C5B421F86BFBF0060D3FC /* HomeScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeScreenViewController.swift; sourceTree = "<group>"; };
 		987D4735200D4F8D001CF8DC /* InstructionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstructionsView.swift; sourceTree = "<group>"; };
 		989C2A2B20041D7000C738BF /* successSound.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = successSound.mp3; sourceTree = "<group>"; };
@@ -118,6 +120,9 @@
 				2438A6B81F8584E800B76B59 /* capstoneApp */,
 				2438A6CF1F8584E800B76B59 /* capstoneAppTests */,
 				2438A6DA1F8584E800B76B59 /* capstoneAppUITests */,
+				98269CF4200E9DA300EE9CB7 /* capstoneApp.app */,
+				98269CF5200E9DA300EE9CB7 /* capstoneAppTests.xctest */,
+				98269CF6200E9DA300EE9CB7 /* capstoneAppUITests.xctest */,
 			);
 			sourceTree = "<group>";
 		};
@@ -142,6 +147,7 @@
 				98269CE9200E96DE00EE9CB7 /* swoosh.mp3 */,
 				2438A6C41F8584E800B76B59 /* LaunchScreen.storyboard */,
 				989C2A2D2004245E00C738BF /* mistakeSound.mp3 */,
+				98269CF7200EAF1500EE9CB7 /* backgroundSong.mp3 */,
 				989C2A312004294500C738BF /* bunnyAppearSound.mp3 */,
 				989C2A2B20041D7000C738BF /* successSound.mp3 */,
 				2438A6C71F8584E800B76B59 /* Info.plist */,
@@ -184,7 +190,7 @@
 			);
 			name = capstoneApp;
 			productName = capstoneApp;
-			productReference = 2438A6B61F8584E800B76B59 /* capstoneApp.app */;
+			productReference = 98269CF4200E9DA300EE9CB7 /* capstoneApp.app */;
 			productType = "com.apple.product-type.application";
 		};
 		2438A6CB1F8584E800B76B59 /* capstoneAppTests */ = {
@@ -202,7 +208,7 @@
 			);
 			name = capstoneAppTests;
 			productName = capstoneAppTests;
-			productReference = 2438A6CC1F8584E800B76B59 /* capstoneAppTests.xctest */;
+			productReference = 98269CF5200E9DA300EE9CB7 /* capstoneAppTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 		2438A6D61F8584E800B76B59 /* capstoneAppUITests */ = {
@@ -220,7 +226,7 @@
 			);
 			name = capstoneAppUITests;
 			productName = capstoneAppUITests;
-			productReference = 2438A6D71F8584E800B76B59 /* capstoneAppUITests.xctest */;
+			productReference = 98269CF6200E9DA300EE9CB7 /* capstoneAppUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
 /* End PBXNativeTarget section */
@@ -274,6 +280,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				98269CF8200EAF1500EE9CB7 /* backgroundSong.mp3 in Resources */,
 				989C2A2C20041D7000C738BF /* successSound.mp3 in Resources */,
 				2447D16B1FB679C600CB3F68 /* Nunito-Regular.ttf in Resources */,
 				989C2A322004294500C738BF /* bunnyAppearSound.mp3 in Resources */,
