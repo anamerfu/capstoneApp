@@ -35,7 +35,12 @@ class HomeScreenViewController: UIViewController {
         button.setTitle("Play", for: .normal)
         button.titleLabel?.font = UIFont(name: "Nunito-Bold", size: 32)
         button.setTitleColor(UIColor.white, for: .normal)
-        button.addTarget(self, action: #selector(buttonAction), for: .touchUpInside)
+        
+       
+        
+
+        
+         button.addTarget(self, action: #selector(buttonAction), for: .touchUpInside)
         
         title.frame = CGRect(x: self.view.frame.size.width / 2 - titleImage!.size.width / 2 , y: 70, width: titleImage!.size.width , height: (titleImage?.size.height)!)
         
@@ -45,24 +50,44 @@ class HomeScreenViewController: UIViewController {
         self.view.addSubview(title)
         
     }
-    
+    var audioPlayer = AVAudioPlayer()
     @objc func buttonAction(sender: UIButton!) {
-        var audioPlayer = AVAudioPlayer()
+        
         print("Button tapped")
         //audio - set file name & extension
         let pop = Bundle.main.path(forResource: "pop.mp3", ofType:nil)!
         let popURL = URL(fileURLWithPath: pop)
         
-        do {
-            audioPlayer = try AVAudioPlayer(contentsOf: popURL)
-            audioPlayer.play()
-            print ("audio played")
-        } catch {
-            // couldn't load file :(
-        }
+
         
-        self.navigationController?.pushViewController(playGameController, animated: true)
+        sender.transform = CGAffineTransform(scaleX: 0.1, y: 0.1)
+        
+        UIView.animate(withDuration: 1,
+                       delay: 0,
+                       usingSpringWithDamping: CGFloat(0.2),
+                       initialSpringVelocity: CGFloat(6),
+                       options: .allowUserInteraction,
+                       animations: {
+                        do {
+                            self.audioPlayer = try AVAudioPlayer(contentsOf: popURL)
+                            self.audioPlayer.play()
+                            print ("button audio played")
+                        } catch {
+                            // couldn't load file :(
+                        }
+                        sender.transform = .identity
+
+        },
+                       completion: { finished in
+
+                        self.navigationController?.pushViewController(playGameController, animated: true)
+        });
+       
+        
+    
     }
+    
+
     
     
     
