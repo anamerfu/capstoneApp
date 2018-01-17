@@ -11,13 +11,26 @@ import AVFoundation
 
 let playGameController = GameViewController()
 let purple = "#7189ff"
+var audioPlayer = AVAudioPlayer()
 
 class HomeScreenViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationController?.isNavigationBarHidden = true
         
-        
+//        let backgroundSongPath = Bundle.main.path(forResource: "backgroundSong.mp3", ofType:nil)!
+//        let backgroundSongURL = URL(fileURLWithPath: backgroundSongPath)
+//
+//        do {
+//            audioPlayer = try AVAudioPlayer(contentsOf: backgroundSongURL)
+//            audioPlayer.volume = 0.5
+//            audioPlayer.numberOfLoops = -1
+//            audioPlayer.play()
+//            print ("audio played")
+//        } catch {
+//            // couldn't load file :(
+//        }
+        MusicHelper.sharedHelper.playBackgroundMusic()
         
         let button = UIButton(frame: CGRect(x: self.view.frame.size.width / 2 - 75, y: self.view.frame.size.height - 125, width: 150, height: 60))
         
@@ -42,7 +55,7 @@ class HomeScreenViewController: UIViewController {
         
          button.addTarget(self, action: #selector(buttonAction), for: .touchUpInside)
         
-        title.frame = CGRect(x: self.view.frame.size.width / 2 - titleImage!.size.width / 2 , y: 70, width: titleImage!.size.width , height: (titleImage?.size.height)!)
+        title.frame = CGRect(x: self.view.frame.size.width / 2 - titleImage!.size.width / 2 , y: 85, width: titleImage!.size.width , height: (titleImage?.size.height)!)
         
         
         self.view.addSubview(background)
@@ -50,7 +63,7 @@ class HomeScreenViewController: UIViewController {
         self.view.addSubview(title)
         
     }
-    var audioPlayer = AVAudioPlayer()
+    
     @objc func buttonAction(sender: UIButton!) {
         
         print("Button tapped")
@@ -62,15 +75,15 @@ class HomeScreenViewController: UIViewController {
         
         sender.transform = CGAffineTransform(scaleX: 0.1, y: 0.1)
         
-        UIView.animate(withDuration: 1,
+        UIView.animate(withDuration: 0.5,
                        delay: 0,
                        usingSpringWithDamping: CGFloat(0.2),
                        initialSpringVelocity: CGFloat(6),
                        options: .allowUserInteraction,
                        animations: {
                         do {
-                            self.audioPlayer = try AVAudioPlayer(contentsOf: popURL)
-                            self.audioPlayer.play()
+                            audioPlayer = try AVAudioPlayer(contentsOf: popURL)
+                            audioPlayer.play()
                             print ("button audio played")
                         } catch {
                             // couldn't load file :(

@@ -26,6 +26,7 @@ var currentLocation: SCNVector3 = SCNVector3Make(0, 0, 0)
 class GameViewController: UIViewController, ARSCNViewDelegate {
     
     var audioPlayer = AVAudioPlayer()
+    
 
     let sceneView: ARSCNView = ARSCNView()
 
@@ -67,6 +68,21 @@ class GameViewController: UIViewController, ARSCNViewDelegate {
     var currentRequest: String!
     
     var firstLoad: Bool = true
+    
+    func playBackground(){
+        let backgroundSongPath = Bundle.main.path(forResource: "backgroundSong.mp3", ofType:nil)!
+        let backgroundSongURL = URL(fileURLWithPath: backgroundSongPath)
+        
+        do {
+            audioPlayer = try AVAudioPlayer(contentsOf: backgroundSongURL)
+            audioPlayer.volume = 0.5
+            audioPlayer.numberOfLoops = -1
+            audioPlayer.play()
+            print ("backgroundmusic on")
+        } catch {
+            // couldn't load file :(
+        }
+    }
 
     func playSwoosh(seconds: Double){
         let swooshPath = Bundle.main.path(forResource: "swoosh.mp3", ofType:nil)!
@@ -88,6 +104,7 @@ class GameViewController: UIViewController, ARSCNViewDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         
         sceneView.frame = self.view.frame
         view.addSubview(sceneView)
@@ -206,6 +223,7 @@ class GameViewController: UIViewController, ARSCNViewDelegate {
             node = SCNNode()
         
             let planeGeometry = SCNPlane(width: CGFloat(planeAnchor.extent.x), height: CGFloat(planeAnchor.extent.z))
+            planeGeometry.cornerRadius = 50.0
             let planeNode = SCNNode(geometry: planeGeometry)
             
             let grassImage = UIImage(named: "grass")
@@ -213,6 +231,7 @@ class GameViewController: UIViewController, ARSCNViewDelegate {
             grassMaterial.diffuse.contents = grassImage
             grassMaterial.isDoubleSided = true
             planeGeometry.materials = [grassMaterial]
+            planeNode.opacity = 0.8
             
             planeNode.position = SCNVector3Make(planeAnchor.center.x, Float(planeHeight / 2), planeAnchor.center.z)
             //            since SCNPlane is vertical, needs to be rotated -90 degress on X axis to make a plane
@@ -230,6 +249,20 @@ class GameViewController: UIViewController, ARSCNViewDelegate {
                                options: .curveEaseInOut, animations: {
                                 
                     self.playSwoosh(seconds: 0.3)
+                                
+                                //AUDIO INSTRUCTION
+//                    let sharePath = Bundle.main.path(forResource: "shareVoice.mp3", ofType:nil)!
+//                    let shareURL = URL(fileURLWithPath: sharePath)
+//
+//                    do {
+//                        self.audioPlayer = try AVAudioPlayer(contentsOf: shareURL)
+//                        self.audioPlayer.volume = 0.5
+//                        self.audioPlayer.numberOfLoops = -1
+//                        self.self.audioPlayer.play()
+//                        print ("backgroundmusic on")
+//                    } catch {
+//                        // couldn't load file :(
+//                    }
                     self.instructionsView.label.text = "Tap on the grass to find the bunny!"
                     self.instructionsView.frame.origin.y -= 200
                 }, completion: nil)

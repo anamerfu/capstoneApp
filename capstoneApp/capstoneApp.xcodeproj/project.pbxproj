@@ -26,6 +26,7 @@
 		98269CE8200E96D300EE9CB7 /* pop.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 98269CE7200E96D300EE9CB7 /* pop.mp3 */; };
 		98269CEA200E96DF00EE9CB7 /* swoosh.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 98269CE9200E96DE00EE9CB7 /* swoosh.mp3 */; };
 		98269CF8200EAF1500EE9CB7 /* backgroundSong.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 98269CF7200EAF1500EE9CB7 /* backgroundSong.mp3 */; };
+		98269D02200ED30200EE9CB7 /* MusicHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98269D01200ED30200EE9CB7 /* MusicHelper.swift */; };
 		984C5B431F86BFBF0060D3FC /* HomeScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 984C5B421F86BFBF0060D3FC /* HomeScreenViewController.swift */; };
 		987D4736200D4F8D001CF8DC /* InstructionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 987D4735200D4F8D001CF8DC /* InstructionsView.swift */; };
 		989C2A2C20041D7000C738BF /* successSound.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 989C2A2B20041D7000C738BF /* successSound.mp3 */; };
@@ -78,6 +79,7 @@
 		98269CF5200E9DA300EE9CB7 /* capstoneAppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = capstoneAppTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		98269CF6200E9DA300EE9CB7 /* capstoneAppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = capstoneAppUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		98269CF7200EAF1500EE9CB7 /* backgroundSong.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = backgroundSong.mp3; sourceTree = "<group>"; };
+		98269D01200ED30200EE9CB7 /* MusicHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicHelper.swift; sourceTree = "<group>"; };
 		984C5B421F86BFBF0060D3FC /* HomeScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeScreenViewController.swift; sourceTree = "<group>"; };
 		987D4735200D4F8D001CF8DC /* InstructionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstructionsView.swift; sourceTree = "<group>"; };
 		989C2A2B20041D7000C738BF /* successSound.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = successSound.mp3; sourceTree = "<group>"; };
@@ -133,6 +135,7 @@
 				248DE2481FCF51AF005E6057 /* Request.swift */,
 				248DE24A1FDE0B2D005E6057 /* RequestHelper.swift */,
 				2438A6BD1F8584E800B76B59 /* GameViewController.swift */,
+				98269D01200ED30200EE9CB7 /* MusicHelper.swift */,
 				24A2BD591F86981C00FD94A5 /* Object.swift */,
 				984C5B421F86BFBF0060D3FC /* HomeScreenViewController.swift */,
 				2438A6B91F8584E800B76B59 /* AppDelegate.swift */,
@@ -326,6 +329,7 @@
 				98CF9AB41FCD0736008A564D /* RequestProgressView.swift in Sources */,
 				24A2BD5A1F86981C00FD94A5 /* Object.swift in Sources */,
 				2438A6BA1F8584E800B76B59 /* AppDelegate.swift in Sources */,
+				98269D02200ED30200EE9CB7 /* MusicHelper.swift in Sources */,
 				984C5B431F86BFBF0060D3FC /* HomeScreenViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
