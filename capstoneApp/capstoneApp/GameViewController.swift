@@ -313,6 +313,12 @@ class GameViewController: UIViewController, ARSCNViewDelegate {
         
     }
     
+    func delayWithSeconds(_ seconds: Double, completion: @escaping () -> ()) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + seconds) {
+            completion()
+        }
+    }
+    
     func loadNewObjects(){
         
         print(sceneView.scene.rootNode.childNodes)
@@ -379,7 +385,16 @@ class GameViewController: UIViewController, ARSCNViewDelegate {
                     
                         
                     if correctSelected == numberOfFoodsRequested {
+                        let cheerPath = Bundle.main.path(forResource: "kidsCheer.mp3", ofType:nil)!
+                        let cheerURL = URL(fileURLWithPath: cheerPath)
                         
+                        do {
+                            audioPlayer = try AVAudioPlayer(contentsOf: cheerURL)
+                            audioPlayer.play()
+                            print ("cheer played")
+                        } catch {
+                            // couldn't load file :(
+                        }
                         
                         print ("Request Complete!")
                         
@@ -389,25 +404,30 @@ class GameViewController: UIViewController, ARSCNViewDelegate {
                             self.instructionsView.removeFromSuperview()
                         }
                         
-                        correctSelected = 0
-                        request = Request()
-                        
-                        
-                        RequestHelper.removeOldRequestNodes(sceneView: sceneView)
-                        
-                        setUpRequestNodes()
-                        
-                        RequestHelper.loadRequestBubble(sceneView: sceneView, node: request.wrapperNode!, location: currentLocation)
-                        
-                        currentRequest = foods[request.randomFoodNumber!]
-                        numberOfFoodsRequested = request.numberOfFoodsRequested
-                        loadNewObjects()
-                        
-                        requestProgressView = RequestProgressView()
-                        addProgressView()
-                        view.addSubview(requestProgressView)
-                        print("new current request: \(currentRequest)")
-                        
+                        delayWithSeconds(1.5) {
+                            
+                            self.correctSelected = 0
+                            self.request = Request()
+                            
+                            
+                            RequestHelper.removeOldRequestNodes(sceneView: self.sceneView)
+                            
+                            self.setUpRequestNodes()
+                            
+                            RequestHelper.loadRequestBubble(sceneView: self.self.sceneView, node: self.request.wrapperNode!, location: currentLocation)
+                            
+                            self.currentRequest = foods[self.request.randomFoodNumber!]
+                            self.numberOfFoodsRequested = self.request.numberOfFoodsRequested
+                            self.loadNewObjects()
+                            
+                            self.requestProgressView = RequestProgressView()
+                            self.addProgressView()
+                            self.view.addSubview(self.requestProgressView)
+                            print("new current request: \(self.currentRequest)")
+                            
+                            
+                            
+                        }
                         
                         
                     }

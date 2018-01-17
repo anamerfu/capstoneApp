@@ -32,6 +32,7 @@
 		989C2A2C20041D7000C738BF /* successSound.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 989C2A2B20041D7000C738BF /* successSound.mp3 */; };
 		989C2A2E2004245E00C738BF /* mistakeSound.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 989C2A2D2004245E00C738BF /* mistakeSound.mp3 */; };
 		989C2A322004294500C738BF /* bunnyAppearSound.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 989C2A312004294500C738BF /* bunnyAppearSound.mp3 */; };
+		98C3A9EA200EE21E006D083D /* kidsCheer.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 98C3A9E9200EE21E006D083D /* kidsCheer.mp3 */; };
 		98CF9AB41FCD0736008A564D /* RequestProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98CF9AB31FCD0736008A564D /* RequestProgressView.swift */; };
 /* End PBXBuildFile section */
 
@@ -85,6 +86,7 @@
 		989C2A2B20041D7000C738BF /* successSound.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = successSound.mp3; sourceTree = "<group>"; };
 		989C2A2D2004245E00C738BF /* mistakeSound.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = mistakeSound.mp3; sourceTree = "<group>"; };
 		989C2A312004294500C738BF /* bunnyAppearSound.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = bunnyAppearSound.mp3; sourceTree = "<group>"; };
+		98C3A9E9200EE21E006D083D /* kidsCheer.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = kidsCheer.mp3; sourceTree = "<group>"; };
 		98CF9AB31FCD0736008A564D /* RequestProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestProgressView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -148,6 +150,7 @@
 				240360C71FE0925F00F143E0 /* thoughtBubble.png */,
 				98269CE7200E96D300EE9CB7 /* pop.mp3 */,
 				98269CE9200E96DE00EE9CB7 /* swoosh.mp3 */,
+				98C3A9E9200EE21E006D083D /* kidsCheer.mp3 */,
 				2438A6C41F8584E800B76B59 /* LaunchScreen.storyboard */,
 				989C2A2D2004245E00C738BF /* mistakeSound.mp3 */,
 				98269CF7200EAF1500EE9CB7 /* backgroundSong.mp3 */,
@@ -288,6 +291,7 @@
 				2447D16B1FB679C600CB3F68 /* Nunito-Regular.ttf in Resources */,
 				989C2A322004294500C738BF /* bunnyAppearSound.mp3 in Resources */,
 				98269CEA200E96DF00EE9CB7 /* swoosh.mp3 in Resources */,
+				98C3A9EA200EE21E006D083D /* kidsCheer.mp3 in Resources */,
 				2447D1651FB6796F00CB3F68 /* Nunito-Bold.ttf in Resources */,
 				2447D16D1FB679DE00CB3F68 /* Nunito-SemiBold.ttf in Resources */,
 				98269CE8200E96D300EE9CB7 /* pop.mp3 in Resources */,
