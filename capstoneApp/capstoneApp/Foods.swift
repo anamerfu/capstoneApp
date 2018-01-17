@@ -8,5 +8,5 @@
 
 import UIKit
 
-let foods: Array = ["apple", "cake", "grapes", "icecream", "orange", "pumpkin"];
+let foods: Array = ["apple", "cake", "grapes", "orange", "pumpkin"];
 

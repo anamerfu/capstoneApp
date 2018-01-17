@@ -37,7 +37,7 @@ class Request: SCNNode {
         
         self.randomFoodNumber = Int (arc4random_uniform ( UInt32(foods.count) ) )
         self.randomFoodName = foods[randomFoodNumber!] + ".png"
-        self.numberOfFoodsRequested = Int(arc4random_uniform(4) + 1)
+        self.numberOfFoodsRequested = Int(arc4random_uniform(3) + 1)
         self.currentRequest = foods[randomFoodNumber!]
             
         
