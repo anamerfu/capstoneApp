@@ -33,6 +33,9 @@
 		989C2A2E2004245E00C738BF /* mistakeSound.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 989C2A2D2004245E00C738BF /* mistakeSound.mp3 */; };
 		989C2A322004294500C738BF /* bunnyAppearSound.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 989C2A312004294500C738BF /* bunnyAppearSound.mp3 */; };
 		98C3A9EA200EE21E006D083D /* kidsCheer.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 98C3A9E9200EE21E006D083D /* kidsCheer.mp3 */; };
+		98C3A9EC200F0215006D083D /* patchGrass.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 98C3A9EB200F0215006D083D /* patchGrass.mp3 */; };
+		98C3A9F2200F07B6006D083D /* tapGrass.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 98C3A9F1200F07B5006D083D /* tapGrass.mp3 */; };
+		98C3A9F4200F08DB006D083D /* moveAround.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 98C3A9F3200F08DB006D083D /* moveAround.mp3 */; };
 		98CF9AB41FCD0736008A564D /* RequestProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98CF9AB31FCD0736008A564D /* RequestProgressView.swift */; };
 /* End PBXBuildFile section */
 
@@ -87,6 +90,9 @@
 		989C2A2D2004245E00C738BF /* mistakeSound.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = mistakeSound.mp3; sourceTree = "<group>"; };
 		989C2A312004294500C738BF /* bunnyAppearSound.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = bunnyAppearSound.mp3; sourceTree = "<group>"; };
 		98C3A9E9200EE21E006D083D /* kidsCheer.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = kidsCheer.mp3; sourceTree = "<group>"; };
+		98C3A9EB200F0215006D083D /* patchGrass.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = patchGrass.mp3; sourceTree = "<group>"; };
+		98C3A9F1200F07B5006D083D /* tapGrass.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = tapGrass.mp3; sourceTree = "<group>"; };
+		98C3A9F3200F08DB006D083D /* moveAround.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = moveAround.mp3; sourceTree = "<group>"; };
 		98CF9AB31FCD0736008A564D /* RequestProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestProgressView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -153,6 +159,9 @@
 				98C3A9E9200EE21E006D083D /* kidsCheer.mp3 */,
 				2438A6C41F8584E800B76B59 /* LaunchScreen.storyboard */,
 				989C2A2D2004245E00C738BF /* mistakeSound.mp3 */,
+				98C3A9F1200F07B5006D083D /* tapGrass.mp3 */,
+				98C3A9F3200F08DB006D083D /* moveAround.mp3 */,
+				98C3A9EB200F0215006D083D /* patchGrass.mp3 */,
 				98269CF7200EAF1500EE9CB7 /* backgroundSong.mp3 */,
 				989C2A312004294500C738BF /* bunnyAppearSound.mp3 */,
 				989C2A2B20041D7000C738BF /* successSound.mp3 */,
@@ -294,12 +303,15 @@
 				98C3A9EA200EE21E006D083D /* kidsCheer.mp3 in Resources */,
 				2447D1651FB6796F00CB3F68 /* Nunito-Bold.ttf in Resources */,
 				2447D16D1FB679DE00CB3F68 /* Nunito-SemiBold.ttf in Resources */,
+				98C3A9F4200F08DB006D083D /* moveAround.mp3 in Resources */,
 				98269CE8200E96D300EE9CB7 /* pop.mp3 in Resources */,
 				2447D1631FB6794B00CB3F68 /* Nunito  in Resources */,
 				989C2A2E2004245E00C738BF /* mistakeSound.mp3 in Resources */,
 				2438A6BC1F8584E800B76B59 /* art.scnassets in Resources */,
 				2438A6C61F8584E800B76B59 /* LaunchScreen.storyboard in Resources */,
+				98C3A9EC200F0215006D083D /* patchGrass.mp3 in Resources */,
 				2438A6C31F8584E800B76B59 /* Assets.xcassets in Resources */,
+				98C3A9F2200F07B6006D083D /* tapGrass.mp3 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

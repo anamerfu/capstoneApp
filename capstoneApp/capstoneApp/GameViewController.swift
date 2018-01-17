@@ -117,6 +117,19 @@ class GameViewController: UIViewController, ARSCNViewDelegate {
                                    initialSpringVelocity: 0.3,
                                    options: .curveEaseInOut, animations:  {
             self.playSwoosh(seconds: 0.7)
+            self.delayWithSeconds(0.8) {
+                let patchGrassPath = Bundle.main.path(forResource: "patchGrass.mp3", ofType:nil)!
+                let patchGrassURL = URL(fileURLWithPath: patchGrassPath)
+                
+                do {
+                    self.audioPlayer = try AVAudioPlayer(contentsOf: patchGrassURL)
+                    self.audioPlayer.play()
+                    print ("audio played")
+                } catch {
+                    // couldn't load file :(
+                }
+                                    }
+            
             self.instructionsView.frame.origin.y -= 200
             
         }, completion: nil)
@@ -251,21 +264,25 @@ class GameViewController: UIViewController, ARSCNViewDelegate {
                     self.playSwoosh(seconds: 0.3)
                                 
                                 //AUDIO INSTRUCTION
-//                    let sharePath = Bundle.main.path(forResource: "shareVoice.mp3", ofType:nil)!
-//                    let shareURL = URL(fileURLWithPath: sharePath)
-//
-//                    do {
-//                        self.audioPlayer = try AVAudioPlayer(contentsOf: shareURL)
-//                        self.audioPlayer.volume = 0.5
-//                        self.audioPlayer.numberOfLoops = -1
-//                        self.self.audioPlayer.play()
-//                        print ("backgroundmusic on")
-//                    } catch {
-//                        // couldn't load file :(
-//                    }
-                    self.instructionsView.label.text = "Tap on the grass to find the bunny!"
+                    self.delayWithSeconds(0.8) {
+                        let tapGrassPath = Bundle.main.path(forResource: "tapGrass.mp3", ofType:nil)!
+                        let tapGrassURL = URL(fileURLWithPath: tapGrassPath)
+                        
+                        do {
+                            self.audioPlayer = try AVAudioPlayer(contentsOf: tapGrassURL)
+                            self.self.audioPlayer.play()
+                            print ("backgroundmusic on")
+                        } catch {
+                            // couldn't load file :(
+                        }
+                    }
+                    
+                    self.instructionsView.label.text = "Tap on the grass to find me!"
                     self.instructionsView.frame.origin.y -= 200
-                }, completion: nil)
+                }, completion: { finished in
+                    
+                    self.moveAroundArea()
+                });
             }
             
         } else {
@@ -295,22 +312,41 @@ class GameViewController: UIViewController, ARSCNViewDelegate {
         }
     }
     
+    func moveAroundArea(){
+        self.delayWithSeconds(4) {
+            UIView.animate(withDuration: 0.1, animations: {
+            self.instructionsView.frame.origin.y += 200
+        }, completion: nil)
+            UIView.animate(withDuration: 0.5, delay: 0.3,
+                           usingSpringWithDamping: 0.55,
+                           initialSpringVelocity: 0.3,
+                           options: .curveEaseInOut, animations: {
+                            self.playSwoosh(seconds: 0.3)
+                            self.delayWithSeconds(0.8) {
+                                let moveAroundPath = Bundle.main.path(forResource: "moveAround.mp3", ofType:nil)!
+                                let moveAroundURL = URL(fileURLWithPath: moveAroundPath)
+                                
+                                do {
+                                    self.audioPlayer = try AVAudioPlayer(contentsOf: moveAroundURL)
+                                    self.audioPlayer.play()
+                                    print ("audio played")
+                                } catch {
+                                    // couldn't load file :(
+                                }
+                            }
+                            self.instructionsView.label.text = "Move around and tap on the food that I'm thinking about!"
+                            self.instructionsView.frame.origin.y -= 200
+            }, completion: nil)}
+        
+        
+    }
+    
     func addProgressView () {
         //let requestProgressView = RequestProgressView()
         requestProgressView.label.text = String(correctSelected) + " / " + String(numberOfFoodsRequested)
         view.addSubview(requestProgressView)
-        UIView.animate(withDuration: 0.1, animations: {
-            self.instructionsView.frame.origin.y += 200
-        }, completion: nil)
-        UIView.animate(withDuration: 0.5, delay: 0.3,
-                       usingSpringWithDamping: 0.55,
-                       initialSpringVelocity: 0.3,
-                       options: .curveEaseInOut, animations: {
-                        self.playSwoosh(seconds: 0.3)
-                        self.instructionsView.label.text = "Move around and tap on the food that the bunny is thinking about!"
-                        self.instructionsView.frame.origin.y -= 200
-        }, completion: nil)
         
+    
     }
     
     func delayWithSeconds(_ seconds: Double, completion: @escaping () -> ()) {
@@ -385,15 +421,18 @@ class GameViewController: UIViewController, ARSCNViewDelegate {
                     
                         
                     if correctSelected == numberOfFoodsRequested {
-                        let cheerPath = Bundle.main.path(forResource: "kidsCheer.mp3", ofType:nil)!
-                        let cheerURL = URL(fileURLWithPath: cheerPath)
-                        
-                        do {
-                            audioPlayer = try AVAudioPlayer(contentsOf: cheerURL)
-                            audioPlayer.play()
-                            print ("cheer played")
-                        } catch {
-                            // couldn't load file :(
+                       
+                        self.delayWithSeconds(1) {
+                            let cheerPath = Bundle.main.path(forResource: "kidsCheer.mp3", ofType:nil)!
+                            let cheerURL = URL(fileURLWithPath: cheerPath)
+                            
+                            do {
+                                self.audioPlayer = try AVAudioPlayer(contentsOf: cheerURL)
+                                self.self.audioPlayer.play()
+                                print ("cheer played")
+                            } catch {
+                                // couldn't load file :(
+                            }
                         }
                         
                         print ("Request Complete!")
@@ -404,7 +443,7 @@ class GameViewController: UIViewController, ARSCNViewDelegate {
                             self.instructionsView.removeFromSuperview()
                         }
                         
-                        delayWithSeconds(1.5) {
+                        delayWithSeconds(2.5) {
                             
                             self.correctSelected = 0
                             self.request = Request()
