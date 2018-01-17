@@ -147,8 +147,8 @@ class GameViewController: UIViewController, ARSCNViewDelegate {
         let sceneSource = SCNSceneSource(url: sceneURL!, options: nil)
         
         if let animationObject = sceneSource?.entryWithIdentifier(animationIdentifier, withClass: CAAnimation.self) {
-            // The animation will only play once
-            animationObject.repeatCount = 1
+           
+            animationObject.repeatCount = 3
             // To create smooth transitions between animations
             animationObject.fadeInDuration = CGFloat(1)
             animationObject.fadeOutDuration = CGFloat(0.5)
@@ -363,6 +363,7 @@ class GameViewController: UIViewController, ARSCNViewDelegate {
                     
                     print("correct item selected")
                     playAnimation(key: "happy")
+                    
                     //audio - set file name & extension
                     let successPath = Bundle.main.path(forResource: "successSound.mp3", ofType:nil)!
                     let successURL = URL(fileURLWithPath: successPath)
@@ -408,9 +409,12 @@ class GameViewController: UIViewController, ARSCNViewDelegate {
                         
                         requestProgressView = RequestProgressView()
                         addProgressView()
+                        
+                        playAnimation(key: "happy")
+                        playAnimation(key: "happy")
+                        
                         view.addSubview(requestProgressView)
                         print("new current request: \(currentRequest)")
-                        
                         
                         
                     }

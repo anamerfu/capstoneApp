@@ -12,17 +12,24 @@ import AVFoundation
 let playGameController = GameViewController()
 let purple = "#7189ff"
 
+
+
 class HomeScreenViewController: UIViewController {
+    
+    var button = UIButton()
+    var titleImageView = UIImageView()
+    var titleImage = UIImage()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationController?.isNavigationBarHidden = true
         
         
         
-        let button = UIButton(frame: CGRect(x: self.view.frame.size.width / 2 - 75, y: self.view.frame.size.height - 125, width: 150, height: 60))
+        button = UIButton(frame: CGRect(x: self.view.frame.size.width / 2 - 75, y: self.view.frame.size.height - 125, width: 150, height: 60))
         
-        let titleImage = UIImage(named: "thumper.png")
-        let title = UIImageView(image: titleImage!)
+        titleImage = UIImage(named: "thumper.png")!
+        titleImageView = UIImageView(image: titleImage)
         
         let bgImage = UIImage(named: "backgroundFoods.png")
         let background = UIImageView(image: bgImage!)
@@ -40,18 +47,18 @@ class HomeScreenViewController: UIViewController {
         
 
         
-         button.addTarget(self, action: #selector(buttonAction), for: .touchUpInside)
+        button.addTarget(self, action: #selector(buttonAction), for: .touchUpInside)
         
-        title.frame = CGRect(x: self.view.frame.size.width / 2 - titleImage!.size.width / 2 , y: 70, width: titleImage!.size.width , height: (titleImage?.size.height)!)
+        titleImageView.frame = CGRect(x: self.view.frame.size.width / 2 - titleImage.size.width / 2 , y: 70, width: titleImage.size.width , height: (titleImage.size.height))
         
         
         self.view.addSubview(background)
         self.view.addSubview(button)
-        self.view.addSubview(title)
+        self.view.addSubview(titleImageView)
         
     }
     var audioPlayer = AVAudioPlayer()
-    @objc func buttonAction(sender: UIButton!) {
+    @objc func buttonAction(sender: UIButton) {
         
         print("Button tapped")
         //audio - set file name & extension
@@ -79,14 +86,34 @@ class HomeScreenViewController: UIViewController {
 
         },
                        completion: { finished in
+                        
+                        
+                        self.navigationController?.pushViewController(playGameController, animated: false)
+                        
 
-                        self.navigationController?.pushViewController(playGameController, animated: true)
+                        
         });
+        
+        
        
         
     
     }
     
+//    func animateView () {
+//
+//        UIView.animate(withDuration: 4, animations: {
+//            print("WORRRKS")
+//
+//            var homeView = HomeScreenViewController()
+//            homeView.titleImage.
+//
+//        }, completion: { finished in
+//            self.navigationController?.pushViewController(playGameController, animated: false)
+//        })
+//
+//    }
+//
 
     
     
