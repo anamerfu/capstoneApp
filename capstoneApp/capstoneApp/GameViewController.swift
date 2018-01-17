@@ -307,7 +307,7 @@ class GameViewController: UIViewController, ARSCNViewDelegate {
                        initialSpringVelocity: 0.3,
                        options: .curveEaseInOut, animations: {
                         self.playSwoosh(seconds: 0.3)
-                        self.instructionsView.label.text = "Let's look for the foods that Bunny wants to eat!"
+                        self.instructionsView.label.text = "Move around and tap on the food that the bunny is thinking about!"
                         self.instructionsView.frame.origin.y -= 200
         }, completion: nil)
         
